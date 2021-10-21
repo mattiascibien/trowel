@@ -24,42 +24,10 @@ namespace Sledge.Shell.Forms
             FullError.Text = info.FullStackTrace;
         }
 
-        private void SubmitButtonClicked(object sender, EventArgs e)
-        {
-            Submit();
-            Close();
-        }
-
-        private void Submit()
-        {
-            try
-            {
-                Info.UserEnteredInformation = InfoTextBox.Text;
-                using (var client = new WebClient())
-                {
-                    var values = new NameValueCollection();
-                    values["Message"] = Info.Message;
-                    values["Runtime"] = Info.RuntimeVersion;
-                    values["OS"] = Info.OperatingSystem;
-                    values["Version"] = Info.ApplicationVersion;
-                    values["StackTrace"] = Info.FullStackTrace;
-                    values["UserInfo"] = Info.UserEnteredInformation;
-                    values["Source"] = Info.Source;
-                    values["Date"] = Info.Date.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ");
-                    client.UploadValues("http://bugs.sledge-editor.com/Bug/AutoSubmit", "POST", values);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error sending bug report: " + ex.Message);
-            }
-        }
-
-        private void CancelButtonClicked(object sender, EventArgs e)
+        private void CloseButtonClicked(object sender, EventArgs e)
         {
             Close();
         }
-
 
         public class ExceptionInfo
         {

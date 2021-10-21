@@ -88,7 +88,7 @@ namespace Sledge.Shell.Forms
 
         private Task ShowExceptionDialogOnce(Exception obj)
         {
-            return ShowException(obj) ? ShowExceptionDialog(obj) : Task.CompletedTask;
+            return ShouldShowException(obj) ? ShowExceptionDialog(obj) : Task.CompletedTask;
         }
 
         private readonly HashSet<string> _shownExceptions = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
@@ -98,7 +98,7 @@ namespace Sledge.Shell.Forms
             return exception == null ? "" : $"{exception.Message}|{exception.StackTrace}|{GetExceptionData(exception.InnerException)}";
         }
 
-        private bool ShowException(Exception exception)
+        private bool ShouldShowException(Exception exception)
         {
             var exData = GetExceptionData(exception);
             if (_shownExceptions.Contains(exData)) return false;
