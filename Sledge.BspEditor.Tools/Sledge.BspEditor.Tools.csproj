@@ -105,11 +105,9 @@
     <Content Include="Resources\Tool_Entity.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Poly2Tri">
-      <Version>1.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.246501">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Poly2Tri.NetStandard" Version="1.0.2" />
   </ItemGroup>
 </Project>
