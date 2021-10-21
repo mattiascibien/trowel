@@ -102,7 +102,7 @@ namespace Sledge.Common.Threading
         /// <param name="items">The items to remove</param>
         public void RemoveRange(IEnumerable<T> items)
         {
-            var li = items.ToHashSet();
+            var li = items.ToArray();
             RemoveAll(li.Contains);
         }
 

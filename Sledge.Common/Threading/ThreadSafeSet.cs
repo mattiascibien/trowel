@@ -132,7 +132,7 @@ namespace Sledge.Common.Threading
         /// <inheritdoc />
         public IEnumerator<T> GetEnumerator()
         {
-            lock (_lock) return _set.ToHashSet().GetEnumerator();
+            lock (_lock) return _set.ToList().GetEnumerator();
         }
 
         /// <inheritdoc />

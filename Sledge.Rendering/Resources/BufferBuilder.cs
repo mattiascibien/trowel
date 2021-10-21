@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Veldrid;
@@ -200,8 +202,10 @@ namespace Sledge.Rendering.Resources
             CommitCurrentBuffers();
         }
 
-        [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
-        private static extern void CopyMemory(IntPtr dest, IntPtr src, uint count);
+        [SuppressMessage("Microsoft.Security", "CA2118:ReviewSuppressUnmanagedCodeSecurityUsage")]
+        [DllImport("kernel32.dll", SetLastError=true, ExactSpelling=true, EntryPoint="RtlMoveMemory", CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+        [ResourceExposure(ResourceScope.None)]
+        public static extern void CopyMemory(IntPtr destData, IntPtr srcData, uint size);
 
         private void CopyToBuffer(MappedResource map, uint offset, Array data, uint size)
         {
