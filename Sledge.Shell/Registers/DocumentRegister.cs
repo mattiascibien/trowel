@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using LogicAndTrick.Oy;
 using Microsoft.Win32;
@@ -300,32 +301,36 @@ namespace Sledge.Shell.Registers
 
         private void AssociateExtensionHandlers(IEnumerable<string> extensions)
         {
-            try
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                using (var root = Registry.CurrentUser.OpenSubKey("Software\\Classes", true))
+                try
                 {
-                    if (root == null) return;
-
-                    foreach (var extension in extensions)
+                    using (var root = Registry.CurrentUser.OpenSubKey("Software\\Classes", true))
                     {
-                        using (var ext = root.CreateSubKey(extension))
-                        {
-                            if (ext == null) return;
-                            ext.SetValue("", _programId + extension + "." + _programIdVer);
-                            ext.SetValue("PerceivedType", "Document");
+                        if (root == null) return;
 
-                            using (var openWith = ext.CreateSubKey("OpenWithProgIds"))
+                        foreach (var extension in extensions)
+                        {
+                            using (var ext = root.CreateSubKey(extension))
                             {
-                                openWith?.SetValue(_programId + extension + "." + _programIdVer, string.Empty);
+                                if (ext == null) return;
+                                ext.SetValue("", _programId + extension + "." + _programIdVer);
+                                ext.SetValue("PerceivedType", "Document");
+
+                                using (var openWith = ext.CreateSubKey("OpenWithProgIds"))
+                                {
+                                    openWith?.SetValue(_programId + extension + "." + _programIdVer, string.Empty);
+                                }
                             }
                         }
                     }
                 }
+                catch (UnauthorizedAccessException)
+                {
+                    // security exception or some such
+                }
             }
-            catch (UnauthorizedAccessException)
-            {
-                // security exception or some such
-            }
+           
         }
 
         private IEnumerable<string> GetRegisteredExtensionAssociations()
