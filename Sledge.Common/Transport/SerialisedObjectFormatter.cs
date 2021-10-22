@@ -112,13 +112,15 @@ namespace Sledge.Common.Transport
         public static IEnumerable<SerialisedObject> Parse(TextReader reader)
         {
             string line;
+            List<SerialisedObject> result = new List<SerialisedObject>();
             while ((line = CleanLine(reader.ReadLine())) != null)
             {
                 if (ValidStructStartString(line))
                 {
-                    yield return ParseStructure(reader, line);
+                    result.Add(ParseStructure(reader, line));
                 }
             }
+            return result;
         }
 
         /// <summary>
