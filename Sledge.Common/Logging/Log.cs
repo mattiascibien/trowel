@@ -18,9 +18,9 @@ namespace Sledge.Common.Logging
         /// <param name="message">The message to log</param>
         /// <param name="ex">The exception associated with the log, if any</param>
         /// <returns>Completion task</returns>
-        public static async Task Send(string type, string source, string message, Exception ex)
+        private static void Send(string type, string source, string message, Exception ex)
         {
-            await Oy.Publish("Log", new LogMessage(type, source, message, ex));
+            Task.Run(async () => await Oy.Publish("Log", new LogMessage(type, source, message, ex)));
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace Sledge.Common.Logging
         /// <param name="source">The source of the message</param>
         /// <param name="message">The message to log</param>
         /// <param name="ex">The exception associated with the log</param>
-        public static async void Fatal(string source, string message, Exception ex)
+        public static void Fatal(string source, string message, Exception ex)
         {
-            await Send(LogMessage.Fatal, source, message, ex);
+            Send(LogMessage.Fatal, source, message, ex);
         }
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace Sledge.Common.Logging
         /// <param name="source">The source of the message</param>
         /// <param name="message">The message to log</param>
         /// <param name="ex">The exception associated with the log</param>
-        public static async void Error(string source, string message, Exception ex)
+        public static void Error(string source, string message, Exception ex)
         {
-            await Send(LogMessage.Error, source, message, ex);
+            Send(LogMessage.Error, source, message, ex);
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace Sledge.Common.Logging
         /// <param name="source">The source of the message</param>
         /// <param name="message">The message to log</param>
         /// <param name="ex">The exception associated with the log, if any</param>
-        public static async void Warning(string source, string message, Exception ex = null)
+        public static void Warning(string source, string message, Exception ex = null)
         {
-            await Send(LogMessage.Warning, source, message, ex);
+            Send(LogMessage.Warning, source, message, ex);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace Sledge.Common.Logging
         /// </summary>
         /// <param name="source">The source of the message</param>
         /// <param name="message">The message to log</param>
-        public static async void Info(string source, string message)
+        public static void Info(string source, string message)
         {
-            await Send(LogMessage.Info, source, message, null);
+            Send(LogMessage.Info, source, message, null);
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace Sledge.Common.Logging
         /// <param name="source">The source of the message</param>
         /// <param name="message">The message to log</param>
         [Conditional("DEBUG")]
-        public static async void Debug(string source, string message)
+        public static void Debug(string source, string message)
         {
-            await Send(LogMessage.Debug, source, message, null);
+            Send(LogMessage.Debug, source, message, null);
         }
     }
 }

@@ -273,12 +273,12 @@ namespace Sledge.BspEditor.Tools.Texture
 
         private void BindTextureControls(TextBox box, PictureBox image, Button browse, Label info)
         {
-            box.TextChanged += (sender, e) => UpdateTexture(box.Text, image, info);
-            browse.Click += (sender, e) => BrowseTexture(box);
+            box.TextChanged += async (sender, e) => await UpdateTexture(box.Text, image, info);
+            browse.Click += async (sender, e) => await BrowseTexture(box);
             UpdateTexture(box.Text, image, info);
         }
 
-        private async void BrowseTexture(TextBox box)
+        private async Task BrowseTexture(TextBox box)
         {
             var doc = GetDocument();
             if (doc == null) return;
@@ -292,7 +292,7 @@ namespace Sledge.BspEditor.Tools.Texture
             }
         }
 
-        private async void UpdateTexture(string text, PictureBox image, Label info)
+        private async Task UpdateTexture(string text, PictureBox image, Label info)
         {
             var doc = GetDocument();
             if (String.IsNullOrWhiteSpace(text) || doc == null)
