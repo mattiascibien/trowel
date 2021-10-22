@@ -98,7 +98,7 @@ namespace Sledge.BspEditor.Tools.Entity
 
         private ToolStripItem[] _menu;
 
-        private async void BuildMenu()
+        private async Task BuildMenu()
         {
             _menu = null;
             var document = GetDocument();
