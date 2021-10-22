@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
@@ -23,7 +24,15 @@ namespace Sledge.BspEditor.Editing.Commands
 
         public async Task Invoke(IContext context, CommandParameters parameters)
         {
-            System.Diagnostics.Process.Start("http://sledge-editor.com/");
+            await Task.Run(() => 
+            { 
+                var ps = new ProcessStartInfo("https://github.com/mattiascibien/sledge/")
+                { 
+                    UseShellExecute = true, 
+                    Verb = "open" 
+                };
+                Process.Start(ps);
+            });
         }
     }
 }

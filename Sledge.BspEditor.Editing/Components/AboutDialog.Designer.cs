@@ -220,7 +220,7 @@
             this.AJLink.Size = new System.Drawing.Size(92, 13);
             this.AJLink.TabIndex = 6;
             this.AJLink.TabStop = true;
-            this.AJLink.Text = "scrub-studios.com";
+            this.AJLink.Text = "ajscarcella.com";
             // 
             // AboutDialog
             // 
