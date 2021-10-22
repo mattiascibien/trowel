@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.Common.Transport;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.Common.Transport;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Primitives.MapObjects
 {
@@ -32,7 +32,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
             var faces = Faces.ToList();
             return faces.Any(x => x.Vertices.Count > 0) ? new Box(faces.SelectMany(x => x.Vertices)) : Box.Empty;
         }
-        
+
         public override IEnumerable<Polygon> GetPolygons()
         {
             return Faces.Select(x => x.ToPolygon());

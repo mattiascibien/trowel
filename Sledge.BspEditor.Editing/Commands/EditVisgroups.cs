@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Components.Visgroup;
@@ -12,6 +6,12 @@ using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Translations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands
 {

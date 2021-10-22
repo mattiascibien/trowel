@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+﻿using Sledge.Common.Extensions;
+using Sledge.FileSystem;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Sledge.Common.Extensions;
-using Sledge.FileSystem;
 
 namespace Sledge.Providers.Texture.Spr
 {
@@ -114,7 +114,7 @@ namespace Sledge.Providers.Texture.Spr
                 }
             });
         }
-        
+
         public void Dispose()
         {
             //

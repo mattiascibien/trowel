@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Commands;
+using System.Threading.Tasks;
 
 namespace Sledge.Shell.Commands
 {

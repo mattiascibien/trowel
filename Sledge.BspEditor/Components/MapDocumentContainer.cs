@@ -1,10 +1,10 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Sledge.BspEditor.Controls;
+using Sledge.Shell;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.BspEditor.Controls;
-using Sledge.Shell;
 
 namespace Sledge.BspEditor.Components
 {

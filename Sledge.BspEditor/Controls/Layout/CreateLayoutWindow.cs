@@ -1,13 +1,13 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Components;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Properties;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Controls.Layout
 {
@@ -31,7 +31,7 @@ namespace Sledge.BspEditor.Controls.Layout
 
         public override string Name { get; set; } = "New layout window";
         public override string Details { get; set; } = "Create a new layout window";
-        
+
         protected override Task Invoke(MapDocument document, CommandParameters parameters)
         {
             _host.Value.CreateNewWindow();

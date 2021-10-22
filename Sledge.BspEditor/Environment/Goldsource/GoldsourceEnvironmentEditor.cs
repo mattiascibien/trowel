@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.GameData;
 using Sledge.FileSystem;
 using Sledge.Providers.GameData;
 using Sledge.Providers.Texture;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Environment.Goldsource
 {
@@ -88,7 +88,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
             lblGameMod.Text = strings.GetString(prefix, "ModDirectory");
             lblGameExe.Text = strings.GetString(prefix, "GameExecutable");
             chkLoadHdModels.Text = strings.GetString(prefix, "LoadHDModels");
-            
+
             lblDefaultPointEntity.Text = strings.GetString(prefix, "DefaultPointEntity");
             lblDefaultBrushEntity.Text = strings.GetString(prefix, "DefaultBrushEntity");
             lblMapSizeOverrideLow.Text = strings.GetString(prefix, "Low");
@@ -127,7 +127,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
             lstFgds.Items.Clear();
             foreach (var fileName in env.FgdFiles)
             {
-                lstFgds.Items.Add(new ListViewItem(new[] { Path.GetFileName(fileName), fileName }) {ToolTipText = fileName});
+                lstFgds.Items.Add(new ListViewItem(new[] { Path.GetFileName(fileName), fileName }) { ToolTipText = fileName });
             }
             UpdateFgdList();
 
@@ -241,7 +241,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
             // Set game/mod directories
             var mod = cmbGameMod.SelectedItem ?? "";
             var bse = cmbBaseGame.SelectedItem ?? "";
-            
+
             cmbGameMod.Items.Clear();
             cmbBaseGame.Items.Clear();
 
@@ -290,14 +290,15 @@ namespace Sledge.BspEditor.Environment.Goldsource
                         {
                             Path.GetFileName(fileName),
                             fileName
-                        }) {ToolTipText = fileName});
+                        })
+                        { ToolTipText = fileName });
                     }
                     UpdateFgdList();
                     OnEnvironmentChanged(this, EventArgs.Empty);
                 }
             }
         }
-        
+
         private void RemoveFgd(object sender, EventArgs e)
         {
             if (lstFgds.SelectedItems.Count > 0)
@@ -494,7 +495,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
                     string[] _internalWads = new[] { "cached.wad", "fonts.wad", "gfx.wad", "tempdecal.wad" };
                     foreach (var pr in packages)
                     {
-                        if (!state.ContainsKey(pr.Name) && !_internalWads.Contains(pr.Name)) 
+                        if (!state.ContainsKey(pr.Name) && !_internalWads.Contains(pr.Name))
                             state[pr.Name] = true;
                     }
 

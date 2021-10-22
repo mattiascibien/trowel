@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 namespace Sledge.BspEditor
 {

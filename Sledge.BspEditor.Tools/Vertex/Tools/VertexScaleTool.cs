@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Draggable;
@@ -19,6 +12,13 @@ using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
 using Sledge.Shell.Input;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Tools
 {
@@ -31,12 +31,12 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
         public override string OrderHint => "D";
         public override string GetName() => "Point scaling";
         public override Control Control => _control;
-        
+
         private readonly BoxDraggableState _boxState;
         private readonly Dictionary<VertexSolid, VertexList> _vertices;
         private readonly ScaleOrigin _origin;
         private Dictionary<VertexPoint, Vector3> _originals;
-        
+
         public VertexScaleTool()
         {
             _vertices = new Dictionary<VertexSolid, VertexList>();
@@ -56,9 +56,9 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                     DeselectAll();
                 }
             };
-            
+
             States.Add(_boxState);
-            
+
             _origin = new ScaleOrigin(this);
         }
 
@@ -72,7 +72,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
         private void ValueChanged(decimal value)
         {
-            MovePoints((float) value);
+            MovePoints((float)value);
         }
 
         private void ValueReset(decimal value)
@@ -248,11 +248,11 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
             var p = new Vector3(e.X, e.Y, 0);
             const int d = 5;
             var clicked = (from point in GetVisiblePoints()
-                let c = viewport.Viewport.Camera.WorldToScreen(point.Position)
-                where c.Z <= 1
-                where p.X >= c.X - d && p.X <= c.X + d && p.Y >= c.Y - d && p.Y <= c.Y + d
-                orderby (pos - point.Position).LengthSquared()
-                select point).ToList();
+                           let c = viewport.Viewport.Camera.WorldToScreen(point.Position)
+                           where c.Z <= 1
+                           where p.X >= c.X - d && p.X <= c.X + d && p.Y >= c.Y - d && p.Y <= c.Y + d
+                           orderby (pos - point.Position).LengthSquared()
+                           select point).ToList();
 
             Select(clicked, toggle);
             if (clicked.Any()) e.Handled = true;
@@ -287,13 +287,13 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
         }
 
         #endregion
-        
+
         private class VertexList
         {
             public VertexScaleTool Tool { get; set; }
             public VertexSolid Solid { get; set; }
             public List<VertexPoint> Points { get; set; }
-            
+
             public VertexList(VertexScaleTool tool, VertexSolid solid)
             {
                 Tool = tool;
@@ -338,7 +338,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
             public Vector3 DraggingPosition { get; set; }
 
             public override Vector3 Origin => Position;
-            
+
             public override Vector3 ZIndex
             {
                 get
@@ -368,7 +368,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                 var c = (IsSelected ? Color.Red : Color.White);
                 return IsHighlighted ? c.Lighten() : c;
             }
-            
+
             public void Move(Vector3 delta)
             {
                 Position += delta;
@@ -381,7 +381,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
             public VertexPoint[] GetStandardPointList()
             {
-                return _selfArray ?? (_selfArray = new[] {this});
+                return _selfArray ?? (_selfArray = new[] { this });
             }
 
             public override void MouseDown(MapDocument document, MapViewport viewport, OrthographicCamera camera, ViewportEvent e, Vector3 position)
@@ -417,7 +417,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
             public override void Render(IViewport viewport, OrthographicCamera camera, Vector3 worldMin, Vector3 worldMax, I2DRenderer im)
             {
                 const int size = 4;
-                
+
                 var spos = camera.WorldToScreen(Position);
 
                 var color = Color.FromArgb(255, GetColor());
@@ -434,7 +434,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                 im.AddRectOutlineOpaque(new Vector2(spos.X - size, spos.Y - size), new Vector2(spos.X + size, spos.Y + size), Color.Black, color);
             }
         }
-        
+
         private class ScaleOrigin : DraggableVector3
         {
             private readonly VertexScaleTool _vmScaleTool;
@@ -457,7 +457,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
                 const int inner = 4;
                 const int outer = 8;
-                
+
                 var col = Highlighted ? Color.DarkOrange : Color.LightBlue;
                 im.AddCircle(spos.ToVector2(), inner, Color.AliceBlue);
                 im.AddCircle(spos.ToVector2(), outer, col);

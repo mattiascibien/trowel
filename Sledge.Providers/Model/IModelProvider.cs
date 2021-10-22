@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.FileSystem;
+﻿using Sledge.FileSystem;
 using Sledge.Rendering.Interfaces;
+using System.Threading.Tasks;
 
 namespace Sledge.Providers.Model
 {

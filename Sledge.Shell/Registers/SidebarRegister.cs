@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Logging;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Shell.Settings;
 using Sledge.Shell.Controls;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Registers
 {
@@ -28,7 +28,7 @@ namespace Sledge.Shell.Registers
         private List<SidebarComponent> _left;
         private List<SidebarComponent> _right;
 
-        private Forms.Shell Shell => (Forms.Shell) _shell.Value;
+        private Forms.Shell Shell => (Forms.Shell)_shell.Value;
 
         [ImportingConstructor]
         public SidebarRegister(
@@ -102,40 +102,40 @@ namespace Sledge.Shell.Registers
 
         public void LoadValues(ISettingsStore store)
         {
-            _shell.Value.Invoke((MethodInvoker) delegate
-            {
-                var controls = _left.Union(_right).ToDictionary(x => x.ID, x => x);
-                foreach (var sv in store.GetKeys())
-                {
-                    if (sv.EndsWith(":Side"))
-                    {
-                        var key = sv.Substring(0, sv.Length - 5);
-                        if (controls.ContainsKey(key))
-                        {
-                            var con = controls[key];
+            _shell.Value.Invoke((MethodInvoker)delegate
+           {
+               var controls = _left.Union(_right).ToDictionary(x => x.ID, x => x);
+               foreach (var sv in store.GetKeys())
+               {
+                   if (sv.EndsWith(":Side"))
+                   {
+                       var key = sv.Substring(0, sv.Length - 5);
+                       if (controls.ContainsKey(key))
+                       {
+                           var con = controls[key];
 
-                            _left.Remove(con);
-                            _right.Remove(con);
+                           _left.Remove(con);
+                           _right.Remove(con);
 
-                            if (store.Get(sv, "Left") == "Right") _right.Add(con);
-                            else _left.Add(con);
-                        }
-                    }
-                    if (sv.EndsWith(":Expanded"))
-                    {
-                        var key = sv.Substring(0, sv.Length - 9);
-                        if (controls.ContainsKey(key))
-                        {
-                            var con = controls[key];
-                            con.Panel.Hidden = !store.Get(sv, true);
-                        }
-                    }
-                    if (sv.EndsWith(":Order"))
-                    {
+                           if (store.Get(sv, "Left") == "Right") _right.Add(con);
+                           else _left.Add(con);
+                       }
+                   }
+                   if (sv.EndsWith(":Expanded"))
+                   {
+                       var key = sv.Substring(0, sv.Length - 9);
+                       if (controls.ContainsKey(key))
+                       {
+                           var con = controls[key];
+                           con.Panel.Hidden = !store.Get(sv, true);
+                       }
+                   }
+                   if (sv.EndsWith(":Order"))
+                   {
 
-                    }
-                }
-            });
+                   }
+               }
+           });
         }
 
         public void StoreValues(ISettingsStore store)
@@ -191,7 +191,7 @@ namespace Sledge.Shell.Registers
                     Visible = false,
                     Tag = this
                 };
-                Panel.AddControl((Control) component.Control);
+                Panel.AddControl((Control)component.Control);
             }
 
             public void UpdateTitle()

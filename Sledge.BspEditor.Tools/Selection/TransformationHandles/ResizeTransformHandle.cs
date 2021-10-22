@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Draggable;
@@ -9,6 +6,9 @@ using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Selection.TransformationHandles
 {
@@ -39,7 +39,7 @@ namespace Sledge.BspEditor.Tools.Selection.TransformationHandles
             {
                 var st = camera.Flatten(BoxState.Start);
                 var ed = camera.Flatten(BoxState.End);
-                var points = new[] {st, ed, new Vector3(st.X, ed.Y, 0), new Vector3(ed.X, st.Y, 0)};
+                var points = new[] { st, ed, new Vector3(st.X, ed.Y, 0), new Vector3(ed.X, st.Y, 0) };
                 return points.OrderBy(x => (position - x).LengthSquared()).First();
             }
             return base.GetResizeOrigin(viewport, camera, position);

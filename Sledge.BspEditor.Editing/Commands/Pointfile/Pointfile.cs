@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives;
+using Sledge.BspEditor.Primitives.MapData;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Transport;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives;
-using Sledge.BspEditor.Primitives.MapData;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Transport;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Editing.Commands.Pointfile
 {

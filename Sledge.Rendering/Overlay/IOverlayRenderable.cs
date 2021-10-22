@@ -1,7 +1,6 @@
-﻿using System.Numerics;
-using ImGuiNET;
-using Sledge.Rendering.Cameras;
+﻿using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Viewports;
+using System.Numerics;
 
 namespace Sledge.Rendering.Overlay
 {

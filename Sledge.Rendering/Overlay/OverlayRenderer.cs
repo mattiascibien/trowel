@@ -1,9 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Numerics;
-using ImGuiNET;
+﻿using ImGuiNET;
 using Sledge.Common;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Drawing;
+using System.Numerics;
 
 namespace Sledge.Rendering.Overlay
 {
@@ -24,7 +24,7 @@ namespace Sledge.Rendering.Overlay
             _controller = controller;
             _numObjects = 0;
             _viewportId = 0;
-            
+
             ImGui.SetCurrentContext(_controller.Context);
             ImGui.PushFont(_controller.DefaultFont);
 

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.Common.Shell.Components;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools
 {
@@ -137,7 +137,7 @@ namespace Sledge.BspEditor.Tools
         public bool Filter(string hotkey, int keys)
         {
             if (!ShouldRelayEvent(ActiveTool)) return false;
-            return ActiveTool.FilterHotkey(Viewport, hotkey, (Keys) keys);
+            return ActiveTool.FilterHotkey(Viewport, hotkey, (Keys)keys);
         }
 
         public virtual void Dispose()

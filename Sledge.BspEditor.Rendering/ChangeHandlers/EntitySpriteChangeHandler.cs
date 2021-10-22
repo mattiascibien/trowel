@@ -1,15 +1,15 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.ChangeHandling;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.DataStructures.GameData;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.ChangeHandlers
 {

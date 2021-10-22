@@ -31,7 +31,7 @@ namespace Sledge.Common
         private readonly Stream _stream;
         private readonly long _offset;
         private readonly long _length;
-        
+
         /// <summary>
         /// Create a new substream
         /// </summary>
@@ -73,7 +73,7 @@ namespace Sledge.Common
             {
                 var pos = _stream.Position;
                 _stream.Position = _offset + Position;
-                count = (int) Math.Min(count, _length - Position);
+                count = (int)Math.Min(count, _length - Position);
                 count = _stream.Read(buffer, offset, count);
                 Position += count;
                 _stream.Position = pos;

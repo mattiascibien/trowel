@@ -85,7 +85,7 @@ namespace Sledge.DataStructures.Geometric
 
         public IEnumerable<Polygon> GetCoplanarPolygons()
         {
-            return Polygons.Where(f1 => Polygons.Where(f2 => f2 != f1).Any(f2 => f2.Plane== f1.Plane));
+            return Polygons.Where(f1 => Polygons.Where(f2 => f2 != f1).Any(f2 => f2.Plane == f1.Plane));
         }
 
         public IEnumerable<Polygon> GetBackwardsPolygons(float epsilon = 0.001f)

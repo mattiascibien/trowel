@@ -1,8 +1,8 @@
+using LogicAndTrick.Oy;
+using Sledge.Common.Shell.Commands;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.Common.Shell.Commands;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {

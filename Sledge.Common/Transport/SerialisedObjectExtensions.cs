@@ -44,7 +44,7 @@ namespace Sledge.Common.Transport
             {
                 var val = match[0].Value;
                 var conv = TypeDescriptor.GetConverter(typeof(T));
-                return (T) conv.ConvertFromString(null, CultureInfo.InvariantCulture, val);
+                return (T)conv.ConvertFromString(null, CultureInfo.InvariantCulture, val);
             }
             catch
             {
@@ -76,7 +76,7 @@ namespace Sledge.Common.Transport
         {
             var str = Get<string>(so, key) ?? "";
             var spl = str.Split(' ');
-            if (spl.Length != 3) spl = new[] {"0", "0", "0"};
+            if (spl.Length != 3) spl = new[] { "0", "0", "0" };
             byte.TryParse(spl[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var r);
             byte.TryParse(spl[1], NumberStyles.Any, CultureInfo.InvariantCulture, out var g);
             byte.TryParse(spl[2], NumberStyles.Any, CultureInfo.InvariantCulture, out var b);

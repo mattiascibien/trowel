@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Numerics;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
@@ -9,6 +6,9 @@ using Sledge.Common;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Numerics;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Brush.Brushes
@@ -51,7 +51,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
                 var face = new Face(generator.Next("Face"))
                 {
                     Plane = new Plane(arr[0], arr[1], arr[2]),
-                    Texture = {Name = texture }
+                    Texture = { Name = texture }
                 };
                 face.Vertices.AddRange(arr);
                 solid.Data.Add(face);

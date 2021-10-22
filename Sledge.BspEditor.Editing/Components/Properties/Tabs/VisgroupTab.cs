@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Components.Visgroup;
 using Sledge.BspEditor.Modification;
@@ -15,6 +9,12 @@ using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
 {
@@ -92,7 +92,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
             {
                 if (_state.All(x => x.Key.Tag != checkState.Key.Tag)) continue;
                 var state = _state.First(x => x.Key.Tag == checkState.Key.Tag);
-                if (checkState.Value != state.Value) dic[(Primitives.MapData.Visgroup) state.Key.Tag] = checkState.Value == CheckState.Checked;
+                if (checkState.Value != state.Value) dic[(Primitives.MapData.Visgroup)state.Key.Tag] = checkState.Value == CheckState.Checked;
             }
 
             return dic;
@@ -107,7 +107,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
             if (document == null || objects == null) return d;
 
             var objGroups = objects
-                .SelectMany(x => x.Data.Get<VisgroupID>().Select(v => new {Object = x, Visgroup = v.ID}))
+                .SelectMany(x => x.Data.Get<VisgroupID>().Select(v => new { Object = x, Visgroup = v.ID }))
                 .GroupBy(x => x.Visgroup)
                 .ToDictionary(x => x.Key, x => x.Count());
 

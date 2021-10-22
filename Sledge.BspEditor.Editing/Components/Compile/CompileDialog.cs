@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using Sledge.BspEditor.Compile;
+﻿using Sledge.BspEditor.Compile;
 using Sledge.BspEditor.Editing.Components.Compile.Profiles;
 using Sledge.BspEditor.Editing.Components.Compile.Specification;
 using Sledge.Common.Translations;
 using Sledge.QuickForms;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components.Compile
 {
@@ -39,7 +39,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
             Size = _simpleSize;
 
             Text = _specification.Name;
-            
+
             PresetTable.Controls.Clear();
             PresetTable.RowStyles.Clear();
 
@@ -92,7 +92,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                     {
                         if (_preset.ShouldRunTool(t.Name))
                         {
-                            batch.Add(new BatchArgument {Name = t.Name, Arguments = _preset.GetArguments(t.Name)});
+                            batch.Add(new BatchArgument { Name = t.Name, Arguments = _preset.GetArguments(t.Name) });
                         }
                     }
                 }
@@ -109,7 +109,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
 
                     foreach (var kv in args)
                     {
-                        batch.Add(new BatchArgument {Name = kv.Key, Arguments = kv.Value + shared});
+                        batch.Add(new BatchArgument { Name = kv.Key, Arguments = kv.Value + shared });
                     }
                 }
                 else
@@ -137,7 +137,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                     {
                         if (shouldRun.Contains(kv.Key))
                         {
-                            batch.Add(new BatchArgument {Name = kv.Key, Arguments = kv.Value + shared});
+                            batch.Add(new BatchArgument { Name = kv.Key, Arguments = kv.Value + shared });
                         }
                     }
                 }
@@ -262,7 +262,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
 
         private string PromptName(string name)
         {
-            var qf = new QuickForm(ProfileName) {UseShortcutKeys = true};
+            var qf = new QuickForm(ProfileName) { UseShortcutKeys = true };
             qf.TextBox("ProfileName", ProfileName, name);
             qf.OkCancel(OK, Cancel);
 
@@ -281,7 +281,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
             if (String.IsNullOrEmpty(name)) return;
 
             profile.Profile.Name = name;
-            
+
             PopulateProfiles();
             cmbProfile.SelectedIndex = cmbProfile.Items.OfType<ProfileWrapper>().ToList().FindIndex(x => x.Profile == profile.Profile);
         }
@@ -310,7 +310,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
         {
             var name = PromptName("");
             if (String.IsNullOrEmpty(name)) return;
-            
+
             var profile = new BuildProfile
             {
                 Name = name,
@@ -331,7 +331,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                 args.Add(panel.Tool.Name, panel.Arguments);
             }
 
-            var shouldRun = new List<string>{ "Shared" };
+            var shouldRun = new List<string> { "Shared" };
             foreach (var step in pnlSteps.Controls.OfType<CheckBox>())
             {
                 if (step.Checked && step.Tag is CompileTool t) shouldRun.Add(t.Name);

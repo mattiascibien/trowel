@@ -45,7 +45,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
                 }
             }
         }
-        
+
         public MapObjectHierarchy(IMapObject obj)
         {
             _self = obj;

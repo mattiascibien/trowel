@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.Common;
+using Sledge.Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Sledge.Common;
-using Sledge.Common.Extensions;
 
 namespace Sledge.Packages.Pak
 {
@@ -72,7 +72,7 @@ namespace Sledge.Packages.Pak
         {
             using (var sr = new BinaryReader(OpenStream(entry)))
             {
-                return sr.ReadBytes((int) sr.BaseStream.Length);
+                return sr.ReadBytes((int)sr.BaseStream.Length);
             }
         }
 

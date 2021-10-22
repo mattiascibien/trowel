@@ -1,6 +1,6 @@
-﻿using System.Numerics;
-using Sledge.Rendering.Renderables;
+﻿using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Resources;
+using System.Numerics;
 
 namespace Sledge.Rendering.Interfaces
 {

@@ -1,4 +1,11 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Microsoft.Win32;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Shell.Documents;
+using Sledge.Common.Shell.Hooks;
+using Sledge.Common.Shell.Settings;
+using Sledge.Common.Threading;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
@@ -6,13 +13,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using LogicAndTrick.Oy;
-using Microsoft.Win32;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Shell.Documents;
-using Sledge.Common.Shell.Hooks;
-using Sledge.Common.Shell.Settings;
-using Sledge.Common.Threading;
 
 namespace Sledge.Shell.Registers
 {
@@ -122,7 +122,7 @@ namespace Sledge.Shell.Registers
             IDocumentLoader loader = null;
             if (!String.IsNullOrWhiteSpace(loaderHint)) loader = _loaders.FirstOrDefault(x => x.GetType().Name == loaderHint);
             if (loader == null) loader = _loaders.FirstOrDefault(x => x.CanLoad(fileName));
-            
+
             if (loader != null)
             {
                 var doc = await loader.Load(fileName);
@@ -178,7 +178,7 @@ namespace Sledge.Shell.Registers
                 document.FileName = fileName;
                 await Oy.Publish("Document:Saved", document);
             }
-            
+
             return true;
         }
 
@@ -215,7 +215,7 @@ namespace Sledge.Shell.Registers
             await Oy.Publish("Document:Opened", doc);
             await ActivateDocument(doc);
         }
-        
+
         // Settings provider
 
         public string Name => "Sledge.Shell.Documents";
@@ -330,7 +330,7 @@ namespace Sledge.Shell.Registers
                     // security exception or some such
                 }
             }
-           
+
         }
 
         private IEnumerable<string> GetRegisteredExtensionAssociations()

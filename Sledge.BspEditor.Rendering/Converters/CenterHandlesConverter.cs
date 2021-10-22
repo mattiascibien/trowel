@@ -1,3 +1,14 @@
+using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.BspEditor.Rendering.Resources;
+using Sledge.Common.Shell.Settings;
+using Sledge.DataStructures.Geometric;
+using Sledge.Rendering.Cameras;
+using Sledge.Rendering.Engine;
+using Sledge.Rendering.Pipelines;
+using Sledge.Rendering.Primitives;
+using Sledge.Rendering.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -7,18 +18,6 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.BspEditor.Rendering.Resources;
-using Sledge.Common.Shell.Settings;
-using Sledge.DataStructures.Geometric;
-using Sledge.Rendering.Cameras;
-using Sledge.Rendering.Engine;
-using Sledge.Rendering.Interfaces;
-using Sledge.Rendering.Pipelines;
-using Sledge.Rendering.Primitives;
-using Sledge.Rendering.Resources;
 
 namespace Sledge.BspEditor.Rendering.Converters
 {
@@ -99,7 +98,7 @@ namespace Sledge.BspEditor.Rendering.Converters
                 }
             ).ToList();
 
-            builder.Append(verts, Enumerable.Range(0, verts.Count).Select(x => (uint) x), new[]
+            builder.Append(verts, Enumerable.Range(0, verts.Count).Select(x => (uint)x), new[]
             {
                 new BufferGroup(PipelineType.BillboardOpaque, CameraType.Orthographic, CenterHandleTextureDataSource.Name, 0, (uint) verts.Count)
             });

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Sledge.BspEditor.Environment;
+using Sledge.BspEditor.Primitives;
+using Sledge.Common.Shell.Documents;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Environment;
-using Sledge.BspEditor.Primitives;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Shell.Documents;
 
 namespace Sledge.BspEditor.Providers
 {
@@ -25,7 +24,7 @@ namespace Sledge.BspEditor.Providers
         /// A list of file extensions supported by this loader.
         /// </summary>
         IEnumerable<FileExtensionInfo> SupportedFileExtensions { get; }
-        
+
         /// <summary>
         /// Load a map from a stream
         /// </summary>

@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.Common.Shell.Commands;
+﻿using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.Shell.Forms;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Commands
 {

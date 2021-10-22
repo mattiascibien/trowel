@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Sledge.Common.Shell.Context;
+﻿using Sledge.Common.Shell.Context;
+using System.Threading.Tasks;
 
 namespace Sledge.Common.Shell.Hotkeys
 {
@@ -27,11 +27,11 @@ namespace Sledge.Common.Shell.Hotkeys
         /// The default hotkey for this command
         /// </summary>
         string DefaultHotkey { get; }
-        
+
         /// <summary>
         /// Invoke the hotkey's command
         /// </summary>
         /// <returns>Completion task</returns>
-        Task Invoke(); 
+        Task Invoke();
     }
 }

@@ -1,9 +1,3 @@
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
@@ -14,6 +8,12 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Rendering.Converters
@@ -52,7 +52,7 @@ namespace Sledge.BspEditor.Rendering.Converters
 
             var c = obj.IsSelected ? Color.Red : obj.Data.GetOne<ObjectColor>()?.Color ?? Color.Magenta;
             var colour = new Vector4(c.R, c.G, c.B, c.A) / 255f;
-            
+
             var flags = obj.IsSelected ? VertexFlags.SelectiveTransformed : VertexFlags.None;
 
             var vi = 0u;
@@ -100,11 +100,11 @@ namespace Sledge.BspEditor.Rendering.Converters
             {
                 groups.Add(new BufferGroup(PipelineType.TexturedOpaque, CameraType.Perspective, 0, numSolidIndices));
             }
-            
+
             groups.Add(new BufferGroup(PipelineType.Wireframe, obj.IsSelected ? CameraType.Both : CameraType.Orthographic, numSolidIndices, numWireframeIndices));
 
             builder.Append(points, indices, groups);
-            
+
             // Also push the untransformed wireframe when selected
             if (obj.IsSelected)
             {

@@ -1,10 +1,9 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using Sledge.Common.Shell.Settings;
+﻿using Sledge.Common.Shell.Settings;
 using Sledge.Common.Translations;
 using Sledge.Shell.Registers;
-using Sledge.Shell.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
 
 namespace Sledge.Shell.Settings.Editors
 {

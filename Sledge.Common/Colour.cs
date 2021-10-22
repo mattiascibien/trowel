@@ -112,10 +112,10 @@ namespace Sledge.Common
         public static Color Blend(this Color color, Color other)
         {
             return Color.FromArgb(
-                (byte) ((color.A) / 255f * (other.A / 255f) * 255),
-                (byte) ((color.R) / 255f * (other.R / 255f) * 255),
-                (byte) ((color.G) / 255f * (other.G / 255f) * 255),
-                (byte) ((color.B) / 255f * (other.B / 255f) * 255)
+                (byte)((color.A) / 255f * (other.A / 255f) * 255),
+                (byte)((color.R) / 255f * (other.R / 255f) * 255),
+                (byte)((color.G) / 255f * (other.G / 255f) * 255),
+                (byte)((color.B) / 255f * (other.B / 255f) * 255)
             );
         }
 
@@ -135,7 +135,7 @@ namespace Sledge.Common
         {
             unchecked
             {
-                return (uint) (
+                return (uint)(
                            color.R << 0 |
                            color.G << 8 |
                            color.B << 16 |

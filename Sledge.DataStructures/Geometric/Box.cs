@@ -46,7 +46,7 @@ namespace Sledge.DataStructures.Geometric
         /// </summary>
         public Vector3 Dimensions => new Vector3(Width, Length, Height);
 
-        public Box(Vector3 start, Vector3 end) : this(new[] { start, end})
+        public Box(Vector3 start, Vector3 end) : this(new[] { start, end })
         {
         }
 
@@ -96,8 +96,8 @@ namespace Sledge.DataStructures.Geometric
 
         protected Box(SerializationInfo info, StreamingContext context)
         {
-            Start = (Vector3) info.GetValue("Start", typeof (Vector3));
-            End = (Vector3) info.GetValue("End", typeof (Vector3));
+            Start = (Vector3)info.GetValue("Start", typeof(Vector3));
+            End = (Vector3)info.GetValue("End", typeof(Vector3));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

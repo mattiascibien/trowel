@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Sledge.Common.Shell.Settings;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Sledge.Common.Shell.Settings;
 
 namespace Sledge.Shell.Settings.Editors
 {

@@ -1,6 +1,6 @@
+using Sledge.Common.Shell.Menu;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using Sledge.Common.Shell.Menu;
 
 namespace Sledge.BspEditor.Commands
 {

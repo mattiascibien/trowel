@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Newtonsoft.Json;
 using Sledge.Common.Shell;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Shell.Settings;
 using Sledge.Common.Translations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.Shell.Translations
 {

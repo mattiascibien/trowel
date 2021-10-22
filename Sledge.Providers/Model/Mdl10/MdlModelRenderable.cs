@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sledge.DataStructures.Geometric;
+﻿using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Engine;
 using Sledge.Rendering.Interfaces;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Viewports;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using Veldrid;
 
 namespace Sledge.Providers.Model.Mdl10
@@ -79,14 +79,14 @@ namespace Sledge.Providers.Model.Mdl10
 
             _currentFrame = (_currentFrame + skip) % seq.NumFrames;
             _lastFrameMillis = milliseconds;
-            
+
             _model.Model.GetTransforms(currentSequence, _currentFrame, _interframePercent, ref _transforms);
         }
 
         public void CreateResources(EngineInterface engine, RenderContext context)
         {
             _transformsBuffer = context.Device.ResourceFactory.CreateBuffer(
-                new BufferDescription((uint) Unsafe.SizeOf<Matrix4x4>() * 128, BufferUsage.UniformBuffer)
+                new BufferDescription((uint)Unsafe.SizeOf<Matrix4x4>() * 128, BufferUsage.UniformBuffer)
             );
 
             _transformsResourceSet = context.Device.ResourceFactory.CreateResourceSet(
@@ -94,7 +94,7 @@ namespace Sledge.Providers.Model.Mdl10
             );
 
             _frozenTransformsBuffer = context.Device.ResourceFactory.CreateBuffer(
-                new BufferDescription((uint) Unsafe.SizeOf<Matrix4x4>() * 128, BufferUsage.UniformBuffer)
+                new BufferDescription((uint)Unsafe.SizeOf<Matrix4x4>() * 128, BufferUsage.UniformBuffer)
             );
 
             _frozenTransformsResourceSet = context.Device.ResourceFactory.CreateResourceSet(

@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Components;
 using Sledge.BspEditor.Editing.Properties;
@@ -16,6 +11,11 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands.Modification
 {

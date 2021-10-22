@@ -1,8 +1,8 @@
-using System;
-using System.Numerics;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
+using System;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Draggable
 {
@@ -121,7 +121,7 @@ namespace Sledge.BspEditor.Tools.Draggable
 
             // If one of the dimensions has a depth value of 0, extend it out into infinite space
             // If two or more dimensions have depth 0, do nothing.
-            
+
             var sameX = Math.Abs(state.Start.X - state.End.X) < 0.001f;
             var sameY = Math.Abs(state.Start.Y - state.End.Y) < 0.001f;
             var sameZ = Math.Abs(state.Start.Z - state.End.Z) < 0.001f;

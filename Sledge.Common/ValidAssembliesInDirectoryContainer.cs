@@ -42,7 +42,7 @@ namespace Sledge.Common
 
             return new AggregateCatalog(parts);
         }
-        
+
         public override IEnumerator<ComposablePartDefinition> GetEnumerator()
         {
             return _innerCatalog.Value.GetEnumerator();

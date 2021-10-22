@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.Common.Threading;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Vertex.Selection

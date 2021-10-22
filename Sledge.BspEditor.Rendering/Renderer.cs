@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Common.Shell.Settings;
+using Sledge.Rendering.Cameras;
+using Sledge.Rendering.Engine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
-using Sledge.Common.Shell.Settings;
-using Sledge.Rendering.Cameras;
-using Sledge.Rendering.Engine;
 
 namespace Sledge.BspEditor.Rendering
 {

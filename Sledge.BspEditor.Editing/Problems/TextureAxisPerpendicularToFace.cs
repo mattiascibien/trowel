@@ -1,16 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
-using Sledge.BspEditor.Primitives.MapObjects;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Translations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Problems
 {
@@ -50,7 +50,7 @@ namespace Sledge.BspEditor.Editing.Problems
             var obj = problem.Objects[0];
             foreach (var face in problem.ObjectData.OfType<Face>())
             {
-                var clone = (Face) face.Clone();
+                var clone = (Face)face.Clone();
                 clone.Texture.AlignToNormal(face.Plane.Normal);
 
                 edit.Add(new RemoveMapObjectData(obj.ID, face));

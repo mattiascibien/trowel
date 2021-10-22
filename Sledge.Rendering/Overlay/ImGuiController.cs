@@ -1,12 +1,11 @@
-﻿using System;
+﻿using ImGuiNET;
+using Sledge.Rendering.Engine;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using ImGuiNET;
-using Sledge.Rendering.Engine;
 using Veldrid;
 
 namespace Sledge.Rendering.Overlay
@@ -69,7 +68,7 @@ namespace Sledge.Rendering.Overlay
             ImGui.SetCurrentContext(Context);
 
             ImGui.GetIO().Fonts.AddFontDefault();
-            
+
             var arial = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
             var arialbd = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arialbd.ttf");
 
@@ -149,7 +148,7 @@ namespace Sledge.Rendering.Overlay
 
             _projMatrixBuffer = factory.CreateBuffer(new BufferDescription(64, BufferUsage.UniformBuffer | BufferUsage.Dynamic));
             _projMatrixBuffer.Name = "ImGui.NET Projection Buffer";
-            
+
             byte[] vertexShaderBytes = ResourceLoader.GetEmbeddedShader("imgui.vert.hlsl");
             byte[] fragmentShaderBytes = ResourceLoader.GetEmbeddedShader("imgui.frag.hlsl");
             _vertexShader = factory.CreateShader(new ShaderDescription(ShaderStages.Vertex, vertexShaderBytes, "main"));

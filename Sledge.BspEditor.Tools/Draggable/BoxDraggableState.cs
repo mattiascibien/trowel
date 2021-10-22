@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
@@ -13,6 +8,11 @@ using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Draggable
 {
@@ -60,13 +60,13 @@ namespace Sledge.BspEditor.Tools.Draggable
                 new BoxResizeHandle(this, ResizeHandle.TopRight),
                 new BoxResizeHandle(this, ResizeHandle.BottomLeft),
                 new BoxResizeHandle(this, ResizeHandle.BottomRight),
-                
+
                 new BoxResizeHandle(this, ResizeHandle.Top),
                 new BoxResizeHandle(this, ResizeHandle.Left),
                 new BoxResizeHandle(this, ResizeHandle.Right),
                 new BoxResizeHandle(this, ResizeHandle.Bottom),
 
-                new InternalBoxResizeHandle(this, ResizeHandle.Center), 
+                new InternalBoxResizeHandle(this, ResizeHandle.Center),
             };
         }
 
@@ -222,7 +222,7 @@ namespace Sledge.BspEditor.Tools.Draggable
         {
             start = Vector3.Max(start, new Vector3(-100, -100, -100));
             end = Vector3.Min(end, new Vector3(viewport.Width + 100, viewport.Height + 100, 100));
-            
+
             im.AddRectFilled(start.ToVector2(), end.ToVector2(), GetRenderFillColour());
             im.AddRect(start.ToVector2(), end.ToVector2(), GetRenderBoxColour());
         }
@@ -239,24 +239,24 @@ namespace Sledge.BspEditor.Tools.Draggable
 
             var widthText = (Math.Abs(Math.Round(en.X - st.X, 1))).ToString("0.##");
             var heightText = (Math.Abs(Math.Round(en.Y - st.Y, 1))).ToString("0.##");
-            
+
             // Determine the size of the value strings
             var mWidth = im.CalcTextSize(FontType.Large, widthText);
             var mHeight = im.CalcTextSize(FontType.Large, heightText);
-            
+
             const int padding = 6;
-            
+
             // Ensure the text is clamped inside the viewport
             var vWidth = new Vector3((end.X + start.X - mWidth.X) / 2, end.Y - mWidth.Y - padding, 0);
             vWidth = Vector3.Clamp(vWidth, Vector3.Zero, new Vector3(camera.Width - mWidth.X - padding, camera.Height - mHeight.Y - padding, 0));
-            
-            var vHeight = new Vector3(end.X + padding, (end.Y + start.Y - mHeight.Y) / 2, 0); 
+
+            var vHeight = new Vector3(end.X + padding, (end.Y + start.Y - mHeight.Y) / 2, 0);
             vHeight = Vector3.Clamp(vHeight, new Vector3(0, mWidth.Y + padding, 0), new Vector3(camera.Width - mWidth.X - padding, camera.Height - mHeight.Y - padding, 0));
-            
+
             // Draw the strings
             im.AddText(vWidth.ToVector2(), GetRenderBoxColour(), FontType.Large, widthText);
             im.AddText(vHeight.ToVector2(), GetRenderBoxColour(), FontType.Large, heightText);
-            
+
         }
 
         public override void Render(IViewport viewport, PerspectiveCamera camera, I2DRenderer im)

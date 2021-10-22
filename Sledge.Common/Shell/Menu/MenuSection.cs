@@ -9,12 +9,12 @@
         /// The name of the section
         /// </summary>
         public string Name { get; set; }
-        
+
         /// <summary>
         /// The display name of the section
         /// </summary>
         public string Description { get; set; }
-        
+
         /// <summary>
         /// An order hint for the section
         /// </summary>

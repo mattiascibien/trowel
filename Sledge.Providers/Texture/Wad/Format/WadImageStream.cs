@@ -1,7 +1,7 @@
+using Sledge.Common.Extensions;
 using System;
 using System.IO;
 using System.Text;
-using Sledge.Common.Extensions;
 
 namespace Sledge.Providers.Texture.Wad.Format
 {
@@ -51,14 +51,14 @@ namespace Sledge.Providers.Texture.Wad.Format
                 bw.Write(_length); // Size
                 bw.Write((short)0); // Reserved 1
                 bw.Write((short)0); // Reserved 2
-                bw.Write((int) (headerSize + infoSize + _entry.PaletteSize * 4)); // Offset to pixel array
+                bw.Write((int)(headerSize + infoSize + _entry.PaletteSize * 4)); // Offset to pixel array
 
                 // BITMAPINFOHEADER
                 bw.Write(infoSize); // Header size
                 bw.Write(_entry.Width);
                 bw.Write(_entry.Height);
-                bw.Write((short) 1); // Number of colour planes
-                bw.Write((short) 8); // Colour depth
+                bw.Write((short)1); // Number of colour planes
+                bw.Write((short)8); // Colour depth
                 bw.Write(0); // Compression method
                 bw.Write(_entry.Width * _entry.Height); // Image data size
                 bw.Write(0); // Horizontal resolution
@@ -82,7 +82,7 @@ namespace Sledge.Providers.Texture.Wad.Format
                 for (var y = (int)_entry.Height - 1; y >= 0; y--)
                 {
                     // The Y axis is reversed
-                    bw.Write(imageData, (int)_entry.Width * y, (int) _entry.Width);
+                    bw.Write(imageData, (int)_entry.Width * y, (int)_entry.Width);
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace Sledge.Providers.Texture.Wad.Format
         public override int Read(byte[] buffer, int offset, int count)
         {
             var pos = Math.Min(Position, _length);
-            var ret = (int) Math.Min(_length - pos, count);
+            var ret = (int)Math.Min(_length - pos, count);
             Array.Copy(_data, pos, buffer, offset, ret);
             Position += ret;
             return ret;

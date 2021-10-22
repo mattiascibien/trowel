@@ -1,8 +1,8 @@
-using System.Drawing;
-using System.Numerics;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.Rendering.Cameras;
+using System.Drawing;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Widgets
 {

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Numerics;
-using Sledge.Rendering.Cameras;
+﻿using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Renderables;
+using System.Numerics;
 
 namespace Sledge.Rendering.Resources
 {

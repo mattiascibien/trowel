@@ -20,7 +20,7 @@ namespace Sledge.DataStructures.Geometric.Precision
         public double X { get; }
         public double Y { get; }
         public double Z { get; }
-        
+
         public Vector3(double x, double y, double z)
         {
             X = x;
@@ -65,7 +65,7 @@ namespace Sledge.DataStructures.Geometric.Precision
 
         public double Length()
         {
-            return (double) Math.Sqrt((double) LengthSquared());
+            return (double)Math.Sqrt((double)LengthSquared());
         }
 
         public double LengthSquared()
@@ -175,7 +175,7 @@ namespace Sledge.DataStructures.Geometric.Precision
         public System.Numerics.Vector3 ToStandardVector3()
         {
             const int rounding = 2;
-            return new System.Numerics.Vector3((float) Math.Round(X, rounding), (float) Math.Round(Y, rounding), (float) Math.Round(Z, rounding));
+            return new System.Numerics.Vector3((float)Math.Round(X, rounding), (float)Math.Round(Y, rounding), (float)Math.Round(Z, rounding));
         }
     }
 }

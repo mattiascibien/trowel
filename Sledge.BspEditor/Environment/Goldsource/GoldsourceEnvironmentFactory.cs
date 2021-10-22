@@ -1,9 +1,9 @@
+using Sledge.Common.Translations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
-using Sledge.Common.Translations;
 
 namespace Sledge.BspEditor.Environment.Goldsource
 {
@@ -21,7 +21,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
             {
                 try
                 {
-                    return (T) Convert.ChangeType(val, typeof(T), CultureInfo.InvariantCulture);
+                    return (T)Convert.ChangeType(val, typeof(T), CultureInfo.InvariantCulture);
                 }
                 catch
                 {
@@ -77,7 +77,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
 
         public SerialisedEnvironment Serialise(IEnvironment environment)
         {
-            var env = (GoldsourceEnvironment) environment;
+            var env = (GoldsourceEnvironment)environment;
             var se = new SerialisedEnvironment
             {
                 ID = environment.ID,

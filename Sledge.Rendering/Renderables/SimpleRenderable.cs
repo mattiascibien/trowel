@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using Sledge.Rendering.Cameras;
+﻿using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Engine;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Viewports;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
 using Veldrid;
 using Buffer = Sledge.Rendering.Resources.Buffer;
 
@@ -26,7 +26,7 @@ namespace Sledge.Rendering.Renderables
         public bool HasTransparency { get; set; }
         public Vector3 Location { get; set; }
 
-        public SimpleRenderable(Buffer buffer, PipelineType pipeline, int indexOffset, int indexCount) : this(buffer, new [] { pipeline}, indexOffset, indexCount)
+        public SimpleRenderable(Buffer buffer, PipelineType pipeline, int indexOffset, int indexCount) : this(buffer, new[] { pipeline }, indexOffset, indexCount)
         {
         }
 

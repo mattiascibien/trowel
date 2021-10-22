@@ -1,10 +1,3 @@
-using System;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Media;
-using System.Threading;
-using System.Windows.Forms;
 using Sledge.BspEditor.Controls.FileSystem;
 using Sledge.BspEditor.Documents;
 using Sledge.Common.Logging;
@@ -12,6 +5,13 @@ using Sledge.Common.Translations;
 using Sledge.DataStructures.GameData;
 using Sledge.FileSystem;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Media;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components.Properties.SmartEdit
 {

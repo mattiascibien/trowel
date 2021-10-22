@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjects;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sledge.BspEditor.Modification
 {

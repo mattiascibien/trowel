@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Common.Shell.Commands;
+using Sledge.Common.Shell.Menu;
+using Sledge.Shell.Registers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Sledge.Common.Shell.Commands;
-using Sledge.Common.Shell.Menu;
-using Sledge.Shell.Registers;
 
 namespace Sledge.Shell.Components
 {
@@ -12,7 +12,7 @@ namespace Sledge.Shell.Components
     public class CommandMenuItemProvider : IMenuItemProvider
     {
         private readonly IEnumerable<Lazy<ICommand>> _commands;
-        
+
         // Store the hotkey register so we know what the hotkey for each command is
         private readonly HotkeyRegister _hotkeys;
 

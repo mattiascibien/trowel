@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.ChangeHandling;
@@ -10,6 +6,10 @@ using Sledge.BspEditor.Primitives.MapData;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Grid
 {

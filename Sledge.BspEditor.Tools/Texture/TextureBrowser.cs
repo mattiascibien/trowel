@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Selection;
 using Sledge.BspEditor.Primitives;
@@ -12,6 +6,12 @@ using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -40,7 +40,7 @@ namespace Sledge.BspEditor.Tools.Texture
             SizeCombo.SelectedIndex = sz;
             SortOrderCombo.SelectedIndex = so;
             SortDescendingCheckbox.Checked = GetMemory("SortDescending", false);
-            
+
             _textureList.TextureSelected += TextureSelected;
             _textureList.HighlightedTexturesChanged += HighlightedTexturesChanged;
             SizeCombo.SelectedIndex = 1;
@@ -97,7 +97,7 @@ namespace Sledge.BspEditor.Tools.Texture
 
             _textures.Clear();
             _textures.AddRange(_textureList.Collection.GetBrowsableTextures());
-            
+
             UpdatePackageList();
             UpdateTextureList();
             UpdateFavouritesList();
@@ -118,7 +118,7 @@ namespace Sledge.BspEditor.Tools.Texture
             TextureSizeLabel.Text = "";
 
             var list = selection.ToList();
-            
+
             if (list.Count == 1 && _document != null)
             {
                 var t = list[0];
@@ -185,7 +185,7 @@ namespace Sledge.BspEditor.Tools.Texture
             var key = package?.Name;
             if (String.IsNullOrWhiteSpace(key)) key = null;
             SetMemory("SelectedPackage", key);
-            SetMemory("SelectedFavourite", (string) null);
+            SetMemory("SelectedFavourite", (string)null);
 
             UpdateTextureList();
         }

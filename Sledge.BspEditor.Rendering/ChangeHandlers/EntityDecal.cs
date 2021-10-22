@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Transport;
 using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Sledge.BspEditor.Rendering.ChangeHandlers
 {
@@ -52,7 +52,7 @@ namespace Sledge.BspEditor.Rendering.ChangeHandlers
 
         public IMapElement Clone()
         {
-            return new EntityDecal(Name, SolidIDs.ToList(), Geometry.Select(x => (Face) x.Clone()));
+            return new EntityDecal(Name, SolidIDs.ToList(), Geometry.Select(x => (Face)x.Clone()));
         }
 
         public SerialisedObject ToSerialisedObject()

@@ -1,8 +1,8 @@
+using Sledge.BspEditor.Documents;
+using Sledge.DataStructures.GameData;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
-using Sledge.DataStructures.GameData;
 
 namespace Sledge.BspEditor.Editing.Components.Properties.SmartEdit
 {

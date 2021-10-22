@@ -1,5 +1,5 @@
-using System;
 using Sledge.Common.Shell.Hotkeys;
+using System;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {

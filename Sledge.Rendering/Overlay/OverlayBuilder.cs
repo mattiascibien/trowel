@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using ImGuiNET;
+﻿using ImGuiNET;
 using LogicAndTrick.Oy;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Engine;
@@ -9,6 +6,9 @@ using Sledge.Rendering.Interfaces;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Numerics;
 using Veldrid;
 
 namespace Sledge.Rendering.Overlay
@@ -37,7 +37,7 @@ namespace Sledge.Rendering.Overlay
 
             _width = vpw;
             _height = vph;
-            
+
             _controller.WindowResized(_width, _height);
         }
 
@@ -100,7 +100,7 @@ namespace Sledge.Rendering.Overlay
         public void Render(RenderContext context, IPipeline pipeline, IViewport viewport, CommandList cl)
         {
             if (_lastFrame < 0) return;
-            
+
             ImGui.SetCurrentContext(_controller.Context);
             _controller.Render(context.Device, cl);
         }

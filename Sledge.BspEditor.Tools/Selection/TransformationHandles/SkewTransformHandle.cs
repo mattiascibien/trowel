@@ -1,12 +1,12 @@
-﻿using System.Numerics;
-using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Grid;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Draggable;
 using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
+using System.Numerics;
+using System.Windows.Forms;
 using KeyboardState = Sledge.Shell.Input.KeyboardState;
 
 namespace Sledge.BspEditor.Tools.Selection.TransformationHandles

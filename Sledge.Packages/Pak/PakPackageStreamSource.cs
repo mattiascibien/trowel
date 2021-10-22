@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.Common;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Sledge.Common;
 
 namespace Sledge.Packages.Pak
 {

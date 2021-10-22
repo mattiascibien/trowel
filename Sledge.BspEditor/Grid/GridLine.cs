@@ -1,5 +1,5 @@
-﻿using System.Numerics;
-using Sledge.DataStructures.Geometric;
+﻿using Sledge.DataStructures.Geometric;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Grid
 {

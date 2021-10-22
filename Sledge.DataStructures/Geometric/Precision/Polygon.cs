@@ -43,7 +43,7 @@ namespace Sledge.DataStructures.Geometric.Precision
                 plane.PointOnPlane - right - up, // Bottom left
                 plane.PointOnPlane + right - up, // Bottom right
             };
-            
+
             var origin = verts.Aggregate(Vector3.Zero, (x, y) => x + y) / verts.Count;
             Vertices = verts.Select(x => (x - origin).Normalise() * radius + origin).ToList();
         }
@@ -97,9 +97,9 @@ namespace Sledge.DataStructures.Geometric.Precision
         public bool Split(Plane clip, out Polygon back, out Polygon front, out Polygon coplanarBack, out Polygon coplanarFront)
         {
             const double epsilon = NumericsExtensions.Epsilon;
-            
+
             var distances = Vertices.Select(clip.EvalAtPoint).ToList();
-            
+
             int cb = 0, cf = 0;
             for (var i = 0; i < distances.Count; i++)
             {
@@ -155,7 +155,7 @@ namespace Sledge.DataStructures.Geometric.Precision
                     frontVerts.Add(intersect);
                 }
             }
-            
+
             back = new Polygon(backVerts.Select(x => new Vector3(x.X, x.Y, x.Z)));
             front = new Polygon(frontVerts.Select(x => new Vector3(x.X, x.Y, x.Z)));
             coplanarBack = coplanarFront = null;

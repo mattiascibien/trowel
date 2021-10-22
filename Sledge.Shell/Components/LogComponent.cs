@@ -1,4 +1,9 @@
-﻿using System.Collections.Concurrent;
+﻿using LogicAndTrick.Oy;
+using Sledge.Common.Logging;
+using Sledge.Common.Shell.Components;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Translations;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
@@ -7,11 +12,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.Common.Logging;
-using Sledge.Common.Shell.Components;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Translations;
 
 namespace Sledge.Shell.Components
 {

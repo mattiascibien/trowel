@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.Common.Shell.Documents;
@@ -10,6 +7,9 @@ using Sledge.Rendering.Engine;
 using Sledge.Rendering.Interfaces;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Resources;
+using System;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Dynamic
 {
@@ -41,7 +41,7 @@ namespace Sledge.BspEditor.Rendering.Dynamic
         {
             var builder = _engine.Value.CreateBufferBuilder(BufferSize.Small);
             var renderable = new BufferBuilderRenderable(builder);
-            
+
             if (_activeDocument.TryGetTarget(out var md))
             {
                 var resourceCollector = new ResourceCollector();

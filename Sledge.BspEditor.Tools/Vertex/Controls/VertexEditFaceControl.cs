@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Controls
 {
@@ -12,7 +12,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Controls
     public partial class VertexEditFaceControl : UserControl
     {
         #region Translations
-        
+
         public string WithSelectedFaces { set => this.InvokeLater(() => WithSelectedFacesLabel.Text = value); }
         public string Units { set => this.InvokeLater(() => { UnitsLabel1.Text = value; UnitsLabel2.Text = value; }); }
         public string PokeBy { set => this.InvokeLater(() => PokeByLabel.Text = value); }
@@ -30,12 +30,12 @@ namespace Sledge.BspEditor.Tools.Vertex.Controls
 
         private void BevelButtonClicked(object sender, EventArgs e)
         {
-            Oy.Publish("VertexEditFaceTool:Bevel", (int) BevelValue.Value);
+            Oy.Publish("VertexEditFaceTool:Bevel", (int)BevelValue.Value);
         }
 
         private void PokeFaceButtonClicked(object sender, EventArgs e)
         {
-            Oy.Publish("VertexEditFaceTool:Poke", (int) PokeFaceCount.Value);
+            Oy.Publish("VertexEditFaceTool:Poke", (int)PokeFaceCount.Value);
         }
     }
 }

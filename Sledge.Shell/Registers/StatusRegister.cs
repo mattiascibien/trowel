@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using LogicAndTrick.Oy;
+using Sledge.Common.Shell.Components;
+using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hooks;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.Common.Shell.Components;
-using Sledge.Common.Shell.Context;
 
 namespace Sledge.Shell.Registers
 {
@@ -19,7 +19,7 @@ namespace Sledge.Shell.Registers
         [Import] private Forms.Shell _shell;
 
         [ImportMany] private IEnumerable<Lazy<IStatusItem>> _statusItems;
-        
+
         public Task OnInitialise()
         {
             foreach (var si in _statusItems.OrderBy(x => OrderHintAttribute.GetOrderHint(x.Value.GetType())))
@@ -32,7 +32,7 @@ namespace Sledge.Shell.Registers
 
             return Task.FromResult(0);
         }
-        
+
         private List<StatusBarItem> _items;
 
         public StatusRegister()

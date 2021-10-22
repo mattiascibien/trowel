@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.BspEditor.Components;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.BspEditor.Components;
 
 namespace Sledge.BspEditor.Controls.Layout
 {
@@ -71,8 +71,8 @@ namespace Sledge.BspEditor.Controls.Layout
             {
                 WindowID = windowId,
                 Configuration = TableSplitConfiguration.Default(),
-                RowSizes = new List<float> {50, 50},
-                ColumnSizes = new List<float> {50, 50},
+                RowSizes = new List<float> { 50, 50 },
+                ColumnSizes = new List<float> { 50, 50 },
                 Maximised = false,
                 Size = Screen.PrimaryScreen.Bounds
             };

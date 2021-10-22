@@ -1,6 +1,6 @@
-﻿using System;
-using Sledge.BspEditor.Primitives.MapObjects;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Transport;
+using System;
 
 namespace Sledge.BspEditor.Primitives
 {
@@ -25,7 +25,7 @@ namespace Sledge.BspEditor.Primitives
 
         public IMapElement Deserialise(SerialisedObject obj)
         {
-            return (IMapElement) Activator.CreateInstance(typeof(T), obj);
+            return (IMapElement)Activator.CreateInstance(typeof(T), obj);
         }
     }
 }

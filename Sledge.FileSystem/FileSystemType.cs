@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Sledge.FileSystem
+﻿namespace Sledge.FileSystem
 {
     /// <summary>
     /// If you really need to know the underlying implementation of a file system, this is the enum that exposes it.

@@ -40,11 +40,11 @@ namespace Sledge.DataStructures.Geometric
                 if (p.Z < MinZ.Z) MinZ = p;
                 if (p.X > MaxX.X) MaxX = p;
                 if (p.Y > MaxY.Y) MaxY = p;
-                if (p.Z > MaxZ.Z) MaxZ = p; 
+                if (p.Z > MaxZ.Z) MaxZ = p;
             }
         }
 
-        protected Cloud(SerializationInfo info, StreamingContext context) : this((Vector3[]) info.GetValue("Points", typeof(Vector3[])))
+        protected Cloud(SerializationInfo info, StreamingContext context) : this((Vector3[])info.GetValue("Points", typeof(Vector3[])))
         {
 
         }

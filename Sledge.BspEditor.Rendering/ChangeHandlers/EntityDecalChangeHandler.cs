@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.ChangeHandling;
@@ -12,6 +6,12 @@ using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.DataStructures.Geometric;
 using Sledge.Providers.Texture;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Rendering.ChangeHandlers
@@ -27,7 +27,7 @@ namespace Sledge.BspEditor.Rendering.ChangeHandlers
 
             // Update any decal entities that have been changed
             var changedEntities = change.Added.Union(change.Updated).OfType<Entity>().ToHashSet();
-            
+
             // Also update any decals had geometry for a changed solid
             var documentEntities = change.Document.Map.Root
                 .Find(x => x is Entity e && !String.IsNullOrWhiteSpace(GetDecalName(e))).OfType<Entity>()

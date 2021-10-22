@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Modification;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Threading;
+using Sledge.Common.Transport;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Modification;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Threading;
-using Sledge.Common.Transport;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Primitives.MapData
 {

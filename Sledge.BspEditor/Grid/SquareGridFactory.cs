@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Properties;
 using Sledge.Common.Shell.Settings;
 using Sledge.Common.Translations;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Grid
 {
@@ -42,7 +42,7 @@ namespace Sledge.BspEditor.Grid
 
         public IEnumerable<SettingKey> GetKeys()
         {
-            yield return new SettingKey("Rendering/Grid", "GridHideSmallerThan", typeof(int)) { EditorHint = "1,10"};
+            yield return new SettingKey("Rendering/Grid", "GridHideSmallerThan", typeof(int)) { EditorHint = "1,10" };
             yield return new SettingKey("Rendering/Grid", "GridHideFactor", typeof(int)) { EditorType = "Dropdown", EditorHint = "0,2,4,8,16,32,64" };
             yield return new SettingKey("Rendering/Grid", "GridPrimaryHighlight", typeof(int)) { EditorHint = "0,32" };
             yield return new SettingKey("Rendering/Grid", "GridSecondaryHighlight", typeof(int)) { EditorType = "Dropdown", EditorHint = "0,32,64,128,256,512,1024,2048,4096" };

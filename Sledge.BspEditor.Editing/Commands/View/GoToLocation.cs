@@ -1,9 +1,3 @@
-using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
@@ -13,6 +7,12 @@ using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
 using Sledge.QuickForms;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands.View
 {
@@ -42,8 +42,8 @@ namespace Sledge.BspEditor.Editing.Commands.View
                 if (!Decimal.TryParse(qf.String("Y"), out var y)) return;
                 if (!Decimal.TryParse(qf.String("Z"), out var z)) return;
 
-                var coordinate = new Vector3((float) x, (float) y, (float) z);
-                
+                var coordinate = new Vector3((float)x, (float)y, (float)z);
+
                 var box = new Box(coordinate - (Vector3.One * 10), coordinate + (Vector3.One * 10));
 
                 await Task.WhenAll(

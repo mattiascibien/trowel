@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.DataStructures.GameData;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Sledge.DataStructures.GameData;
 
 namespace Sledge.Providers.GameData
 {
@@ -114,7 +114,7 @@ namespace Sledge.Providers.GameData
                 iterator.MoveNext();
                 Assert(iterator.Current, iterator.Current.IsValueOrString(), "Expected value type, got " + iterator.Current.Type + ".");
                 var sectionName = iterator.Current.GetValue();
-                var sect = new AutoVisgroupSection {Name = sectionName};
+                var sect = new AutoVisgroupSection { Name = sectionName };
 
                 Expect(iterator, LexType.OpenBracket);
                 iterator.MoveNext();
@@ -122,7 +122,7 @@ namespace Sledge.Providers.GameData
                 {
                     Assert(iterator.Current, iterator.Current.IsValueOrString(), "Expected value type, got " + iterator.Current.Type + ".");
                     var groupName = iterator.Current.GetValue();
-                    var grp = new AutoVisgroup {Name = groupName};
+                    var grp = new AutoVisgroup { Name = groupName };
 
                     Expect(iterator, LexType.OpenBracket);
                     iterator.MoveNext();
@@ -229,7 +229,7 @@ namespace Sledge.Providers.GameData
                         // input name(type) : "Description"
                         var io = new IO();
                         Expect(iterator, LexType.Value);
-                        io.IOType = (IOType) Enum.Parse(typeof (IOType), pt, true);
+                        io.IOType = (IOType)Enum.Parse(typeof(IOType), pt, true);
                         io.Name = iterator.Current.Value;
                         Expect(iterator, LexType.OpenParen);
                         Expect(iterator, LexType.Value);
@@ -251,7 +251,7 @@ namespace Sledge.Providers.GameData
                         Expect(iterator, LexType.CloseParen);
                         var prop = new Property(pt, vartype);
                         iterator.MoveNext();
-                            // if not colon or equals, this will be the value of the next io/property, or close
+                        // if not colon or equals, this will be the value of the next io/property, or close
                         if (iterator.Current.Type == LexType.Value)
                         {
                             // Check for additional flags on the property

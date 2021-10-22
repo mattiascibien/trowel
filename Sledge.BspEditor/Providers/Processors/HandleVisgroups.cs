@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Providers.Processors
 {
@@ -35,7 +35,7 @@ namespace Sledge.BspEditor.Providers.Processors
                     vis.Objects.Add(obj);
                     visible = vis.Visible;
                 }
-                
+
                 // hide objects in hidden visgroups
                 obj.Data.Replace(new VisgroupHidden(!visible));
             }

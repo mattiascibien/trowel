@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Sledge.DataStructures.Geometric;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Sledge.DataStructures.Geometric;
 using System.Drawing;
 using System.Globalization;
 using System.Numerics;
@@ -24,14 +21,14 @@ namespace Sledge.DataStructures.GameData
         {
             var first = index * 3;
             return Values.Count < first + 3
-                ? (Vector3?) null
+                ? (Vector3?)null
                 : NumericsExtensions.Parse(Values[first], Values[first + 1], Values[first + 2], NumberStyles.Float, CultureInfo.InvariantCulture);
         }
 
         public Color GetColour(int index)
         {
             var coord = GetVector3(index);
-            return coord == null ? Color.White : Color.FromArgb((int) coord.Value.X, (int) coord.Value.Y, (int) coord.Value.Z);
+            return coord == null ? Color.White : Color.FromArgb((int)coord.Value.X, (int)coord.Value.Y, (int)coord.Value.Z);
         }
     }
 }

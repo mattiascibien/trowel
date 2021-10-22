@@ -1,11 +1,10 @@
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Rendering.ChangeHandlers;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.Rendering.Resources;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Converters
 {
@@ -36,7 +35,7 @@ namespace Sledge.BspEditor.Rendering.Converters
 
             if (em.ContentsReplaced && em.Renderable != null)
             {
-                resourceCollector.AddRenderables(new []{ em.Renderable });
+                resourceCollector.AddRenderables(new[] { em.Renderable });
             }
 
             return Task.CompletedTask;

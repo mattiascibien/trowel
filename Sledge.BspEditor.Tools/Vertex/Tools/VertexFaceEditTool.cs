@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.BspEditor.Rendering.Viewport;
@@ -19,6 +11,14 @@ using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Tools
 {
@@ -31,7 +31,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
         public override string OrderHint => "F";
         public override string GetName() => "Face editing";
         public override Control Control => _control;
-        
+
         private readonly List<SolidFace> _selectedFaces;
 
         [ImportingConstructor]
@@ -49,7 +49,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
             yield return Oy.Subscribe<int>("VertexEditFaceTool:Poke", v => Poke(v));
             yield return Oy.Subscribe<int>("VertexEditFaceTool:Bevel", v => Bevel(v));
         }
-        
+
         private void Poke(int num)
         {
             foreach (var solidFace in _selectedFaces)
@@ -127,14 +127,14 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
         }
 
         #endregion
-        
+
         #region 3D interaction
-        
+
         private Vector3? GetIntersectionPoint(MutableFace face, Line line)
         {
             return new Polygon(face.Vertices.Select(x => x.Position)).GetIntersectionPoint(line);
         }
-        
+
         protected override void MouseDown(MapDocument document, MapViewport viewport, PerspectiveCamera camera,
             ViewportEvent e)
         {
@@ -151,13 +151,13 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
             // Sort the list of intersecting elements by distance from ray origin
             var clickedFace = hits
-                .SelectMany(x => x.Copy.Faces.Select(f => new { Solid = x, Face = f}))
+                .SelectMany(x => x.Copy.Faces.Select(f => new { Solid = x, Face = f }))
                 .Select(x => new { Item = x, Intersection = GetIntersectionPoint(x.Face, ray) })
                 .Where(x => x.Intersection != null)
                 .OrderBy(x => (x.Intersection.Value - ray.Start).Length())
                 .Select(x => x.Item)
                 .FirstOrDefault();
-            
+
 
             var faces = new List<SolidFace>();
             if (clickedFace != null)
@@ -165,7 +165,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                 if (KeyboardState.Shift) faces.AddRange(clickedFace.Solid.Copy.Faces.Select(x => new SolidFace(clickedFace.Solid, x)));
                 else faces.Add(new SolidFace(clickedFace.Solid, clickedFace.Face));
             }
-            
+
             if (!KeyboardState.Ctrl) ClearSelection();
             _selectedFaces.AddRange(faces);
 
@@ -239,10 +239,10 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                     indices.Add(vo + i);
                 }
 
-                groups.Add(new BufferGroup(PipelineType.TexturedAlpha, CameraType.Perspective, face.Face.Origin, (uint) io, (uint)(indices.Count - io)));
+                groups.Add(new BufferGroup(PipelineType.TexturedAlpha, CameraType.Perspective, face.Face.Origin, (uint)io, (uint)(indices.Count - io)));
             }
 
-            builder.Append(verts, indices.Select(x => (uint) x), groups);
+            builder.Append(verts, indices.Select(x => (uint)x), groups);
         }
 
         private class SolidFace

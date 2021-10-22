@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Transport;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Transport;
-using Sledge.DataStructures.Geometric;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Primitives.MapObjectData
@@ -39,7 +39,7 @@ namespace Sledge.BspEditor.Primitives.MapObjectData
 
             var t = obj.Children.FirstOrDefault(x => x.Name == "Texture");
             Texture = new Texture();
-            
+
             if (t != null)
             {
                 Texture.Name = t.Get("Name", "");

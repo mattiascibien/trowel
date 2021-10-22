@@ -1,10 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Tree;
 using Sledge.BspEditor.Primitives.MapData;
@@ -17,6 +11,12 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Decal
 {
@@ -73,7 +73,7 @@ namespace Sledge.BspEditor.Tools.Decal
 
             var tc = await document.Environment.GetTextureCollection();
             if (tc == null) return;
-            
+
             if (!tc.HasTexture(texture)) return;
 
             var decal = new Primitives.MapObjects.Entity(document.Map.NumberGenerator.Next("MapObject"))

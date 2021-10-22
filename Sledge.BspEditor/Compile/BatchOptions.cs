@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Sledge.BspEditor.Documents;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Compile
 {

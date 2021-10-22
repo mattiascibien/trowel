@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Primitives.MapData;
@@ -15,6 +10,11 @@ using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.Providers.Texture;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {

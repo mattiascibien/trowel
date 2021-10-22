@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Sledge.Common.Shell.Settings;
+using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Sledge.Common.Shell.Settings;
 
 namespace Sledge.Shell.Settings.Editors
 {
@@ -22,7 +22,7 @@ namespace Sledge.Shell.Settings.Editors
             set
             {
                 var v = value ?? Color.Black;
-                ColorPanel.BackColor = (Color) v;
+                ColorPanel.BackColor = (Color)v;
                 var c = ColorPanel.BackColor;
                 HexBox.Text = $@"{c.R:X2}{c.G:X2}{c.B:X2}";
             }
@@ -38,7 +38,7 @@ namespace Sledge.Shell.Settings.Editors
 
         private void PickColor(object sender, EventArgs e)
         {
-            using (var cp = new ColorDialog {Color = ColorPanel.BackColor, SolidColorOnly = true})
+            using (var cp = new ColorDialog { Color = ColorPanel.BackColor, SolidColorOnly = true })
             {
                 if (cp.ShowDialog() == DialogResult.OK)
                 {

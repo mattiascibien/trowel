@@ -1,6 +1,3 @@
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Properties;
@@ -13,6 +10,9 @@ using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Commands.Toggles
 {

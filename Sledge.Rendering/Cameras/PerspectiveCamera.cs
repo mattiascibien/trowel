@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Sledge.Common;
+using System;
 using System.Globalization;
 using System.Numerics;
-using Sledge.Common;
 
 namespace Sledge.Rendering.Cameras
 {
     public class PerspectiveCamera : ICamera
     {
-        private const float Pi = (float) Math.PI;
+        private const float Pi = (float)Math.PI;
 
         private Vector3 _position;
         private Vector3 _angles;
@@ -51,8 +51,8 @@ namespace Sledge.Rendering.Cameras
             set
             {
                 var norm = value.LengthSquared() <= 0.01f ? Vector3.UnitY : Vector3.Normalize(value);
-                _angles.Y = (float) (Math.Asin(norm.Z) + Math.PI / 2);
-                _angles.X = (float) (Math.Atan2(-norm.Y, -norm.X) + Math.PI / 2);
+                _angles.Y = (float)(Math.Asin(norm.Z) + Math.PI / 2);
+                _angles.X = (float)(Math.Atan2(-norm.Y, -norm.X) + Math.PI / 2);
 
                 // Try and stop invalid values from getting in
                 if (float.IsInfinity(_angles.X) || float.IsNaN(_angles.X)) _angles.X = 0;
@@ -122,7 +122,7 @@ namespace Sledge.Rendering.Cameras
             const float near = 1.0f;
             var ratio = width / (float)height;
             if (ratio <= 0) ratio = 1;
-            return Matrix4x4.CreatePerspectiveFieldOfView((float) MathHelper.DegreesToRadians(FOV), ratio, near, ClipDistance);
+            return Matrix4x4.CreatePerspectiveFieldOfView((float)MathHelper.DegreesToRadians(FOV), ratio, near, ClipDistance);
         }
 
         public Vector3 ScreenToWorld(Vector3 screen)
@@ -250,7 +250,7 @@ namespace Sledge.Rendering.Cameras
             normal = Vector3.Normalize(normal);
             return normal;
         }
-        
+
         public Vector3 GetRight()
         {
             var temp = Direction;

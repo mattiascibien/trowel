@@ -1,10 +1,10 @@
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Editing.Components;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Commands
 {

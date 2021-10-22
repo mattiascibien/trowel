@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using Sledge.Shell.Registers;
+﻿using Sledge.Shell.Registers;
+using System.Windows.Forms;
 using Message = System.Windows.Forms.Message;
 
 namespace Sledge.Shell.Forms
@@ -31,7 +31,7 @@ namespace Sledge.Shell.Forms
             {
                 return base.ProcessCmdKey(ref msg, keyData);
             }
-            
+
             // Intentional non-short-circuiting | rather than ||
             return (HotkeyRegister != null && HotkeyRegister.Fire(keyData)) | base.ProcessCmdKey(ref msg, keyData);
         }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Numerics;
-using System.Windows.Forms;
-using Sledge.Common.Translations;
+﻿using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
 using Sledge.Shell;
+using System;
+using System.Numerics;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components
 {
@@ -23,12 +23,12 @@ namespace Sledge.BspEditor.Editing.Components
 
         public Vector3 TransformValue
         {
-            get => new Vector3((float) ValueX.Value, (float) ValueY.Value, (float) ValueZ.Value);
+            get => new Vector3((float)ValueX.Value, (float)ValueY.Value, (float)ValueZ.Value);
             set
             {
-                ValueX.Value = (decimal) value.X;
-                ValueY.Value = (decimal) value.Y;
-                ValueZ.Value = (decimal) value.Z;
+                ValueX.Value = (decimal)value.X;
+                ValueY.Value = (decimal)value.Y;
+                ValueZ.Value = (decimal)value.Z;
             }
         }
 
@@ -66,9 +66,9 @@ namespace Sledge.BspEditor.Editing.Components
             ZeroValueYButton.Click += (sender, e) => ValueY.Value = _zeroValue;
             ZeroValueZButton.Click += (sender, e) => ValueZ.Value = _zeroValue;
 
-            SourceValueXButton.Click += (sender, e) => ValueX.Value = (decimal) _source.Width;
-            SourceValueYButton.Click += (sender, e) => ValueY.Value = (decimal) _source.Length;
-            SourceValueZButton.Click += (sender, e) => ValueZ.Value = (decimal) _source.Height;
+            SourceValueXButton.Click += (sender, e) => ValueX.Value = (decimal)_source.Width;
+            SourceValueYButton.Click += (sender, e) => ValueY.Value = (decimal)_source.Length;
+            SourceValueZButton.Click += (sender, e) => ValueZ.Value = (decimal)_source.Height;
 
             TypeChanged(null, null);
         }
@@ -101,7 +101,7 @@ namespace Sledge.BspEditor.Editing.Components
             switch (Type)
             {
                 case TransformType.Rotate:
-                    var rads = value * (float) Math.PI / 180;
+                    var rads = value * (float)Math.PI / 180;
                     var rMov = Matrix4x4.CreateTranslation(selectionBox.Center);
                     var rRot = Matrix4x4.CreateFromQuaternion(Quaternion.CreateFromYawPitchRoll(rads.Y, rads.X, rads.Z));
                     var rFin = Matrix4x4.CreateTranslation(-selectionBox.Center);

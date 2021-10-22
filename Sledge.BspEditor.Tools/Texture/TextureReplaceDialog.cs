@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
@@ -18,6 +11,13 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -49,7 +49,7 @@ namespace Sledge.BspEditor.Tools.Texture
             this.InvokeLater(() =>
             {
                 var document = GetDocument();
-                
+
                 FindTextbox.Text = "";
                 ReplaceTextbox.Text = "";
 
@@ -89,14 +89,14 @@ namespace Sledge.BspEditor.Tools.Texture
                 ReplaceGroup.Text = strings.GetString(prefix, "Replace");
 
                 FindBrowse.Text = ReplaceBrowse.Text = strings.GetString(prefix, "Browse");
-                
+
                 ReplaceInGroup.Text = strings.GetString(prefix, "ReplaceIn");
                 ReplaceSelection.Text = strings.GetString(prefix, "ReplaceSelection");
                 ReplaceVisible.Text = strings.GetString(prefix, "ReplaceVisible");
                 ReplaceEverything.Text = strings.GetString(prefix, "ReplaceEverything");
 
                 RescaleTextures.Text = strings.GetString(prefix, "RescaleTextures");
-                
+
                 ActionGroup.Text = strings.GetString(prefix, "Action");
                 ActionExact.Text = strings.GetString(prefix, "ActionExact");
                 ActionPartial.Text = strings.GetString(prefix, "ActionPartial");
@@ -114,8 +114,8 @@ namespace Sledge.BspEditor.Tools.Texture
             Oy.Publish("Context:Remove", new ContextInfo("BspEditor:TextureReplace"));
         }
 
-		protected override void OnMouseEnter(EventArgs e)
-		{
+        protected override void OnMouseEnter(EventArgs e)
+        {
             Focus();
             base.OnMouseEnter(e);
         }
@@ -246,7 +246,7 @@ namespace Sledge.BspEditor.Tools.Texture
                 var face = fp.Face;
                 var parent = fp.Parent;
 
-                var clone = (Face) face.Clone();
+                var clone = (Face)face.Clone();
 
                 var repl = replacements.FirstOrDefault(x => x.Find == face.Texture.Name.ToLowerInvariant());
                 if (repl == null) continue;
@@ -257,17 +257,17 @@ namespace Sledge.BspEditor.Tools.Texture
                     var replace = await tc.GetTextureItem(repl.Replace);
                     if (find != null && replace != null)
                     {
-                        clone.Texture.XScale *= find.Width / (float) replace.Width;
-                        clone.Texture.YScale *= find.Height / (float) replace.Height;
+                        clone.Texture.XScale *= find.Width / (float)replace.Width;
+                        clone.Texture.YScale *= find.Height / (float)replace.Height;
                     }
                 }
 
                 clone.Texture.Name = repl.Replace;
-                
+
                 tran.Add(new RemoveMapObjectData(parent.ID, face));
                 tran.Add(new AddMapObjectData(parent.ID, clone));
             }
-            
+
             return tran;
         }
 
@@ -301,7 +301,7 @@ namespace Sledge.BspEditor.Tools.Texture
                 info.Text = "No Image";
                 return;
             }
-            
+
             var tc = await doc.Environment.GetTextureCollection();
             var item = await tc.GetTextureItem(text);
 

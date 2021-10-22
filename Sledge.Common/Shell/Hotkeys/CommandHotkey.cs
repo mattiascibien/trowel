@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
+using System.Threading.Tasks;
 
 namespace Sledge.Common.Shell.Hotkeys
 {

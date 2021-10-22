@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Primitives;
+using Sledge.BspEditor.Primitives.MapObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Primitives;
-using Sledge.BspEditor.Primitives.MapObjects;
 
 namespace Sledge.BspEditor.Modification.Operations.Mutation
 {
@@ -16,9 +16,9 @@ namespace Sledge.BspEditor.Modification.Operations.Mutation
     {
         private readonly List<long> _idsToTransform;
         private readonly Matrix4x4 _matrix;
-        
+
         public bool Trivial => false;
-        
+
         public TransformTexturesUniform(Matrix4x4 matrix, params IMapObject[] objectsToTransform)
         {
             _matrix = matrix;

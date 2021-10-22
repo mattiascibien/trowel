@@ -9,7 +9,7 @@ namespace Sledge.QuickForms.Items
     /// </summary>
     public class QuickFormBrowse : QuickFormItem
     {
-	    public override object Value => _textBox.Text;
+        public override object Value => _textBox.Text;
 
         private readonly Label _label;
         private readonly TextBox _textBox;
@@ -40,8 +40,8 @@ namespace Sledge.QuickForms.Items
                 Anchor = AnchorStyles.Top | AnchorStyles.Bottom
             };
 
-            _button.Click += (s,e) => ShowBrowseDialog();
-            
+            _button.Click += (s, e) => ShowBrowseDialog();
+
             Controls.Add(_label);
             Controls.Add(_textBox);
             Controls.Add(_button);
@@ -55,7 +55,7 @@ namespace Sledge.QuickForms.Items
 
         private void ShowBrowseDialog()
         {
-            using (var ofd = new OpenFileDialog {Filter = _filter, FileName = _textBox.Text})
+            using (var ofd = new OpenFileDialog { Filter = _filter, FileName = _textBox.Text })
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {

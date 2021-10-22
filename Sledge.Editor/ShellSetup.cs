@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.Common.Shell.Hooks;
+﻿using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.Editor.Properties;
 using Sledge.Shell;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.Editor
 {

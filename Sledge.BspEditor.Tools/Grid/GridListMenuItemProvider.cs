@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Grid;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Grid
 {
@@ -64,7 +64,7 @@ namespace Sledge.BspEditor.Tools.Grid
                     var operation = new TrivialOperation(x => doc.Map.Data.Replace(gd), x => x.Update(gd));
 
                     await MapDocumentOperation.Perform(doc, operation);
-                    
+
                 }
             }
 

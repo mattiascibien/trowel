@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Threading;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Vertex.Selection
 {
@@ -45,7 +45,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Selection
         public async Task Update(MapDocument document)
         {
             if (document == null) return;
-            
+
             var tran = new Transaction();
 
             lock (_lock)

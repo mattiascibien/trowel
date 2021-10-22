@@ -1,13 +1,13 @@
-using System;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Draggable
 {
@@ -57,7 +57,7 @@ namespace Sledge.BspEditor.Tools.Draggable
             var c = position;
             return c.X >= box.Start.X - padding && c.Y >= box.Start.Y - padding && c.Z >= box.Start.Z - padding
                    && c.X <= box.End.X + padding && c.Y <= box.End.Y + padding && c.Z <= box.End.Z + padding;
-        
+
         }
 
         protected override Vector3 GetResizeOrigin(MapViewport viewport, OrthographicCamera camera, Vector3 position)
@@ -71,7 +71,7 @@ namespace Sledge.BspEditor.Tools.Draggable
         public override void Render(IViewport viewport, OrthographicCamera camera, Vector3 worldMin, Vector3 worldMax, I2DRenderer im)
         {
             if (HighlightedViewport != viewport) return;
-            
+
             var b = GetRectangle(camera);
             var start = camera.WorldToScreen(camera.Expand(b.Start));
             var end = camera.WorldToScreen(camera.Expand(b.End));

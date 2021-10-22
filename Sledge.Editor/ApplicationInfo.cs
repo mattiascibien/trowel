@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Sledge.Common.Shell;
+using System;
 using System.ComponentModel.Composition;
 using System.IO;
-using Sledge.Common.Shell;
 
 namespace Sledge.Editor
 {

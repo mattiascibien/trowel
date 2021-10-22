@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Grid;
 using Sledge.BspEditor.Primitives.MapData;
@@ -12,6 +7,11 @@ using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
 using Veldrid;
 using Buffer = Sledge.Rendering.Resources.Buffer;
 
@@ -105,12 +105,12 @@ namespace Sledge.BspEditor.Rendering.Grid
             var max = oc.Expand(new Vector3(newBounds.Right, newBounds.Bottom, 0));
 
             var normal = Vector3.One - oc.Expand(new Vector3(1, 1, 0));
-            
+
             var points = new List<VertexStandard>();
             var indices = new List<uint>();
 
             uint idx = 0;
-            foreach (var line in _grid.GetLines(normal, oc.Zoom, min, max).OrderBy(x => (int) x.Type))
+            foreach (var line in _grid.GetLines(normal, oc.Zoom, min, max).OrderBy(x => (int)x.Type))
             {
                 var c = GetColorForGridLineType(line.Type);
                 var col = new Vector4(c.R, c.G, c.B, c.A) / 255f;
@@ -154,7 +154,7 @@ namespace Sledge.BspEditor.Rendering.Grid
         {
             _buffer?.Dispose();
         }
-        
+
         private Color GetColorForGridLineType(GridLineType type)
         {
             switch (type)

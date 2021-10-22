@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Common.Shell.Hooks;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Numerics;
 using System.Threading.Tasks;
-using Sledge.Common.Shell.Hooks;
 
 namespace Sledge.DataStructures.Geometric
 {

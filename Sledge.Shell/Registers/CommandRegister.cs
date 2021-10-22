@@ -1,14 +1,14 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Sledge.Common.Shell.Commands;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Shell.Hooks;
+using Sledge.Shell.Commands;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using LogicAndTrick.Oy;
-using Sledge.Common.Shell.Commands;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Shell.Hooks;
-using Sledge.Shell.Commands;
 
 namespace Sledge.Shell.Registers
 {
@@ -24,7 +24,7 @@ namespace Sledge.Shell.Registers
         // Store the context (the command register is one of the few things that should need static access to the context)
         [Import] private IContext _context;
         [ImportMany] private IEnumerable<Lazy<ICommand>> _importedCommands;
-        
+
         public Task OnStartup()
         {
             // Register exported commands

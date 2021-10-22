@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Translations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Problems
 {
@@ -29,7 +29,7 @@ namespace Sledge.BspEditor.Editing.Problems
             var faces = document.Map.Root.FindAll()
                 .OfType<Solid>()
                 .Where(x => filter(x))
-                .SelectMany(x => x.Faces.Select(f => new {Object = x, Face = f}))
+                .SelectMany(x => x.Faces.Select(f => new { Object = x, Face = f }))
                 .ToList();
 
             // Get the list of textures in the map and in the texture collection
@@ -41,7 +41,7 @@ namespace Sledge.BspEditor.Editing.Problems
 
             return faces
                 .Where(x => textureNames.Contains(x.Face.Texture.Name))
-                .Select(x => new Problem {Text = x.Face.Texture.Name}.Add(x.Object).Add(x.Face))
+                .Select(x => new Problem { Text = x.Face.Texture.Name }.Add(x.Object).Add(x.Face))
                 .ToList();
         }
 

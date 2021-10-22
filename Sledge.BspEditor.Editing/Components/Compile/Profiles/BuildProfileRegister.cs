@@ -1,8 +1,8 @@
+using Sledge.Common.Shell.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Sledge.Common.Shell.Settings;
 
 namespace Sledge.BspEditor.Editing.Components.Compile.Profiles
 {

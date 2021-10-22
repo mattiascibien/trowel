@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.Rendering.Renderables;
+using System.Collections.Generic;
 using System.Linq;
-using Sledge.Rendering.Renderables;
 
 namespace Sledge.BspEditor.Rendering.Resources
 {

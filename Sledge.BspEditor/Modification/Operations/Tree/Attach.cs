@@ -1,8 +1,8 @@
+using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Primitives.MapObjects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Primitives.MapObjects;
 
 namespace Sledge.BspEditor.Modification.Operations.Tree
 {

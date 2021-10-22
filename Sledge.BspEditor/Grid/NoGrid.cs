@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
 using System.Numerics;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Grid
 {

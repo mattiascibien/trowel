@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Tools.Vertex.Errors;
 using Sledge.BspEditor.Tools.Vertex.Selection;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Controls
 {
@@ -20,7 +20,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Controls
     {
         private readonly IEnumerable<Lazy<IVertexErrorCheck>> _errorChecks;
         private readonly Lazy<ITranslationStringProvider> _translator;
-        
+
         public string Title { get; set; } = "Vertex Errors";
         public object Control => this;
 
@@ -34,13 +34,14 @@ namespace Sledge.BspEditor.Tools.Vertex.Controls
             _translator = translator;
 
             InitializeComponent();
-            
+
             Oy.Subscribe<VertexSelection>("VertexTool:Updated", t => UpdateErrorList(t));
         }
 
         private void UpdateErrorList(VertexSelection selection)
         {
-            this.InvokeLater(() => {
+            this.InvokeLater(() =>
+            {
                 var errors = _errorChecks.SelectMany(ec => selection.SelectMany(s => ec.Value.GetErrors(s)));
                 ErrorList.Items.Clear();
                 ErrorList.Items.AddRange(errors.Select(e => new ErrorWrapper(_translator.Value.GetString(e.Key) ?? e.Key, e)).OfType<object>().ToArray());

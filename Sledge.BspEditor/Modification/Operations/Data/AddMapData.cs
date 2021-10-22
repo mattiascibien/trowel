@@ -1,8 +1,8 @@
+using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Primitives.MapData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Primitives.MapData;
 
 namespace Sledge.BspEditor.Modification.Operations.Data
 {
@@ -32,7 +32,7 @@ namespace Sledge.BspEditor.Modification.Operations.Data
         public async Task<Change> Perform(MapDocument document)
         {
             var ch = new Change(document);
-            
+
             foreach (var d in _dataToAdd)
             {
                 document.Map.Data.Add(d);

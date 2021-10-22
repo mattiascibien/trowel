@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Tools.Brush.Brushes.Controls;
@@ -9,6 +6,9 @@ using Sledge.Common;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
 
 namespace Sledge.BspEditor.Tools.Brush.Brushes
 {

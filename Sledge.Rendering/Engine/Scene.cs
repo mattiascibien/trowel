@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Sledge.Rendering.Interfaces;
+﻿using Sledge.Rendering.Interfaces;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Viewports;
+using System.Collections.Generic;
 
 namespace Sledge.Rendering.Engine
 {

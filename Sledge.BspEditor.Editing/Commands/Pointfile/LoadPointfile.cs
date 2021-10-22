@@ -1,10 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Properties;
@@ -13,6 +7,12 @@ using Sledge.BspEditor.Modification.Operations;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands.Pointfile
 {

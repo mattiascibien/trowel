@@ -1,9 +1,8 @@
+using Sledge.Common;
+using Sledge.DataStructures.Geometric;
 using System;
 using System.Linq;
 using System.Numerics;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.Common;
-using Sledge.DataStructures.Geometric;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Primitives
@@ -64,7 +63,7 @@ namespace Sledge.BspEditor.Primitives
 
                     // Get the angle between the projected normals
                     var dot = Math.Round(apNormal.Dot(cpNormal), 4);
-                    var angle = (float) Math.Acos(dot); // A.B = cos(angle)
+                    var angle = (float)Math.Acos(dot); // A.B = cos(angle)
 
                     // Rotate the texture axis by the angle around the intersection edge
                     var transform = Matrix4x4.CreateFromAxisAngle(intersectionEdge.Normalise(), angle);
@@ -153,10 +152,10 @@ namespace Sledge.BspEditor.Primitives
                     break;
             }
         }
-        
+
         public static void SetRotation(this Texture tex, float rotate)
         {
-            var rads = (float) MathHelper.DegreesToRadians(tex.Rotation - rotate);
+            var rads = (float)MathHelper.DegreesToRadians(tex.Rotation - rotate);
 
             // Rotate around the texture normal
             var texNorm = tex.VAxis.Cross(tex.UAxis).Normalise();

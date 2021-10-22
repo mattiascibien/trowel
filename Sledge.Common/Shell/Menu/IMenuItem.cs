@@ -1,6 +1,6 @@
-﻿using System.Drawing;
+﻿using Sledge.Common.Shell.Context;
+using System.Drawing;
 using System.Threading.Tasks;
-using Sledge.Common.Shell.Context;
 
 namespace Sledge.Common.Shell.Menu
 {
@@ -23,12 +23,12 @@ namespace Sledge.Common.Shell.Menu
         /// A description of the menu item
         /// </summary>
         string Description { get; }
-        
+
         /// <summary>
         /// The icon for the menu item. Can be null.
         /// </summary>
         Image Icon { get; }
-        
+
         /// <summary>
         /// True if this item should be shown in the toolbar.
         /// </summary>
@@ -39,7 +39,7 @@ namespace Sledge.Common.Shell.Menu
         /// For example, File, View, Help, etc.
         /// </summary>
         string Section { get; }
-        
+
         /// <summary>
         /// The location of the menu item in the menu, relative to the Section.
         /// Blank will put it directly into the menu, each folder will be a submenu.

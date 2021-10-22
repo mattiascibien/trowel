@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.Common.Transport;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.Common.Transport;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Primitives.MapObjects
 {
@@ -100,7 +100,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
             copy.Data = Data.Clone();
             foreach (var child in Hierarchy)
             {
-                var c = (IMapObject) child.Clone();
+                var c = (IMapObject)child.Clone();
                 c.Hierarchy.Parent = copy;
             }
             copy.DescendantsChanged();
@@ -125,7 +125,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
             Hierarchy.Clear();
             foreach (var obj in source.Hierarchy)
             {
-                var copy = (IMapObject) obj.Clone();
+                var copy = (IMapObject)obj.Clone();
                 copy.Hierarchy.Parent = this;
             }
             DescendantsChanged();
@@ -140,7 +140,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
         /// <inheritdoc />
         public virtual IMapElement Clone()
         {
-            var inst = (BaseMapObject) GetType().GetConstructor(new[] {typeof(long)}).Invoke(new object[] {ID});
+            var inst = (BaseMapObject)GetType().GetConstructor(new[] { typeof(long) }).Invoke(new object[] { ID });
             CloneBase(inst);
             return inst;
         }
@@ -149,7 +149,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
         public virtual void Unclone(IMapObject obj)
         {
             if (obj.GetType() != GetType()) throw new ArgumentException("Cannot unclone into a different type.", nameof(obj));
-            UncloneBase((BaseMapObject) obj);
+            UncloneBase((BaseMapObject)obj);
         }
 
         /// <inheritdoc />

@@ -63,7 +63,7 @@ namespace Sledge.Common.Extensions
         public static void WriteNullTerminatedString(this BinaryWriter bw, string str)
         {
             bw.Write(str.ToCharArray());
-            bw.Write((char) 0);
+            bw.Write((char)0);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Sledge.Common.Extensions
         }
 
         // Decimal <-> Single
-        
+
         /// <summary>
         /// Read a float and cast it to decimal
         /// </summary>
@@ -175,7 +175,7 @@ namespace Sledge.Common.Extensions
         /// <returns>Value that was read</returns>
         public static decimal ReadSingleAsDecimal(this BinaryReader br)
         {
-            return (decimal) br.ReadSingle();
+            return (decimal)br.ReadSingle();
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Sledge.Common.Extensions
         /// <param name="dec">Value to write</param>
         public static void WriteDecimalAsSingle(this BinaryWriter bw, decimal dec)
         {
-            bw.Write((float) dec);
+            bw.Write((float)dec);
         }
 
         // Colours

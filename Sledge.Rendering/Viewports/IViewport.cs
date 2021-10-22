@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using Sledge.Rendering.Cameras;
+﻿using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
+using System;
+using System.Windows.Forms;
 
 namespace Sledge.Rendering.Viewports
 {

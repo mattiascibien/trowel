@@ -1,6 +1,3 @@
-using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjects;
@@ -9,6 +6,9 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System.ComponentModel.Composition;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Rendering.Converters
@@ -20,7 +20,7 @@ namespace Sledge.BspEditor.Rendering.Converters
 
         private CordonBounds GetCordon(MapDocument doc)
         {
-            return doc.Map.Data.GetOne<CordonBounds>() ?? new CordonBounds {Enabled = false};
+            return doc.Map.Data.GetOne<CordonBounds>() ?? new CordonBounds { Enabled = false };
         }
 
         public bool ShouldStopProcessing(MapDocument document, IMapObject obj)

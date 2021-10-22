@@ -1,4 +1,11 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Sledge.Common.Shell.Documents;
+using Sledge.Common.Shell.Settings;
+using Sledge.Common.Translations;
+using Sledge.Common.Transport;
+using Sledge.Shell.Controls;
+using Sledge.Shell.Registers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
@@ -7,13 +14,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.Common.Shell.Documents;
-using Sledge.Common.Shell.Settings;
-using Sledge.Common.Translations;
-using Sledge.Common.Transport;
-using Sledge.Shell.Controls;
-using Sledge.Shell.Registers;
 
 namespace Sledge.Shell.Forms
 {
@@ -41,8 +41,8 @@ namespace Sledge.Shell.Forms
 
         [ImportingConstructor]
         public Shell(
-            [Import] Lazy<Bootstrapper> bootstrapper, 
-            [Import] Lazy<DocumentRegister> documentRegister, 
+            [Import] Lazy<Bootstrapper> bootstrapper,
+            [Import] Lazy<DocumentRegister> documentRegister,
             [Import] Lazy<ITranslationStringProvider> translation
         )
         {
@@ -60,7 +60,7 @@ namespace Sledge.Shell.Forms
         private void InitializeShell()
         {
             DocumentTabs.TabPages.Clear();
-            
+
             Oy.Subscribe<List<string>>("Shell:InstanceOpened", async a => await this.InvokeAsync(() => InstanceOpened(a)));
 
             Oy.Subscribe<IDocument>("Document:Opened", async d => await this.InvokeAsync(() => OpenDocument(d)));
@@ -79,7 +79,8 @@ namespace Sledge.Shell.Forms
 
         private Task ShowExceptionDialog(Exception obj)
         {
-            this.InvokeLater(() => {
+            this.InvokeLater(() =>
+            {
                 var ed = new ExceptionWindow(obj);
                 ed.ShowDialog(this);
             });
@@ -106,7 +107,7 @@ namespace Sledge.Shell.Forms
             _shownExceptions.Add(exData);
             return true;
         }
-        
+
         // Lifecycle
 
         private async Task InstanceOpened(IEnumerable<string> args)
@@ -182,7 +183,7 @@ namespace Sledge.Shell.Forms
 
             // Save the list of documents so we can re-open them next time
             PersistCurrentOpenDocumentList();
-            
+
             // We've already asked the user if they want to save and they've either saved
             // or chosen to discard changes, so we force the close now.
             foreach (var doc in _documentRegister.Value.OpenDocuments.ToList())
@@ -202,7 +203,8 @@ namespace Sledge.Shell.Forms
             Closing -= CancelClose;
             Enabled = false;
             await _bootstrapper.Value.Shutdown();
-            this.InvokeSync(() => { 
+            this.InvokeSync(() =>
+            {
                 _bootstrapper.Value.UIShutdown();
             });
             Close();
@@ -247,7 +249,7 @@ namespace Sledge.Shell.Forms
             yield return RightSidebar;
             yield return BottomSidebar;
         }
-        
+
         // Subscriptions
 
         /// <summary>
@@ -293,7 +295,7 @@ namespace Sledge.Shell.Forms
                 if (currentControl != document.Control)
                 {
                     DocumentContainer.Controls.Clear();
-                    DocumentContainer.Controls.Add((Control) document.Control);
+                    DocumentContainer.Controls.Add((Control)document.Control);
                     DocumentContainer.Controls[0].Dock = DockStyle.Fill;
                 }
 
@@ -370,7 +372,7 @@ namespace Sledge.Shell.Forms
                     .Select(x => x.Description + "|" + String.Join(";", x.Extensions.Select(ex => "*" + ex)))
                     .ToList();
 
-                using (var sfd = new SaveFileDialog {Filter = String.Join("|", filter)})
+                using (var sfd = new SaveFileDialog { Filter = String.Join("|", filter) })
                 {
                     if (sfd.ShowDialog() != DialogResult.OK) return false;
                     filename = sfd.FileName;
@@ -390,7 +392,7 @@ namespace Sledge.Shell.Forms
         }
 
         // Form events
-        
+
         private void TabChanged(object sender, EventArgs e)
         {
             _documentRegister.Value.ActivateDocument(DocumentTabs.SelectedTab?.Tag as IDocument);

@@ -1,11 +1,11 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Components
 {
@@ -22,7 +22,7 @@ namespace Sledge.BspEditor.Rendering.Components
         public string Text { get; set; } = "";
 
         public string Zoom { get; set; }
-        
+
         public ViewportZoomStatusItem()
         {
             Oy.Subscribe<float>("MapDocument:ViewportZoomStatus:UpdateValue", UpdateValue);

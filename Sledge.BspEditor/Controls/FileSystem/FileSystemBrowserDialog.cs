@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.Common.Logging;
+using Sledge.FileSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.Common.Logging;
-using Sledge.FileSystem;
 
 namespace Sledge.BspEditor.Controls.FileSystem
 {

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using LogicAndTrick.Oy;
 
 namespace Sledge.Common.Logging
 {

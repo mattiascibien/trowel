@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Sledge.Common.Transport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sledge.Common.Transport;
 
 namespace Sledge.BspEditor.Editing.Components.Compile.Specification
 {

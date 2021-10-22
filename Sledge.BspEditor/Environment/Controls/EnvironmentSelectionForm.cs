@@ -24,13 +24,13 @@ namespace Sledge.BspEditor.Environment.Controls
             foreach (var g in _environments.GroupBy(x => x.Type).OrderBy(x => x.Key))
             {
                 GameTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
-                GameTable.Controls.Add(new Label{Text = g.Key, Font = new Font(Font, FontStyle.Bold), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft});
-                GameTable.Controls.Add(new Label {Text = ""});
+                GameTable.Controls.Add(new Label { Text = g.Key, Font = new Font(Font, FontStyle.Bold), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft });
+                GameTable.Controls.Add(new Label { Text = "" });
                 foreach (var game in g)
                 {
                     GameTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-                    GameTable.Controls.Add(new Label{Text = game.Name,Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft});
-                    var btn = new Button {Text = @">>", Width = 40};
+                    GameTable.Controls.Add(new Label { Text = game.Name, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft });
+                    var btn = new Button { Text = @">>", Width = 40 };
                     var btnGame = game;
                     btn.Click += (s, ev) => SelectGame(btnGame);
                     GameTable.Controls.Add(btn);

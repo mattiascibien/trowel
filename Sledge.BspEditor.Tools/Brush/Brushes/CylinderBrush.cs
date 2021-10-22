@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Tools.Brush.Brushes.Controls;
@@ -13,6 +7,12 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Brush.Brushes
@@ -24,7 +24,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
     public class CylinderBrush : IBrush, IInitialiseHook
     {
         private NumericControl _numSides;
-        
+
         public string NumberOfSides { get; set; }
 
         public Task OnInitialise()
@@ -43,7 +43,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
 
         public IEnumerable<IMapObject> Create(UniqueNumberGenerator generator, Box box, string texture, int roundDecimals)
         {
-            var numSides = (int) _numSides.GetValue();
+            var numSides = (int)_numSides.GetValue();
             if (numSides < 3) yield break;
 
             // Cylinders can be elliptical so use both major and minor rather than just the radius
@@ -53,15 +53,15 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
             var height = box.Height;
             var major = width / 2;
             var minor = length / 2;
-            var angle = 2 * (float) Math.PI / numSides;
+            var angle = 2 * (float)Math.PI / numSides;
 
             // Calculate the X and Y points for the ellipse
             var points = new Vector3[numSides];
             for (var i = 0; i < numSides; i++)
             {
                 var a = i * angle;
-                var xval = box.Center.X + major * (float) Math.Cos(a);
-                var yval = box.Center.Y + minor * (float) Math.Sin(a);
+                var xval = box.Center.X + major * (float)Math.Cos(a);
+                var yval = box.Center.Y + minor * (float)Math.Sin(a);
                 var zval = box.Start.Z;
                 points[i] = new Vector3(xval, yval, zval).Round(roundDecimals);
             }
@@ -73,7 +73,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
             for (var i = 0; i < numSides; i++)
             {
                 var next = (i + 1) % numSides;
-                faces.Add(new[] {points[i], points[i] + z, points[next] + z, points[next]});
+                faces.Add(new[] { points[i], points[i] + z, points[next] + z, points[next] });
             }
 
             // Add the elliptical top and bottom faces

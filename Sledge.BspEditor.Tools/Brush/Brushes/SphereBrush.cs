@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Tools.Brush.Brushes.Controls;
@@ -13,6 +7,12 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Brush.Brushes
@@ -24,7 +24,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
     public class SphereBrush : IBrush, IInitialiseHook
     {
         private NumericControl _numSides;
-        
+
         public string NumberOfSides { get; set; }
 
         public Task OnInitialise()
@@ -52,7 +52,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
                 var face = new Face(generator.Next("Face"))
                 {
                     Plane = new Plane(arr[0], arr[1], arr[2]),
-                    Texture = { Name = texture  }
+                    Texture = { Name = texture }
                 };
                 face.Vertices.AddRange(arr);
                 solid.Data.Add(face);
@@ -75,31 +75,31 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
             var minor = length / 2;
             var heightRadius = height / 2;
 
-            var angleV = (float) MathHelper.DegreesToRadians(180f) / numSides;
-            var angleH = (float) MathHelper.DegreesToRadians(360f) / numSides;
-            
+            var angleV = (float)MathHelper.DegreesToRadians(180f) / numSides;
+            var angleH = (float)MathHelper.DegreesToRadians(360f) / numSides;
+
             var faces = new List<Vector3[]>();
             var bottom = new Vector3(box.Center.X, box.Center.Y, box.Start.Z).Round(roundDecimals);
             var top = new Vector3(box.Center.X, box.Center.Y, box.End.Z).Round(roundDecimals);
-            
+
             for (var i = 0; i < numSides; i++)
             {
                 // Top -> bottom
                 var zAngleStart = angleV * i;
                 var zAngleEnd = angleV * (i + 1);
-                var zStart = heightRadius * (float) Math.Cos(zAngleStart);
-                var zEnd = heightRadius * (float) Math.Cos(zAngleEnd);
-                var zMultStart = (float) Math.Sin(zAngleStart);
-                var zMultEnd = (float) Math.Sin(zAngleEnd);
+                var zStart = heightRadius * (float)Math.Cos(zAngleStart);
+                var zEnd = heightRadius * (float)Math.Cos(zAngleEnd);
+                var zMultStart = (float)Math.Sin(zAngleStart);
+                var zMultEnd = (float)Math.Sin(zAngleEnd);
                 for (var j = 0; j < numSides; j++)
                 {
                     // Go around the circle in X/Y
                     var xyAngleStart = angleH * j;
                     var xyAngleEnd = angleH * ((j + 1) % numSides);
-                    var xyStartX = major * (float) Math.Cos(xyAngleStart);
-                    var xyStartY = minor * (float) Math.Sin(xyAngleStart);
-                    var xyEndX = major * (float) Math.Cos(xyAngleEnd);
-                    var xyEndY = minor * (float) Math.Sin(xyAngleEnd);
+                    var xyStartX = major * (float)Math.Cos(xyAngleStart);
+                    var xyStartY = minor * (float)Math.Sin(xyAngleStart);
+                    var xyEndX = major * (float)Math.Cos(xyAngleEnd);
+                    var xyEndY = minor * (float)Math.Sin(xyAngleEnd);
                     var one = (new Vector3(xyStartX * zMultStart, xyStartY * zMultStart, zStart) + box.Center).Round(roundDecimals);
                     var two = (new Vector3(xyEndX * zMultStart, xyEndY * zMultStart, zStart) + box.Center).Round(roundDecimals);
                     var three = (new Vector3(xyEndX * zMultEnd, xyEndY * zMultEnd, zEnd) + box.Center).Round(roundDecimals);

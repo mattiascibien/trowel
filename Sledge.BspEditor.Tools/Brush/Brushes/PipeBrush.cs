@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Tools.Brush.Brushes.Controls;
@@ -13,6 +7,12 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Brush.Brushes
@@ -25,7 +25,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
     {
         private NumericControl _numSides;
         private NumericControl _wallWidth;
-        
+
         public string NumberOfSides { get; set; }
         public string WallWidth { get; set; }
 
@@ -53,7 +53,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
                 var face = new Face(generator.Next("Face"))
                 {
                     Plane = new Plane(arr[0], arr[1], arr[2]),
-                    Texture = { Name = texture  }
+                    Texture = { Name = texture }
                 };
                 face.Vertices.AddRange(arr);
                 solid.Data.Add(face);
@@ -64,9 +64,9 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
 
         public IEnumerable<IMapObject> Create(UniqueNumberGenerator generator, Box box, string texture, int roundDecimals)
         {
-            var wallWidth = (float) _wallWidth.GetValue();
+            var wallWidth = (float)_wallWidth.GetValue();
             if (wallWidth < 1) yield break;
-            var numSides = (int) _numSides.GetValue();
+            var numSides = (int)_numSides.GetValue();
             if (numSides < 3) yield break;
 
             // Very similar to the cylinder, except we have multiple solids this time
@@ -85,12 +85,12 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
             for (var i = 0; i < numSides; i++)
             {
                 var a = i * angle;
-                var xval = box.Center.X + majorOut * (float) Math.Cos(a);
-                var yval = box.Center.Y + minorOut * (float) Math.Sin(a);
+                var xval = box.Center.X + majorOut * (float)Math.Cos(a);
+                var yval = box.Center.Y + minorOut * (float)Math.Sin(a);
                 var zval = box.Start.Z;
                 outer[i] = new Vector3(xval, yval, zval).Round(roundDecimals);
-                xval = box.Center.X + majorIn * (float) Math.Cos(a);
-                yval = box.Center.Y + minorIn * (float) Math.Sin(a);
+                xval = box.Center.X + majorIn * (float)Math.Cos(a);
+                yval = box.Center.Y + minorIn * (float)Math.Sin(a);
                 inner[i] = new Vector3(xval, yval, zval).Round(roundDecimals);
             }
 

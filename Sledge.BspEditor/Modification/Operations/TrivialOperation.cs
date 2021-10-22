@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Sledge.BspEditor.Documents;
+using System;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
 
 namespace Sledge.BspEditor.Modification.Operations
 {

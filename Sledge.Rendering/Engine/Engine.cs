@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
-using SharpDX.Direct3D;
+﻿using SharpDX.Direct3D;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Interfaces;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
 using Veldrid;
 
 namespace Sledge.Rendering.Engine
@@ -176,7 +176,7 @@ namespace Sledge.Rendering.Engine
 
         private void Loop(object o)
         {
-            var token = (CancellationToken) o;
+            var token = (CancellationToken)o;
             try
             {
                 var lastFrame = _timer.ElapsedMilliseconds;
@@ -282,7 +282,7 @@ namespace Sledge.Rendering.Engine
                     from renderable in Scene.GetRenderables(t, renderTarget)
                     from location in renderable.GetLocationObjects(t, renderTarget)
                     orderby (cameraLocation - location.Location).LengthSquared() descending
-                    select new {Pipeline = t, Renderable = renderable, Location = location};
+                    select new { Pipeline = t, Renderable = renderable, Location = location };
 
                 foreach (var lo in locationObjects)
                 {
@@ -295,7 +295,7 @@ namespace Sledge.Rendering.Engine
                 overlay.SetupFrame(Context, renderTarget);
                 overlay.Render(Context, renderTarget, _commandList, Scene.GetRenderables(overlay, renderTarget));
             }
-            
+
             _commandList.End();
 
             Device.SubmitCommands(_commandList);
@@ -317,8 +317,8 @@ namespace Sledge.Rendering.Engine
                 if (!_renderTargets.Any()) Start();
                 _renderTargets.Add(control);
 
-                Scene.Add((IRenderable) control.Overlay);
-                Scene.Add((IUpdateable) control.Overlay);
+                Scene.Add((IRenderable)control.Overlay);
+                Scene.Add((IUpdateable)control.Overlay);
                 ViewportCreated?.Invoke(this, control);
 
                 return control;
@@ -337,8 +337,8 @@ namespace Sledge.Rendering.Engine
                 if (!_renderTargets.Any()) Stop();
 
                 ViewportDestroyed?.Invoke(this, t);
-                Scene.Remove((IRenderable) t.Overlay);
-                Scene.Remove((IUpdateable) t.Overlay);
+                Scene.Remove((IRenderable)t.Overlay);
+                Scene.Remove((IUpdateable)t.Overlay);
 
                 t.Control.Disposed -= DestroyViewport;
                 t.Dispose();

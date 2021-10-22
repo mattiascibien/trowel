@@ -10,7 +10,7 @@ namespace Sledge.Common.Shell.Context
         /// <param name="context">The list of contexts</param>
         /// <returns>True if all contexts exist</returns>
         bool HasAll(params string[] context);
-        
+
         /// <summary>
         /// Check if any of the given contexts are current
         /// </summary>

@@ -1,5 +1,5 @@
-using System;
 using Sledge.Rendering.Engine;
+using System;
 
 namespace Sledge.Rendering.Resources
 {
@@ -12,7 +12,7 @@ namespace Sledge.Rendering.Resources
         /// <param name="engine">The engine interface</param>
         /// <param name="context">The render context</param>
         void CreateResources(EngineInterface engine, RenderContext context);
-        
+
         /// <summary>
         /// Destroy resources that were created by this resource class.
         /// Don't call this method directly, instead use <see cref="EngineInterface.DestroyResource"/>.

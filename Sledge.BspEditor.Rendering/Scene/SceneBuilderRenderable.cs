@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sledge.Rendering.Cameras;
+﻿using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Engine;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using Veldrid;
 
 namespace Sledge.BspEditor.Rendering.Scene
 {
     public class SceneBuilderRenderable : IRenderable
     {
-        private static readonly uint IndSize = (uint) Unsafe.SizeOf<IndirectDrawIndexedArguments>();
+        private static readonly uint IndSize = (uint)Unsafe.SizeOf<IndirectDrawIndexedArguments>();
 
         private readonly SceneBuilder _sceneBuilder;
 
@@ -67,7 +67,7 @@ namespace Sledge.BspEditor.Rendering.Scene
 
         public void Render(RenderContext context, IPipeline pipeline, IViewport viewport, CommandList cl, ILocation locationObject)
         {
-            var groupLocation = (GroupLocation) locationObject;
+            var groupLocation = (GroupLocation)locationObject;
 
             var buffer = groupLocation.Builder;
             var i = groupLocation.Index;

@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using Sledge.Common.Shell.Context;
+﻿using Sledge.Common.Shell.Context;
+using System.Drawing;
 
 namespace Sledge.Common.Shell.Components
 {

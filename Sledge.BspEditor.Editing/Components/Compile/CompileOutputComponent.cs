@@ -1,16 +1,16 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Sledge.BspEditor.Compile;
+using Sledge.Common.Shell.Components;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Translations;
+using Sledge.Shell;
+using System;
 using System.Collections.Concurrent;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.BspEditor.Compile;
-using Sledge.Common.Shell.Components;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Translations;
-using Sledge.Shell;
 
 namespace Sledge.BspEditor.Editing.Components.Compile
 {
@@ -64,7 +64,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                 var flowerbox = new string('*', msg.Length + 4);
                 Append(col, $"{flowerbox}\r\n* {msg} *\r\n{flowerbox}\r\n");
             });
-            
+
             _queue = new Subject<int>();
             _queue.Publish().RefCount()
                 .Sample(TimeSpan.FromMilliseconds(1000))

@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Rendering.Overlay
 {
@@ -27,7 +27,7 @@ namespace Sledge.BspEditor.Rendering.Overlay
 
                 var c = ed.Color?.Color ?? Color.White;
 
-                var angRad = ang.Value * (float) Math.PI / 180f;
+                var angRad = ang.Value * (float)Math.PI / 180f;
                 var min = Math.Min(ed.BoundingBox.Width, Math.Min(ed.BoundingBox.Height, ed.BoundingBox.Length));
                 var tform = Matrix4x4.CreateFromYawPitchRoll(angRad.X, angRad.Z, angRad.Y);
 

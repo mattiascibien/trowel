@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.Common.Shell.Hooks;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools
 {

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Transport;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.ComponentModel.Composition;
 using System.Numerics;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Transport;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Primitives.MapData
 {

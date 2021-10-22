@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Windows.Forms;
+﻿using Sledge.Common.Shell.Settings;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Globalization;
-using Sledge.Common.Shell.Settings;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Settings
 {
@@ -15,7 +15,7 @@ namespace Sledge.Shell.Settings
     public class LayoutSettingsContainer : ISettingsContainer
     {
         [Import] private Forms.Shell _shell;
-        
+
         // Settings provider
 
         public string Name => "Sledge.Shell.Layout";
@@ -27,18 +27,18 @@ namespace Sledge.Shell.Settings
 
         public void LoadValues(ISettingsStore store)
         {
-            _shell.Invoke((MethodInvoker) delegate
-            {
-                _shell.WindowState = store.Get("WindowState", _shell.WindowState);
+            _shell.Invoke((MethodInvoker)delegate
+           {
+               _shell.WindowState = store.Get("WindowState", _shell.WindowState);
 
-                foreach (var dp in _shell.GetDockPanels())
-                {
-                    var dph = $"DockPanel:{dp.Name}:Hidden";
-                    var dps = $"DockPanel:{dp.Name}:Size";
-                    dp.Hidden = store.Get(dph, dp.Hidden);
-                    dp.DockDimension = store.Get(dps, dp.DockDimension);
-                }
-            });
+               foreach (var dp in _shell.GetDockPanels())
+               {
+                   var dph = $"DockPanel:{dp.Name}:Hidden";
+                   var dps = $"DockPanel:{dp.Name}:Size";
+                   dp.Hidden = store.Get(dph, dp.Hidden);
+                   dp.DockDimension = store.Get(dps, dp.DockDimension);
+               }
+           });
         }
 
         public void StoreValues(ISettingsStore store)

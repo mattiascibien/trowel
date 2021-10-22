@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
 using Sledge.Common.Logging;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
@@ -13,6 +7,11 @@ using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.Shell.Properties;
 using Sledge.Shell.Registers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.Shell.Commands
 {

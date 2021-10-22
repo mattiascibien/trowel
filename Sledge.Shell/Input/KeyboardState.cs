@@ -87,7 +87,7 @@ namespace Sledge.Shell.Input
         private static bool IsKeyToggled(Keys key)
         {
             // Key is toggled if the low bit is 1
-            return (GetKeyState((int) key) & 0x0001) == 0x0001;
+            return (GetKeyState((int)key) & 0x0001) == 0x0001;
         }
 
         public static string KeysToString(Keys key)

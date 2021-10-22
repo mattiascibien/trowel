@@ -1,4 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Environment;
+using Sledge.BspEditor.Primitives;
+using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common;
+using Sledge.Common.Shell.Documents;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
@@ -7,13 +14,6 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Environment;
-using Sledge.BspEditor.Primitives;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common;
-using Sledge.Common.Shell.Documents;
-using Sledge.DataStructures.Geometric;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Providers

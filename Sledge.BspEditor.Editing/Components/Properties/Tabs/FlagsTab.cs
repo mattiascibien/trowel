@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Components.Properties.SmartEdit;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
@@ -15,6 +8,13 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.GameData;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
 {
@@ -113,7 +113,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
 
             for (var i = 0; i < FlagsTable.Items.Count; i++)
             {
-                var fh = (FlagHolder) FlagsTable.Items[i];
+                var fh = (FlagHolder)FlagsTable.Items[i];
                 var cs = FlagsTable.GetItemCheckState(i);
                 if (cs == CheckState.Indeterminate || cs == fh.OriginalValue) continue;
                 d.Add(fh.BitValue, cs == CheckState.Checked);
@@ -121,7 +121,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
 
             return d;
         }
-        
+
         /// <summary>
         /// Update the checkbox list with the items in the given scope
         /// </summary>
@@ -130,7 +130,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
             SuspendLayout();
 
             var datas = objects
-                .Select(x => new {Object = x, EntityData = x.Data.GetOne<EntityData>()})
+                .Select(x => new { Object = x, EntityData = x.Data.GetOne<EntityData>() })
                 .Where(x => x.EntityData != null)
                 .ToList();
 
@@ -148,7 +148,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
 
             ResumeLayout();
         }
-        
+
         /// <summary>
         /// Populate the flags list using the given the source flags data of the context.
         /// </summary>

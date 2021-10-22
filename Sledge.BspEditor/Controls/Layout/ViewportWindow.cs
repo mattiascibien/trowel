@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using Sledge.BspEditor.Components;
+﻿using Sledge.BspEditor.Components;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Controls.Layout
 {

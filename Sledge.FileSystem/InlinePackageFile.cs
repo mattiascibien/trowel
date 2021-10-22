@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Sledge.Packages;
+using Sledge.Packages.Pak;
+using Sledge.Packages.Vpk;
+using Sledge.Packages.Zip;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Sledge.Packages;
-using Sledge.Packages.Pak;
-using Sledge.Packages.Vpk;
-using Sledge.Packages.Zip;
 
 namespace Sledge.FileSystem
 {
@@ -187,7 +187,7 @@ namespace Sledge.FileSystem
             using (stream)
             {
                 var arr = new byte[count];
-                stream.Read(arr, (int) offset, (int) count);
+                stream.Read(arr, (int)offset, (int)count);
                 return arr;
             }
         }

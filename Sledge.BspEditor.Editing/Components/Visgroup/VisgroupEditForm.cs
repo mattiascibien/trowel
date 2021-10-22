@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Sledge.BspEditor.Documents;
+using Sledge.Common;
+using Sledge.Common.Translations;
+using Sledge.Shell;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
-using Sledge.Common;
-using Sledge.Common.Translations;
-using Sledge.Shell;
 using Vg = Sledge.BspEditor.Primitives.MapData.Visgroup;
 
 namespace Sledge.BspEditor.Editing.Components.Visgroup
@@ -14,12 +14,12 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
     public partial class VisgroupEditForm : Form, IManualTranslate
     {
         private readonly List<Vg> _visgroups;
-        private readonly List<Vg> _deleted; 
+        private readonly List<Vg> _deleted;
 
         public VisgroupEditForm(MapDocument doc)
         {
             InitializeComponent();
-            _visgroups = new List<Vg>(doc.Map.Data.Get<Vg>().Select(x => (Vg) x.Clone()));
+            _visgroups = new List<Vg>(doc.Map.Data.Get<Vg>().Select(x => (Vg)x.Clone()));
             _deleted = new List<Vg>();
             UpdateVisgroups();
         }
@@ -71,7 +71,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
             ColourPanel.BackColor = SystemColors.Control;
             if (visgroupItem != null)
             {
-                var visgroup = (Vg) visgroupItem.Tag;
+                var visgroup = (Vg)visgroupItem.Tag;
                 GroupName.Text = visgroup.Name;
                 ColourPanel.BackColor = visgroup.Colour;
                 ColourPanel.ForeColor = visgroup.Colour.GetIdealForegroundColour();
@@ -92,11 +92,11 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         {
             var newGroup = new Vg
             {
-                                   ID = GetNewID(),
-                                   Colour = Colour.GetRandomLightColour(),
-                                   Name = "New Group",
-                                   Visible = true
-                               };
+                ID = GetNewID(),
+                Colour = Colour.GetRandomLightColour(),
+                Name = "New Group",
+                Visible = true
+            };
             _visgroups.Add(newGroup);
             UpdateVisgroups();
             VisgroupPanel.SelectedVisgroup = new VisgroupItem("") { Tag = newGroup };
@@ -109,7 +109,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
             var visgroup = VisgroupPanel.SelectedVisgroup;
             if (visgroup == null) return;
 
-            var vg = (Vg) visgroup.Tag;
+            var vg = (Vg)visgroup.Tag;
             _visgroups.Remove(vg);
             _deleted.Add(vg);
             UpdateVisgroups();
@@ -119,8 +119,8 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         {
             var visgroup = VisgroupPanel.SelectedVisgroup;
             if (visgroup == null) return;
-            
-            var vg = (Vg) visgroup.Tag;
+
+            var vg = (Vg)visgroup.Tag;
             if (vg.Name == GroupName.Text) return;
             visgroup.Text = vg.Name = GroupName.Text;
             VisgroupPanel.UpdateVisgroupState(visgroup);
@@ -130,9 +130,9 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         {
             var visgroup = VisgroupPanel.SelectedVisgroup;
             if (visgroup == null) return;
-            
-            var vg = (Vg) visgroup.Tag;
-            using (var cp = new ColorDialog {Color = vg.Colour})
+
+            var vg = (Vg)visgroup.Tag;
+            using (var cp = new ColorDialog { Color = vg.Colour })
             {
                 if (cp.ShowDialog() != DialogResult.OK) return;
 

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Selection;
@@ -28,6 +20,14 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Entity
 {
@@ -314,7 +314,8 @@ namespace Sledge.BspEditor.Tools.Entity
 
                     foreach (var v in face)
                     {
-                        points[vi++] = new VertexStandard { 
+                        points[vi++] = new VertexStandard
+                        {
                             Position = v,
                             Colour = colour,
                             Tint = Vector4.One
@@ -332,11 +333,11 @@ namespace Sledge.BspEditor.Tools.Entity
                 // Draw 3 lines pinpointing the point
                 var lineOffset = vi;
 
-                points[vi++] = new VertexStandard { Position = new Vector3(low , vec.Y, vec.Z), Colour = colour, Tint = Vector4.One };
+                points[vi++] = new VertexStandard { Position = new Vector3(low, vec.Y, vec.Z), Colour = colour, Tint = Vector4.One };
                 points[vi++] = new VertexStandard { Position = new Vector3(high, vec.Y, vec.Z), Colour = colour, Tint = Vector4.One };
-                points[vi++] = new VertexStandard { Position = new Vector3(vec.X, low , vec.Z), Colour = colour, Tint = Vector4.One };
+                points[vi++] = new VertexStandard { Position = new Vector3(vec.X, low, vec.Z), Colour = colour, Tint = Vector4.One };
                 points[vi++] = new VertexStandard { Position = new Vector3(vec.X, high, vec.Z), Colour = colour, Tint = Vector4.One };
-                points[vi++] = new VertexStandard { Position = new Vector3(vec.X, vec.Y, low ), Colour = colour, Tint = Vector4.One };
+                points[vi++] = new VertexStandard { Position = new Vector3(vec.X, vec.Y, low), Colour = colour, Tint = Vector4.One };
                 points[vi++] = new VertexStandard { Position = new Vector3(vec.X, vec.Y, high), Colour = colour, Tint = Vector4.One };
 
                 indices[wi++] = lineOffset++;
@@ -345,7 +346,7 @@ namespace Sledge.BspEditor.Tools.Entity
                 indices[wi++] = lineOffset++;
                 indices[wi++] = lineOffset++;
                 indices[wi++] = lineOffset++;
-                
+
                 var groups = new[]
                 {
                     new BufferGroup(PipelineType.Wireframe, CameraType.Both, 0, numWireframeIndices)

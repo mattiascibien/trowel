@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.BspEditor.Environment.Controls;
+using Sledge.Common.Shell.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Sledge.BspEditor.Environment.Controls;
-using Sledge.Common.Shell.Settings;
 
 namespace Sledge.BspEditor.Environment
 {
@@ -64,7 +64,7 @@ namespace Sledge.BspEditor.Environment
         {
             if (store.Contains("Environments"))
             {
-                _environments = (EnvironmentCollection) store.Get(typeof(EnvironmentCollection), "Environments") ?? new EnvironmentCollection();
+                _environments = (EnvironmentCollection)store.Get(typeof(EnvironmentCollection), "Environments") ?? new EnvironmentCollection();
             }
         }
 

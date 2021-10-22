@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
+using System.Collections.Generic;
 
 namespace Sledge.BspEditor.Providers
 {
@@ -9,7 +9,7 @@ namespace Sledge.BspEditor.Providers
         /// A list of messages to present to the user after loading the file
         /// </summary>
         public List<string> Messages { get; set; }
-        
+
         /// <summary>
         /// A list of invalid objects that were present in the file
         /// </summary>

@@ -1,10 +1,10 @@
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Numerics;
 using Sledge.BspEditor.Documents;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Rendering.Overlay
 {

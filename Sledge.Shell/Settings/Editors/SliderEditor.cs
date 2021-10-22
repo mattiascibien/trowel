@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Sledge.Common.Shell.Settings;
+using System;
 using System.Windows.Forms;
-using Sledge.Common.Shell.Settings;
 
 namespace Sledge.Shell.Settings.Editors
 {
@@ -93,7 +93,7 @@ namespace Sledge.Shell.Settings.Editors
             OnValueChanged?.Invoke(this, Key);
         }
 
-        private int ActualToSlider(decimal val) => (int) (val * _actualToSliderMultiplier);
+        private int ActualToSlider(decimal val) => (int)(val * _actualToSliderMultiplier);
         private decimal SliderToActual(int val) => val / _actualToSliderMultiplier;
     }
 }

@@ -1,11 +1,11 @@
-using System;
-using System.Numerics;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Draggable
 {
@@ -47,7 +47,7 @@ namespace Sledge.BspEditor.Tools.Draggable
         {
             OnDragEnded();
         }
-        
+
         public virtual void MouseDown(MapDocument document, MapViewport viewport, OrthographicCamera camera, ViewportEvent e, Vector3 position)
         {
 
@@ -55,7 +55,7 @@ namespace Sledge.BspEditor.Tools.Draggable
 
         public virtual void MouseUp(MapDocument document, MapViewport viewport, OrthographicCamera camera, ViewportEvent e, Vector3 position)
         {
-            
+
         }
 
         public abstract void Click(MapDocument document, MapViewport viewport, OrthographicCamera camera, ViewportEvent e, Vector3 position);

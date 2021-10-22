@@ -1,6 +1,6 @@
+using LogicAndTrick.Oy;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {
@@ -40,7 +40,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
         }
 
         #region Not required
-        
+
         public void KeyUp(ViewportEvent e)
         {
 

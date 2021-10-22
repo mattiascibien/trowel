@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Globalization;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Poly2Tri;
+﻿using Poly2Tri;
 using Poly2Tri.Triangulation.Polygon;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
@@ -18,6 +9,15 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Globalization;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 using Polygon = Poly2Tri.Triangulation.Polygon.Polygon;
 
@@ -32,7 +32,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
         private FontChooserControl _fontChooser;
         private NumericControl _flattenFactor;
         private TextControl _text;
-        
+
         public string Font { get; set; }
         public string AliasingFactor { get; set; }
         public string Text { get; set; }
@@ -58,19 +58,19 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
 
         public IEnumerable<IMapObject> Create(UniqueNumberGenerator generator, Box box, string texture, int roundfloats)
         {
-            var length = Math.Max(1, Math.Abs((int) box.Length));
+            var length = Math.Max(1, Math.Abs((int)box.Length));
             var height = box.Height;
-            var flatten = (float) _flattenFactor.Value;
+            var flatten = (float)_flattenFactor.Value;
             var text = _text.GetValue();
 
             var family = _fontChooser.GetFontFamily();
-            var style = Enum.GetValues(typeof (FontStyle)).OfType<FontStyle>().FirstOrDefault(fs => family.IsStyleAvailable(fs));
+            var style = Enum.GetValues(typeof(FontStyle)).OfType<FontStyle>().FirstOrDefault(fs => family.IsStyleAvailable(fs));
             if (!family.IsStyleAvailable(style)) family = FontFamily.GenericSansSerif;
 
             var set = new List<Polygon>();
 
             var sizes = new List<RectangleF>();
-            using (var bmp = new Bitmap(1,1))
+            using (var bmp = new Bitmap(1, 1))
             {
                 using (var g = Graphics.FromImage(bmp))
                 {
@@ -162,7 +162,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
             {
                 foreach (var t in polygon.Triangles)
                 {
-                    var points = t.Points.Select(x => new Vector3((float) x.X, (float) x.Y, zOffset).Round(roundfloats)).ToList();
+                    var points = t.Points.Select(x => new Vector3((float)x.X, (float)x.Y, zOffset).Round(roundfloats)).ToList();
 
                     var faces = new List<Vector3[]>();
 
@@ -171,7 +171,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
                     for (var j = 0; j < points.Count; j++)
                     {
                         var next = (j + 1) % points.Count;
-                        faces.Add(new[] {points[j], points[j] + z, points[next] + z, points[next]});
+                        faces.Add(new[] { points[j], points[j] + z, points[next] + z, points[next] });
                     }
                     // Add the top and bottom faces
                     faces.Add(points.ToArray());

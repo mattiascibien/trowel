@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sledge.Rendering.Engine;
+﻿using Sledge.Rendering.Engine;
 using Sledge.Rendering.Renderables;
 using Sledge.Rendering.Resources;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sledge.BspEditor.Rendering.Scene
 {

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Sledge.Common.Shell;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json.Linq;
-using Sledge.Common.Shell;
 
 namespace Sledge.Common.Translations
 {
@@ -147,9 +147,9 @@ namespace Sledge.Common.Translations
 
             var basePath = Convert.ToString(meta["Base"]) ?? "";
             if (!String.IsNullOrWhiteSpace(basePath)) basePath += ".";
-            
+
             var language = new Language(lang);
-            
+
             var langDesc = Convert.ToString(meta["LanguageDescription"]);
             if (!string.IsNullOrWhiteSpace(langDesc) && string.IsNullOrWhiteSpace(language.Description)) language.Description = langDesc;
 
@@ -188,7 +188,7 @@ namespace Sledge.Common.Translations
             {
                 if (token is JProperty)
                 {
-                    var name = ((JProperty) token).Name;
+                    var name = ((JProperty)token).Name;
                     if (name.StartsWith("@")) break;
                     l.Add(name);
                 }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Sledge.Providers.Texture;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sledge.Providers.Texture;
 
 namespace Sledge.BspEditor.Environment.Goldsource
 {

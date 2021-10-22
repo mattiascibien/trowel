@@ -1,8 +1,3 @@
-using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Compile;
 using Sledge.BspEditor.Documents;
@@ -15,6 +10,11 @@ using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands
 {
@@ -54,7 +54,7 @@ namespace Sledge.BspEditor.Editing.Commands
                     var arguments = cd.SelectedBatchArguments;
                     var batch = await document.Environment.CreateBatch(arguments, new BatchOptions());
                     if (batch == null) return;
-                    
+
                     await batch.Run(document);
                 }
             }

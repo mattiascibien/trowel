@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Shell.Commands;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sledge.Shell.Commands;
 
 namespace Sledge.Shell.Forms
 {
@@ -154,7 +154,7 @@ namespace Sledge.Shell.Forms
                 Activator = activator;
                 _owner = owner;
                 _active = false;
-                
+
                 Anchor = AnchorStyles.Left | AnchorStyles.Right;
                 Height = 25;
                 BackColor = ButtonBackColour;

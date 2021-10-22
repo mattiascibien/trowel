@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sledge.Providers.Texture
@@ -10,7 +9,7 @@ namespace Sledge.Providers.Texture
         public string Location { get; }
         public string Type { get; }
         public HashSet<string> Textures { get; }
-        
+
         protected virtual IEqualityComparer<string> GetComparer => StringComparer.InvariantCultureIgnoreCase;
 
         public TexturePackage(string location, string type)
@@ -30,7 +29,7 @@ namespace Sledge.Providers.Texture
         public abstract Task<TextureItem> GetTexture(string name);
 
         public abstract ITextureStreamSource GetStreamSource();
-        
+
         public override string ToString()
         {
             return Location;

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Translations;
 using Sledge.Common.Transport;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Sledge.BspEditor.Components
 {
@@ -40,7 +39,7 @@ namespace Sledge.BspEditor.Components
 
         public int SizeOfClipboardRing { get; set; }
         private readonly List<ClipboardEntry> Ring;
-        
+
         public string NothingSelected { get; set; }
         public string NumSelected { get; set; }
 

@@ -1,9 +1,3 @@
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjectData;
@@ -15,6 +9,12 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Converters
 {
@@ -46,15 +46,15 @@ namespace Sledge.BspEditor.Rendering.Converters
             var hideNull = displayFlags?.HideNullTextures == true;
 
             // Pack the vertices like this [ f1v1 ... f1vn ] ... [ fnv1 ... fnvn ]
-            var numVertices = (uint) faces.Sum(x => x.Vertices.Count);
+            var numVertices = (uint)faces.Sum(x => x.Vertices.Count);
 
             // Pack the indices like this [ solid1 ... solidn ] [ wireframe1 ... wireframe n ]
-            var numSolidIndices = (uint) faces.Sum(x => (x.Vertices.Count - 2) * 3);
+            var numSolidIndices = (uint)faces.Sum(x => (x.Vertices.Count - 2) * 3);
             var numWireframeIndices = numVertices * 2;
 
             var points = new VertexStandard[numVertices];
             var indices = new uint[numSolidIndices + numWireframeIndices];
-            
+
             var colour = (obj.IsSelected ? Color.Red : obj.Data.GetOne<ObjectColor>()?.Color ?? Color.White).ToVector4();
 
             //var c = obj.IsSelected ? Color.FromArgb(255, 128, 128) : Color.White;
@@ -198,14 +198,14 @@ namespace Sledge.BspEditor.Rendering.Converters
             }
 
             groups.Add(new BufferGroup(PipelineType.Wireframe, obj.IsSelected ? CameraType.Both : CameraType.Orthographic, numSolidIndices, numWireframeIndices));
-            
+
             builder.Append(points, indices, groups);
 
             // Also push the untransformed wireframe when selected
             if (obj.IsSelected)
             {
                 for (var i = 0; i < points.Length; i++) points[i].Flags = VertexFlags.None;
-                var untransformedIndices = indices.Skip((int) numSolidIndices);
+                var untransformedIndices = indices.Skip((int)numSolidIndices);
                 builder.Append(points, untransformedIndices, new[]
                 {
                     new BufferGroup(PipelineType.Wireframe, CameraType.Both, 0, numWireframeIndices)

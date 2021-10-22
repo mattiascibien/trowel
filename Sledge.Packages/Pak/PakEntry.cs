@@ -8,7 +8,7 @@ namespace Sledge.Packages.Pak
 
         public string Path { get; private set; }
         public int Offset { get; private set; }
-        public string Name { get { return GetName(); }}
+        public string Name { get { return GetName(); } }
         public string FullName { get { return Path; } }
         public string ParentPath { get { return GetParent(); } }
         public long Length { get; private set; }

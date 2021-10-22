@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Sledge.Rendering.Cameras;
+using Sledge.Rendering.Overlay;
+using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Sledge.Rendering.Cameras;
-using Sledge.Rendering.Overlay;
 using Veldrid;
 
 namespace Sledge.Rendering.Viewports
@@ -74,7 +74,7 @@ namespace Sledge.Rendering.Viewports
             {
                 var w = Math.Max(Width, 1);
                 var h = Math.Max(Height, 1);
-                Swapchain.Resize((uint) w, (uint) h);
+                Swapchain.Resize((uint)w, (uint)h);
                 _resizeRequired = false;
             }
 

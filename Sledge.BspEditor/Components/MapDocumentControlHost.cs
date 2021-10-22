@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Sledge.BspEditor.Controls;
+using Sledge.BspEditor.Controls.Layout;
+using Sledge.Common.Shell.Hooks;
+using Sledge.Common.Shell.Settings;
+using Sledge.Shell;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.BspEditor.Controls;
-using Sledge.BspEditor.Controls.Layout;
-using Sledge.Common.Shell.Hooks;
-using Sledge.Common.Shell.Settings;
-using Sledge.Shell;
 using Message = System.Windows.Forms.Message;
 
 namespace Sledge.BspEditor.Components
@@ -132,7 +132,7 @@ namespace Sledge.BspEditor.Components
         {
             var loop = HostedControl.Default(container.WindowID);
             var index = 0;
-            foreach (var rec in container. Table.Configuration.Rectangles)
+            foreach (var rec in container.Table.Configuration.Rectangles)
             {
                 var i = rec.Y;
                 var j = rec.X;
@@ -224,7 +224,7 @@ namespace Sledge.BspEditor.Components
 
             var containers = GetContainers().ToList();
             var windowIds = windowConfigs.Select(x => x.WindowID).Union(containers.Select(x => x.WindowID)).ToList();
-            
+
             // Ensure that controls are created on the UI thread
             _shell.InvokeSync(() =>
             {
@@ -367,7 +367,7 @@ namespace Sledge.BspEditor.Components
                 WindowID = _contextControl.WindowID,
                 Row = _contextControl.Row,
                 Column = _contextControl.Column,
-                Type = mi.Type, 
+                Type = mi.Type,
                 Serialised = mi.Style
             };
 
@@ -413,7 +413,7 @@ namespace Sledge.BspEditor.Components
         private void ShowContextMenu(HostedControl control, IMapDocumentControl mdc, Point screenPoint)
         {
             CreateContextMenu();
-            
+
             foreach (var cmi in _contextMenu.Items.OfType<ContextMenuItem>())
             {
                 var f = _controlFactories.Select(x => x.Value).FirstOrDefault(x => x.Type == cmi.Type);

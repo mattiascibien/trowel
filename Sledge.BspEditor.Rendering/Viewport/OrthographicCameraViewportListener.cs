@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Numerics;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Rendering.Cameras;
 using Sledge.Shell;
 using Sledge.Shell.Input;
+using System;
+using System.Linq;
+using System.Numerics;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {
@@ -91,7 +91,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
                 }
                 e.Handled = true;
             }
-            
+
             if (KeyboardState.Shift)
             {
                 var shift = new Vector3(0, 0, 0);
@@ -121,12 +121,12 @@ namespace Sledge.BspEditor.Rendering.Viewport
                 var last = str.Last();
                 if (Char.IsDigit(last))
                 {
-                    var press = (int) Char.GetNumericValue(last);
+                    var press = (int)Char.GetNumericValue(last);
                     if (press >= 0 && press <= 9)
                     {
                         if (press == 0) press = 10;
                         var num = Math.Max(press - 6, 6 - press);
-                        var pow = (float) Math.Pow(2, num);
+                        var pow = (float)Math.Pow(2, num);
                         var zoom = press < 6 ? 1 / pow : pow;
                         Camera.Zoom = zoom;
                         Oy.Publish("MapDocument:ViewportZoomStatus:UpdateValue", Camera.Zoom);
@@ -155,14 +155,14 @@ namespace Sledge.BspEditor.Rendering.Viewport
                     e.Handled = true;
                 }
             }
-            
+
             Oy.Publish<Vector3?>("MapDocument:ViewportMouseLocationStatus:UpdateValue", Camera.ScreenToWorld(e.X, e.Y));
         }
 
         public void MouseWheel(ViewportEvent e)
         {
             var before = Camera.Flatten(Camera.ScreenToWorld(new Vector3(e.X, e.Y, 0)));
-            Camera.Zoom *= (float) Math.Pow((double) CameraNavigationViewportSettings.MouseWheelZoomMultiplier, (e.Delta < 0 ? -1 : 1));
+            Camera.Zoom *= (float)Math.Pow((double)CameraNavigationViewportSettings.MouseWheelZoomMultiplier, (e.Delta < 0 ? -1 : 1));
             var after = Camera.Flatten(Camera.ScreenToWorld(new Vector3(e.X, e.Y, 0)));
             Camera.Position -= (after - before);
 
@@ -208,17 +208,17 @@ namespace Sledge.BspEditor.Rendering.Viewport
 
         public void MouseClick(ViewportEvent e)
         {
-            
+
         }
 
         public void MouseDoubleClick(ViewportEvent e)
         {
-            
+
         }
 
         public void DragStart(ViewportEvent e)
         {
-            
+
         }
 
         public void DragMove(ViewportEvent e)

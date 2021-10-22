@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Properties;
 using Sledge.BspEditor.Modification;
@@ -18,6 +11,13 @@ using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.QuickForms;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands.Modification
 {
@@ -31,7 +31,7 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
     {
         public override string Name { get; set; } = "Make Hollow...";
         public override string Details { get; set; } = "Make hollow";
-        
+
         public string PromptTitle { get; set; }
         public string PromptWallWidth { get; set; }
         public string WarningMessage { get; set; }
@@ -47,16 +47,16 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
         protected override async Task Invoke(MapDocument document, CommandParameters parameters)
         {
             var objects = document.Selection.OfType<Solid>().ToList();
-            
+
             // Prompt the user for the wall width. If more than 1 solid is selected, show a little warning notice.
-            var qf = new QuickForm(PromptTitle) {UseShortcutKeys = true};
+            var qf = new QuickForm(PromptTitle) { UseShortcutKeys = true };
             if (objects.Count > 1) qf.Label(String.Format(WarningMessage, objects.Count));
             qf.NumericUpDown("Width", PromptWallWidth, -1024, 1024, 0, 32);
             qf.OkCancel(OK, Cancel);
 
             if (await qf.ShowDialogAsync() != DialogResult.OK) return;
 
-            var width = (float) qf.Decimal("Width");
+            var width = (float)qf.Decimal("Width");
 
             var ops = new List<IOperation>();
 
@@ -77,7 +77,7 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
 
                 // Clone and scale the solid
                 var scale = Vector3.Divide(target, current);
-                var carver = (Solid) solid.Clone();
+                var carver = (Solid)solid.Clone();
                 carver.Transform(Matrix4x4.CreateTranslation(-origin) * Matrix4x4.CreateScale(scale) * Matrix4x4.CreateTranslation(origin));
 
                 // For a negative width, we want the original solid to be the inside instead

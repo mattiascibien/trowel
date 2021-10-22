@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Translations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Problems
 {
@@ -56,7 +56,7 @@ namespace Sledge.BspEditor.Editing.Problems
                 var data = obj.Data.GetOne<EntityData>();
                 if (data == null) continue;
 
-                var vals = new Dictionary<string, string> {["target"] = null};
+                var vals = new Dictionary<string, string> { ["target"] = null };
                 transaction.Add(new EditEntityDataProperties(obj.ID, vals));
             }
 

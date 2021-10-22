@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Draggable;
@@ -23,6 +14,15 @@ using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
 using Sledge.Shell;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Tools
 {
@@ -51,7 +51,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
         public VertexPointTool()
         {
             _vertices = new ConcurrentDictionary<VertexSolid, VertexList>();
-            
+
             States.Add(new WrapperDraggableState(GetDraggables));
 
             _boxState = new BoxDraggableState(this)
@@ -67,7 +67,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                     DeselectAll();
                 }
             };
-            
+
             States.Add(_boxState);
 
             _showPoints = VisiblePoints.All;
@@ -95,9 +95,9 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
         private void CycleShowPoints()
         {
-            var side = (int) _showPoints;
+            var side = (int)_showPoints;
             side = (side + 1) % (Enum.GetValues(typeof(VisiblePoints)).Length);
-            _showPoints = (VisiblePoints) side;
+            _showPoints = (VisiblePoints)side;
             Invalidate();
 
             _control.SetVisiblePoints(_showPoints);
@@ -300,7 +300,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                         i--;
                     }
                 }
-                
+
                 // Remove empty faces from the solid
 
                 var invalidFaces = solid.Copy.Faces.Where(x => x.Vertices.Count < 3).ToList();
@@ -349,7 +349,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
             var s = selected[0].Position;
             var e = selected[1].Position;
             var edges = face.GetEdges();
-            
+
             // The points cannot be adjacent
             return edges.Any(x => (x.Start == s && x.End == e) || (x.Start == e && x.End == s))
                        ? null
@@ -437,11 +437,11 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
             // Order by the unused Vector3 in the view (which is the up axis) descending to get the "closest" point
             var points = (from pp in GetVisiblePoints()
-                let c = camera.Flatten(pp.Position)
-                where p.X >= c.X - d && p.X <= c.X + d && p.Y >= c.Y - d && p.Y <= c.Y + d
-                let unused = camera.GetUnusedCoordinate(pp.Position)
-                orderby unused.X + unused.Y + unused.Z descending
-                select pp).ToList();
+                          let c = camera.Flatten(pp.Position)
+                          where p.X >= c.X - d && p.X <= c.X + d && p.Y >= c.Y - d && p.Y <= c.Y + d
+                          let unused = camera.GetUnusedCoordinate(pp.Position)
+                          orderby unused.X + unused.Y + unused.Z descending
+                          select pp).ToList();
 
             if (!allowMixed && points.Any(x => !x.IsMidpoint)) points.RemoveAll(x => x.IsMidpoint);
             if (points.Count <= 0) return points;
@@ -467,11 +467,11 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
             var p = new Vector3(e.X, e.Y, 0);
             const int d = 5;
             var clicked = (from point in GetVisiblePoints()
-                let c = viewport.Viewport.Camera.WorldToScreen(point.Position)
-                where c.Z <= 1
-                where p.X >= c.X - d && p.X <= c.X + d && p.Y >= c.Y - d && p.Y <= c.Y + d
-                orderby (pos - point.Position).LengthSquared()
-                select point).ToList();
+                           let c = viewport.Viewport.Camera.WorldToScreen(point.Position)
+                           where c.Z <= 1
+                           where p.X >= c.X - d && p.X <= c.X + d && p.Y >= c.Y - d && p.Y <= c.Y + d
+                           orderby (pos - point.Position).LengthSquared()
+                           select point).ToList();
 
             Select(clicked, toggle);
             if (clicked.Any()) e.Handled = true;
@@ -564,7 +564,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
             var selected = GetVisiblePoints().Where(x => x.IsSelected).Distinct().SelectMany(x => x.GetStandardPointList()).ToList();
             selected.ForEach(x => x.DragMove(delta));
-            
+
 
             foreach (var midpoint in selected.Select(x => x.Solid).Distinct().SelectMany(x => _vertices.TryGetValue(x, out var l) ? l.Points.Where(p => p.IsMidpoint) : new List<VertexPoint>()))
             {
@@ -602,7 +602,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
             public VertexPointTool Tool { get; set; }
             public VertexSolid Solid { get; set; }
             public IList<VertexPoint> Points { get; set; }
-            
+
             public VertexList(VertexPointTool tool, VertexSolid solid)
             {
                 Tool = tool;
@@ -753,7 +753,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
 
             public VertexPoint[] GetStandardPointList()
             {
-                return _selfArray ?? (_selfArray = IsMidpoint ? new[] {MidpointStart, MidpointEnd} : new[] {this});
+                return _selfArray ?? (_selfArray = IsMidpoint ? new[] { MidpointStart, MidpointEnd } : new[] { this });
             }
 
             public override void MouseDown(MapDocument document, MapViewport viewport, OrthographicCamera camera, ViewportEvent e, Vector3 position)
@@ -843,7 +843,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Tools
                 var spos = camera.WorldToScreen(p);
 
                 var color = Color.FromArgb(255, GetColor());
-                
+
                 im.AddRectOutlineOpaque(new Vector2(spos.X - size, spos.Y - size), new Vector2(spos.X + size, spos.Y + size), Color.Black, color);
             }
         }

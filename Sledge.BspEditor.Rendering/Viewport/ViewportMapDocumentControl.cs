@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Components;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.DataStructures.Geometric;
@@ -13,6 +6,13 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Engine;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {
@@ -47,7 +47,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
         {
             _engine = engine;
             _camera = new PerspectiveCamera();
-            Control = new Panel {Dock = DockStyle.Fill, BackColor = Color.Black};
+            Control = new Panel { Dock = DockStyle.Fill, BackColor = Color.Black };
 
             _subscriptions = new List<Subscription>
             {
@@ -190,7 +190,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
             cam.Position = pos;
             cam.Direction = coordinate - pos;
         }
-        
+
         #endregion
 
         public void Dispose()
@@ -214,7 +214,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
             {
                 _control = control;
             }
-            
+
             public void Render(IViewport viewport, OrthographicCamera camera, Vector3 worldMin, Vector3 worldMax, I2DRenderer im)
             {
                 foreach (var r in _control.Listeners.OfType<IOverlayRenderable>())

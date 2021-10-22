@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
+using System.Collections.Generic;
 
 namespace Sledge.BspEditor.Editing.Problems
 {

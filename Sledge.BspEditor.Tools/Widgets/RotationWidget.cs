@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.DataStructures.Geometric;
@@ -15,6 +9,12 @@ using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Windows.Forms;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Widgets
@@ -149,10 +149,10 @@ namespace Sledge.BspEditor.Tools.Widgets
 
             for (var i = 0; i < sides; i++)
             {
-                var cos1 = (float) Math.Cos(diff * i);
-                var sin1 = (float) Math.Sin(diff * i);
-                var cos2 = (float) Math.Cos(diff * (i + 1));
-                var sin2 = (float) Math.Sin(diff * (i + 1));
+                var cos1 = (float)Math.Cos(diff * i);
+                var sin1 = (float)Math.Sin(diff * i);
+                var cos2 = (float)Math.Cos(diff * (i + 1));
+                var sin2 = (float)Math.Sin(diff * (i + 1));
 
                 // outer circle
                 AddLine(CircleType.Outer,
@@ -229,7 +229,7 @@ namespace Sledge.BspEditor.Tools.Widgets
             var dirAng = Math.Acos(Vector3.Dot(dir, axis)) * 180 / Math.PI;
             if (dirAng > 90) angle = -angle;
 
-            var rotm = Matrix4x4.CreateFromAxisAngle(axis, (float) -angle);
+            var rotm = Matrix4x4.CreateFromAxisAngle(axis, (float)-angle);
             var mov = Matrix4x4.CreateTranslation(-_pivotPoint);
             var rot = Matrix4x4.Multiply(mov, rotm);
             var inv = Matrix4x4.Invert(mov, out var i) ? i : Matrix4x4.Identity;

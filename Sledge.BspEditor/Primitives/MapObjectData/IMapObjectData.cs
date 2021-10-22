@@ -1,5 +1,5 @@
-﻿using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjects;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
+using System.Runtime.Serialization;
 
 namespace Sledge.BspEditor.Primitives.MapObjectData
 {

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Primitives.MapData;
+using Sledge.BspEditor.Providers.Processors;
+using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Primitives.MapData;
-using Sledge.BspEditor.Providers.Processors;
 
 namespace Sledge.BspEditor.Tools
 {

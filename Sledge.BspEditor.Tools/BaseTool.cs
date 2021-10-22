@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjects;
@@ -20,6 +13,13 @@ using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools
 {
@@ -123,10 +123,10 @@ namespace Sledge.BspEditor.Tools
             }
             return null;
         }
-        
+
         private readonly WeakReference<MapDocument> _document;
         public MapDocument GetDocument() => _document.TryGetTarget(out var doc) ? doc : null;
-        
+
         public ToolUsage Usage { get; protected set; }
         public bool Active { get; set; }
 
@@ -157,7 +157,7 @@ namespace Sledge.BspEditor.Tools
             foreach (var t in Children) t.SetDocument(document);
             DocumentChanged();
         }
-        
+
         private List<Subscription> _subscriptions;
 
         protected virtual IEnumerable<Subscription> Subscribe()

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Sledge.DataStructures.GameData
+﻿namespace Sledge.DataStructures.GameData
 {
     public class IO
     {

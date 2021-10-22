@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Settings;
 using Sledge.Common.Translations;
 using Sledge.Shell.Properties;
 using Sledge.Shell.Settings.Editors;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Forms
 {
@@ -47,9 +47,9 @@ namespace Sledge.Shell.Forms
 
         [ImportingConstructor]
         public SettingsForm(
-            [ImportMany] IEnumerable<Lazy<ISettingEditorFactory>> editorFactories, 
-            [ImportMany] IEnumerable<Lazy<ISettingsContainer>> settingsContainers, 
-            [Import] Lazy<ITranslationStringProvider> translations, 
+            [ImportMany] IEnumerable<Lazy<ISettingEditorFactory>> editorFactories,
+            [ImportMany] IEnumerable<Lazy<ISettingsContainer>> settingsContainers,
+            [Import] Lazy<ITranslationStringProvider> translations,
             [Import("Shell")] Lazy<Form> parent
         )
         {
@@ -113,7 +113,7 @@ namespace Sledge.Shell.Forms
                     else
                     {
                         var pgh = new GroupHolder(sub, _translations.Value.GetSetting("@Group." + sub) ?? sub);
-                        parentNode = new TreeNode(pgh.Label) {Tag = pgh};
+                        parentNode = new TreeNode(pgh.Label) { Tag = pgh };
                         GroupList.Nodes.Add(parentNode);
                         nodes.Add(sub, parentNode);
                     }
@@ -128,7 +128,7 @@ namespace Sledge.Shell.Forms
 
             GroupList.EndUpdate();
         }
-        
+
         protected override void OnMouseEnter(EventArgs e)
         {
             Focus();
@@ -144,7 +144,7 @@ namespace Sledge.Shell.Forms
 
             SettingsPanel.SuspendLayout();
             SettingsPanel.Controls.Clear();
-            
+
             SettingsPanel.RowStyles.Clear();
 
             if (GroupList?.SelectedNode?.Tag is GroupHolder gh)
@@ -174,7 +174,7 @@ namespace Sledge.Shell.Forms
                             SettingsPanel.Controls.Add(line);
                         }
 
-                        var ctrl = (Control) editor.Control;
+                        var ctrl = (Control)editor.Control;
                         ctrl.Anchor |= AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                         SettingsPanel.Controls.Add(ctrl);
 

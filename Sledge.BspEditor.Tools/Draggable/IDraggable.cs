@@ -1,10 +1,10 @@
-using System;
-using System.Numerics;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Resources;
+using System;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Draggable
 {

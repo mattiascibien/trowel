@@ -33,8 +33,8 @@ namespace Sledge.DataStructures.Geometric
         public static Vector3 Absolute(this Vector3 self) => Vector3.Abs(self);
         public static float Dot(this Vector3 self, Vector3 other) => Vector3.Dot(self, other);
         public static Vector3 Cross(this Vector3 self, Vector3 other) => Vector3.Cross(self, other);
-        public static Vector3 Round(this Vector3 self, int num = 8) => new Vector3((float) Math.Round(self.X, num), (float) Math.Round(self.Y, num), (float) Math.Round(self.Z, num));
-        
+        public static Vector3 Round(this Vector3 self, int num = 8) => new Vector3((float)Math.Round(self.X, num), (float)Math.Round(self.Y, num), (float)Math.Round(self.Z, num));
+
         public static Vector3 ClosestAxis(this Vector3 self)
         {
             // VHE prioritises the axes in order of X, Y, Z.
@@ -48,9 +48,9 @@ namespace Sledge.DataStructures.Geometric
         public static Vector3 Snap(this Vector3 self, float snapTo)
         {
             return new Vector3(
-                (float) Math.Round(self.X / snapTo) * snapTo,
-                (float) Math.Round(self.Y / snapTo) * snapTo,
-                (float) Math.Round(self.Z / snapTo) * snapTo
+                (float)Math.Round(self.X / snapTo) * snapTo,
+                (float)Math.Round(self.Y / snapTo) * snapTo,
+                (float)Math.Round(self.Z / snapTo) * snapTo
             );
         }
 
@@ -74,13 +74,13 @@ namespace Sledge.DataStructures.Geometric
         public static Color ToColor(this Vector4 self)
         {
             var mul = self * 255;
-            return Color.FromArgb((byte) mul.W, (byte) mul.X, (byte) mul.Y, (byte) mul.Z);
+            return Color.FromArgb((byte)mul.W, (byte)mul.X, (byte)mul.Y, (byte)mul.Z);
         }
 
         public static Color ToColor(this Vector3 self)
         {
             var mul = self * 255;
-            return Color.FromArgb(255, (byte) mul.X, (byte) mul.Y, (byte) mul.Z);
+            return Color.FromArgb(255, (byte)mul.X, (byte)mul.Y, (byte)mul.Z);
         }
 
         // Matrix

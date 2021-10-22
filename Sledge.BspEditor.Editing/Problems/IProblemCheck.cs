@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Primitives.MapObjects;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Primitives.MapObjects;
 
 namespace Sledge.BspEditor.Editing.Problems
 {

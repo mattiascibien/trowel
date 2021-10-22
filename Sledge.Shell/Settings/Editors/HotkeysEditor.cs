@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using Sledge.Common.Shell.Hotkeys;
+﻿using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Settings;
 using Sledge.Shell.Forms;
 using Sledge.Shell.Input;
 using Sledge.Shell.Registers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Settings.Editors
 {
@@ -23,7 +23,7 @@ namespace Sledge.Shell.Settings.Editors
             get => _bindings;
             set
             {
-                _bindings = ((HotkeyRegister.HotkeyBindings) value).Clone();
+                _bindings = ((HotkeyRegister.HotkeyBindings)value).Clone();
                 UpdateHotkeyList();
             }
         }
@@ -50,7 +50,7 @@ namespace Sledge.Shell.Settings.Editors
             foreach (var hotkey in FilterHotkeys(register.GetHotkeys(), FilterBox.Text).OrderBy(x => x.Name))
             {
                 var binding = _bindings.ContainsKey(hotkey.ID) ? _bindings[hotkey.ID] : hotkey.DefaultHotkey;
-                HotkeyList.Items.Add(new ListViewItem(new[] {hotkey.Name, hotkey.Description, binding}) {Tag = hotkey});
+                HotkeyList.Items.Add(new ListViewItem(new[] { hotkey.Name, hotkey.Description, binding }) { Tag = hotkey });
             }
 
             HotkeyList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -144,7 +144,7 @@ namespace Sledge.Shell.Settings.Editors
         {
             if (HotkeyList.SelectedItems.Count == 1)
             {
-                var hk = (IHotkey) HotkeyList.SelectedItems[0].Tag;
+                var hk = (IHotkey)HotkeyList.SelectedItems[0].Tag;
                 var str = _bindings.ContainsKey(hk.ID) ? _bindings[hk.ID] : "";
 
                 HotkeyActionList.SelectedItem = new HotkeyWrapper(hk);
@@ -184,7 +184,7 @@ namespace Sledge.Shell.Settings.Editors
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
                 if (obj.GetType() != this.GetType()) return false;
-                return Equals((HotkeyWrapper) obj);
+                return Equals((HotkeyWrapper)obj);
             }
 
             public override int GetHashCode()

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Sledge.BspEditor.Tools.Vertex.Selection;
+﻿using Sledge.BspEditor.Tools.Vertex.Selection;
+using System.Collections.Generic;
 
 namespace Sledge.BspEditor.Tools.Vertex.Errors
 {

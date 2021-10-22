@@ -1,6 +1,3 @@
-using System;
-using System.Drawing;
-using System.Numerics;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Rendering.Viewport;
@@ -9,6 +6,9 @@ using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Drawing;
+using System.Numerics;
 using KeyboardState = Sledge.Shell.Input.KeyboardState;
 
 namespace Sledge.BspEditor.Tools.Selection.TransformationHandles
@@ -70,7 +70,7 @@ namespace Sledge.BspEditor.Tools.Selection.TransformationHandles
             var forigin = camera.Flatten(origin);
 
             var origv = Vector3.Normalize(_rotateStart.Value - forigin);
-            var newv =  Vector3.Normalize(_rotateEnd.Value - forigin);
+            var newv = Vector3.Normalize(_rotateEnd.Value - forigin);
 
             var angle = Math.Acos(Math.Max(-1, Math.Min(1, origv.Dot(newv))));
             if ((origv.Cross(newv).Z < 0)) angle = 2 * Math.PI - angle;

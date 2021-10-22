@@ -22,8 +22,8 @@ namespace Sledge.DataStructures.Geometric
 
         protected Line(SerializationInfo info, StreamingContext context)
         {
-            Start = (Vector3) info.GetValue("Start", typeof (Vector3));
-            End = (Vector3) info.GetValue("End", typeof (Vector3));
+            Start = (Vector3)info.GetValue("Start", typeof(Vector3));
+            End = (Vector3)info.GetValue("End", typeof(Vector3));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -88,8 +88,8 @@ namespace Sledge.DataStructures.Geometric
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Line)) return false;
-            return Equals((Line) obj);
+            if (obj.GetType() != typeof(Line)) return false;
+            return Equals((Line)obj);
         }
 
         public override int GetHashCode()

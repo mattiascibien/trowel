@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Sledge.Common.Scheduling;
+using Sledge.Common.Shell.Documents;
+using Sledge.Common.Shell.Settings;
+using Sledge.Shell.Registers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using LogicAndTrick.Oy;
-using Sledge.Common.Scheduling;
-using Sledge.Common.Shell.Documents;
-using Sledge.Common.Shell.Settings;
-using Sledge.Shell.Registers;
 
 namespace Sledge.Shell.Components
 {

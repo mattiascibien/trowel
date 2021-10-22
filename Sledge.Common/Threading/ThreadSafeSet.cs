@@ -16,7 +16,7 @@ namespace Sledge.Common.Threading
         /// <inheritdoc />
         public int Count
         {
-            get { lock(_lock) return _set.Count; }
+            get { lock (_lock) return _set.Count; }
         }
 
         /// <inheritdoc />

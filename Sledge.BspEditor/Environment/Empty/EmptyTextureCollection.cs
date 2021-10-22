@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Sledge.Providers.Texture;
+﻿using Sledge.Providers.Texture;
+using System.Collections.Generic;
 
 namespace Sledge.BspEditor.Environment.Empty
 {

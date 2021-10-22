@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Sledge.Common.Shell;
+using Sledge.Common.Translations;
+using System;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
-using Sledge.Common.Shell;
-using Sledge.Common.Translations;
 
 namespace Sledge.Shell.Forms
 {
@@ -32,7 +31,7 @@ namespace Sledge.Shell.Forms
 
             _appTranslationsFolder = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), "Translations");
             _userTranslationsFolder = _appInfo.GetApplicationSettingsFolder("Translations");
-            
+
             var source = new DataTable("Translations");
             source.Columns.Add("ID", typeof(string));
             source.Columns.Add("Type", typeof(string));
@@ -72,7 +71,7 @@ namespace Sledge.Shell.Forms
         {
             cmbFile.BeginUpdate();
             cmbFile.Items.Clear();
-            
+
             var enFiles = Directory.GetFiles(_appTranslationsFolder, "*.en.json");
             foreach (var file in enFiles)
             {
@@ -105,7 +104,7 @@ namespace Sledge.Shell.Forms
             dataGridView.ColumnHeadersVisible = false;
             dataGridView.RowHeadersVisible = false;
 
-            var source = (DataTable) dataGridView.DataSource;
+            var source = (DataTable)dataGridView.DataSource;
             source.Rows.Clear();
             if (lang != null && file != null)
             {
@@ -166,7 +165,7 @@ namespace Sledge.Shell.Forms
             {
                 if (alf.ShowDialog() == DialogResult.OK)
                 {
-                    var lang = new Language(alf.Code) {Description = alf.Description, Inherit = "en"};
+                    var lang = new Language(alf.Code) { Description = alf.Description, Inherit = "en" };
 
                     var w = new Wrapper<Language>(lang, lang.Description);
                     cmbLanguage.Items.Add(w);
@@ -195,7 +194,7 @@ namespace Sledge.Shell.Forms
 
             var prefix = Path.GetFileName(enFile.Substring(0, enFile.Length - 8));
             var langFile = $"{prefix}.{targetLang.Code.ToLower()}.json";
-            
+
             var source = (DataTable)dataGridView.DataSource;
 
             var file = new JObject();
@@ -220,7 +219,7 @@ namespace Sledge.Shell.Forms
                 }
                 file.Add("@Settings", settingNode);
             }
-            
+
             var strings = source.Rows.OfType<DataRow>().Where(x => Convert.ToString(x["Type"]) == "String").ToList();
             foreach (var ss in strings)
             {

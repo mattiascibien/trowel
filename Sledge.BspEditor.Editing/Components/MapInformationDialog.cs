@@ -1,4 +1,12 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Sledge.BspEditor.Documents;
+using Sledge.BspEditor.Modification;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Shell.Components;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Translations;
+using Sledge.Shell;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
@@ -6,14 +14,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.BspEditor.Documents;
-using Sledge.BspEditor.Modification;
-using Sledge.Common.Shell.Components;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Translations;
-using Sledge.Shell;
-using Sledge.BspEditor.Primitives.MapObjects;
 
 namespace Sledge.BspEditor.Editing.Components
 {
@@ -23,7 +23,7 @@ namespace Sledge.BspEditor.Editing.Components
     {
         [Import("Shell", typeof(Form))] private Lazy<Form> _parent;
         [Import] private IContext _context;
-        
+
         private List<Subscription> _subscriptions;
 
         #region Translations
@@ -54,7 +54,7 @@ namespace Sledge.BspEditor.Editing.Components
         }
 
         protected override void OnMouseEnter(EventArgs e)
-		{
+        {
             Focus();
             base.OnMouseEnter(e);
         }

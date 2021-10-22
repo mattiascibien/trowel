@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Tools.Vertex.Tools;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Controls
 {
@@ -86,7 +86,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Controls
                 t.Control.Dock = DockStyle.Top;
             }
         }
-        
+
         public void AddToolButtons()
         {
             if (ButtonLayoutPanel.Controls.Count > 0) return;

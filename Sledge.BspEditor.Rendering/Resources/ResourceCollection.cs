@@ -1,4 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Environment;
+using Sledge.FileSystem;
+using Sledge.Providers.Model;
+using Sledge.Providers.Texture;
+using Sledge.Rendering.Engine;
+using Sledge.Rendering.Interfaces;
+using Sledge.Rendering.Resources;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -7,13 +14,6 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Environment;
-using Sledge.FileSystem;
-using Sledge.Providers.Model;
-using Sledge.Providers.Texture;
-using Sledge.Rendering.Engine;
-using Sledge.Rendering.Interfaces;
-using Sledge.Rendering.Resources;
 
 namespace Sledge.BspEditor.Rendering.Resources
 {
@@ -99,7 +99,7 @@ namespace Sledge.BspEditor.Rendering.Resources
 
             return res;
         }
-        
+
         /// <summary>
         /// Destroy a model renderable and remove it from the resource collection.
         /// This will NOT destroy the associated model.
@@ -161,7 +161,7 @@ namespace Sledge.BspEditor.Rendering.Resources
                 var data = new byte[lb.Stride * lb.Height];
                 Marshal.Copy(lb.Scan0, data, 0, data.Length);
                 bitmap.UnlockBits(lb);
-                
+
                 return _engine.Value.UploadTexture($"{environment.ID}::{item.Name}", bitmap.Width, bitmap.Height, data, TextureSampleType.Standard);
             }
         }

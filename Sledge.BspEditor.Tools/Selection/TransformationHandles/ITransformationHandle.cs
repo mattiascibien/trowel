@@ -1,8 +1,8 @@
-﻿using System.Numerics;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Draggable;
 using Sledge.Rendering.Cameras;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Selection.TransformationHandles
 {

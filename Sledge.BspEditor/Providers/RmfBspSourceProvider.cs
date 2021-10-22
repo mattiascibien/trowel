@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Environment;
+﻿using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjectData;
@@ -14,6 +6,14 @@ using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Extensions;
 using Sledge.Common.Shell.Documents;
 using Sledge.DataStructures;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Path = Sledge.BspEditor.Primitives.MapObjectData.Path;
 
 namespace Sledge.BspEditor.Providers
@@ -45,7 +45,7 @@ namespace Sledge.BspEditor.Providers
 
         public IEnumerable<FileExtensionInfo> SupportedFileExtensions { get; } = new[]
         {
-            new FileExtensionInfo("Worldcraft map formats", ".rmf", ".rmx"), 
+            new FileExtensionInfo("Worldcraft map formats", ".rmf", ".rmx"),
         };
 
         public async Task<BspFileLoadResult> Load(Stream stream, IEnvironment environment)
@@ -186,7 +186,7 @@ namespace Sledge.BspEditor.Providers
             {
                 Name = br.ReadFixedLengthString(Encoding.ASCII, 128),
                 Type = br.ReadFixedLengthString(Encoding.ASCII, 128),
-                Direction = (Path.PathDirection) br.ReadInt32()
+                Direction = (Path.PathDirection)br.ReadInt32()
             };
             var numNodes = br.ReadInt32();
             for (var i = 0; i < numNodes; i++)
@@ -345,7 +345,7 @@ namespace Sledge.BspEditor.Providers
             {
                 bw.WriteFixedLengthString(Encoding.ASCII, 128, visgroup.Name);
                 bw.WriteRGBAColour(visgroup.Colour);
-                bw.Write((int) visgroup.ID);
+                bw.Write((int)visgroup.ID);
                 bw.Write(visgroup.Visible);
                 bw.Write(new byte[3]); // Unused
             }
@@ -370,7 +370,7 @@ namespace Sledge.BspEditor.Providers
 
         private void WriteMapBase(IMapObject obj, BinaryWriter bw)
         {
-            bw.Write((int) (obj.Data.OfType<VisgroupID>().FirstOrDefault()?.ID ?? 0));
+            bw.Write((int)(obj.Data.OfType<VisgroupID>().FirstOrDefault()?.ID ?? 0));
             bw.WriteRGBColour(obj.Data.GetOne<ObjectColor>()?.Color ?? Color.White);
             bw.Write(obj.Hierarchy.NumChildren);
             foreach (var child in obj.Hierarchy)
@@ -396,7 +396,7 @@ namespace Sledge.BspEditor.Providers
         {
             bw.WriteFixedLengthString(Encoding.ASCII, 128, path.Name);
             bw.WriteFixedLengthString(Encoding.ASCII, 128, path.Type);
-            bw.Write((int) path.Direction);
+            bw.Write((int)path.Direction);
             bw.Write(path.Nodes.Count);
             foreach (var node in path.Nodes)
             {
@@ -492,7 +492,7 @@ namespace Sledge.BspEditor.Providers
                 bw.WriteVector3(cam.LookPosition);
             }
         }
-        
+
         #endregion
     }
 }

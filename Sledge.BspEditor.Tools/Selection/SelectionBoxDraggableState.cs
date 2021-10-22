@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Mutation;
@@ -18,6 +12,12 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Engine;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Selection
 {
@@ -131,7 +131,7 @@ namespace Sledge.BspEditor.Tools.Selection
                 new ResizeTransformHandle(this, ResizeHandle.Bottom),
                 new ResizeTransformHandle(this, ResizeHandle.Left),
 
-                new ResizeTransformHandle(this, ResizeHandle.Center), 
+                new ResizeTransformHandle(this, ResizeHandle.Center),
             };
 
             if (_rotationOrigin == null)
@@ -149,7 +149,7 @@ namespace Sledge.BspEditor.Tools.Selection
                 new RotateTransformHandle(this, ResizeHandle.BottomLeft, _rotationOrigin),
                 new RotateTransformHandle(this, ResizeHandle.BottomRight, _rotationOrigin),
 
-                new ResizeTransformHandle(this, ResizeHandle.Center), 
+                new ResizeTransformHandle(this, ResizeHandle.Center),
             };
 
             var skew = new List<IDraggable>
@@ -159,10 +159,10 @@ namespace Sledge.BspEditor.Tools.Selection
                 new SkewTransformHandle(this, ResizeHandle.Bottom),
                 new SkewTransformHandle(this, ResizeHandle.Left),
 
-                new ResizeTransformHandle(this, ResizeHandle.Center), 
+                new ResizeTransformHandle(this, ResizeHandle.Center),
             };
 
-            _handles = new [] { resize, rotate, skew };
+            _handles = new[] { resize, rotate, skew };
         }
 
         public override IEnumerable<IDraggable> GetDraggables()
@@ -193,10 +193,10 @@ namespace Sledge.BspEditor.Tools.Selection
 
         public void Cycle()
         {
-            var intMode = (int) CurrentTransformationMode;
-            var numModes = Enum.GetValues(typeof (TransformationMode)).Length;
+            var intMode = (int)CurrentTransformationMode;
+            var numModes = Enum.GetValues(typeof(TransformationMode)).Length;
             var nextMode = (intMode + 1) % numModes;
-            SetTransformationMode((TransformationMode) nextMode);
+            SetTransformationMode((TransformationMode)nextMode);
         }
 
         public void SetRotationOrigin(Vector3 origin)

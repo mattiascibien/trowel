@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Modification
 {

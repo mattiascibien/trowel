@@ -17,7 +17,7 @@ namespace Sledge.Packages.Vpk
 
         public long Length
         {
-            get { return (int) (EntryLength + PreloadData.Length); }
+            get { return (int)(EntryLength + PreloadData.Length); }
         }
 
         public string Name { get { return GetName(); } }

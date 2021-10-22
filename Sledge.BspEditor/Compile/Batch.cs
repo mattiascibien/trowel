@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Compile
 {

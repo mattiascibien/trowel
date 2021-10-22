@@ -1,8 +1,8 @@
+using Sledge.DataStructures.Geometric;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Numerics;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Grid
 {
@@ -14,8 +14,8 @@ namespace Sledge.BspEditor.Grid
 
         public int Spacing
         {
-            get => (int) Math.Log(Step, 2);
-            set => Step = (float) Math.Pow(2, Math.Max(Math.Min(value, 10), -2));
+            get => (int)Math.Log(Step, 2);
+            set => Step = (float)Math.Pow(2, Math.Max(Math.Min(value, 10), -2));
         }
 
         public int HideSmallerThan => SquareGridFactory.GridHideSmallerThan;
@@ -88,14 +88,14 @@ namespace Sledge.BspEditor.Grid
             {
                 if ((f < worldMinimum.X || f > worldMaximum.X) && (f < worldMinimum.Y || f > worldMaximum.Y)) continue;
 
-                var i = (int) f;
+                var i = (int)f;
 
                 var type = GridLineType.Standard;
                 if (f != i) type = GridLineType.Fractional;
                 else if (i == 0) type = GridLineType.Axis;
                 else if (Math.Abs(i - Low) < 0.01f || Math.Abs(i - High) < 0.01f) type = GridLineType.Boundary;
                 else if (Highlight2UnitNum > 0 && i % Highlight2UnitNum == 0) type = GridLineType.Secondary;
-                else if (Highlight1LineNum > 0 && i % (int) (step * Highlight1LineNum) == 0) type = GridLineType.Primary;
+                else if (Highlight1LineNum > 0 && i % (int)(step * Highlight1LineNum) == 0) type = GridLineType.Primary;
 
                 yield return new GridLine(type, tform(new Vector3(lower, f, 0)), tform(new Vector3(upper, f, 0)));
                 yield return new GridLine(type, tform(new Vector3(f, lower, 0)), tform(new Vector3(f, upper, 0)));

@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Documents;
@@ -14,6 +6,12 @@ using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.Shell.Properties;
 using Sledge.Shell.Registers;
+using System;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Commands
 {
@@ -56,7 +54,7 @@ namespace Sledge.Shell.Commands
                         .Select(x => x.Description + "|" + String.Join(";", x.Extensions.Select(ex => "*" + ex)))
                         .ToList();
 
-                    using (var sfd = new SaveFileDialog {Filter = String.Join("|", filter)})
+                    using (var sfd = new SaveFileDialog { Filter = String.Join("|", filter) })
                     {
                         if (sfd.ShowDialog() != DialogResult.OK) return;
                         filename = sfd.FileName;

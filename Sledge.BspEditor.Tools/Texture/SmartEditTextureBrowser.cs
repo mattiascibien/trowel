@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Components.Properties;
 using Sledge.BspEditor.Editing.Components.Properties.SmartEdit;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.GameData;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {

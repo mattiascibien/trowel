@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Sledge.Common;
 
 namespace Sledge.Packages.Zip
 {
@@ -51,7 +51,7 @@ namespace Sledge.Packages.Zip
 
         private ZipEntry ReadEntry(BinaryReader br)
         {
-            var type = (ZipEntryType) br.ReadUInt32();
+            var type = (ZipEntryType)br.ReadUInt32();
             br.BaseStream.Seek(-4, SeekOrigin.Current);
             switch (type)
             {
@@ -64,7 +64,7 @@ namespace Sledge.Packages.Zip
                 case ZipEntryType.EndOfCentralDirectory:
                     return new EndOfCentralDirectoryEntry(br);
             }
-            throw new NotSupportedException("Unknown entry type: " + ((uint) type).ToString("X"));
+            throw new NotSupportedException("Unknown entry type: " + ((uint)type).ToString("X"));
         }
 
         public class ZipEntry
@@ -91,9 +91,9 @@ namespace Sledge.Packages.Zip
                 Offset = br.BaseStream.Position;
                 Type = ZipEntryType.File;
 
-                if (br.ReadUInt32() != (uint) ZipEntryType.File) throw new Exception("ZIP header is incorrect");
+                if (br.ReadUInt32() != (uint)ZipEntryType.File) throw new Exception("ZIP header is incorrect");
                 br.BaseStream.Seek(4, SeekOrigin.Current);
-                CompressionMethod = (CompressionMethod) br.ReadUInt16();
+                CompressionMethod = (CompressionMethod)br.ReadUInt16();
                 br.BaseStream.Seek(8, SeekOrigin.Current);
                 CompressedSize = br.ReadUInt32();
                 UncompressedSize = br.ReadUInt32();
@@ -116,7 +116,7 @@ namespace Sledge.Packages.Zip
                         var defl = new System.IO.Compression.DeflateStream(sub, System.IO.Compression.CompressionMode.Decompress);
                         using (defl)
                         {
-                            var ms = new MemoryStream((int) UncompressedSize);
+                            var ms = new MemoryStream((int)UncompressedSize);
                             defl.CopyTo(ms);
                             ms.Seek(0, SeekOrigin.Begin);
                             return ms;
@@ -137,7 +137,7 @@ namespace Sledge.Packages.Zip
                 Offset = br.BaseStream.Position;
                 Type = ZipEntryType.DataDescriptor;
 
-                if (br.ReadUInt32() != (uint) ZipEntryType.DataDescriptor)
+                if (br.ReadUInt32() != (uint)ZipEntryType.DataDescriptor)
                     throw new Exception("ZIP header is incorrect");
 
                 var crc = br.ReadUInt32();
@@ -159,10 +159,10 @@ namespace Sledge.Packages.Zip
                 Offset = br.BaseStream.Position;
                 Type = ZipEntryType.CentralDirectory;
 
-                if (br.ReadUInt32() != (uint) ZipEntryType.CentralDirectory)
+                if (br.ReadUInt32() != (uint)ZipEntryType.CentralDirectory)
                     throw new Exception("ZIP header is incorrect");
                 br.BaseStream.Seek(6, SeekOrigin.Current);
-                CompressionMethod = (CompressionMethod) br.ReadUInt16();
+                CompressionMethod = (CompressionMethod)br.ReadUInt16();
                 br.BaseStream.Seek(8, SeekOrigin.Current);
                 CompressedSize = br.ReadUInt32();
                 UncompressedSize = br.ReadUInt32();
@@ -185,7 +185,7 @@ namespace Sledge.Packages.Zip
                 Offset = br.BaseStream.Position;
                 Type = ZipEntryType.EndOfCentralDirectory;
 
-                if (br.ReadUInt32() != (uint) ZipEntryType.EndOfCentralDirectory)
+                if (br.ReadUInt32() != (uint)ZipEntryType.EndOfCentralDirectory)
                     throw new Exception("ZIP header is incorrect");
 
                 br.BaseStream.Seek(12, SeekOrigin.Current);

@@ -73,16 +73,16 @@ namespace Sledge.Packages.Vpk
                 var remainingPreload = _entry.PreloadData.Length - Position;
                 var copyLength = Math.Min(count, remainingPreload);
                 Array.Copy(_entry.PreloadData, Position, buffer, offset, copyLength);
-                count -= (int) copyLength;
-                offset += (int) copyLength;
-                ret += (int) copyLength;
+                count -= (int)copyLength;
+                offset += (int)copyLength;
+                ret += (int)copyLength;
                 Position += ret;
             }
             if (Position >= _entry.PreloadData.Length && _entry.EntryLength > 0)
             {
                 var currentEntry = Position - _entry.PreloadData.Length;
                 var remainingEntry = _entry.EntryLength - currentEntry;
-                var copyLength = (int) Math.Min(count, remainingEntry);
+                var copyLength = (int)Math.Min(count, remainingEntry);
                 if (copyLength > 0)
                 {
                     lock (_stream)

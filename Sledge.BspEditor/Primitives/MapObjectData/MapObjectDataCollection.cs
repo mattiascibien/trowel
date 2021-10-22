@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.Common.Threading;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using Sledge.Common.Threading;
 
 namespace Sledge.BspEditor.Primitives.MapObjectData
 {

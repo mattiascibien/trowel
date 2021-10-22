@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Common;
+using Sledge.Shell.Properties;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-using Sledge.Common;
-using Sledge.Shell.Properties;
 
 namespace Sledge.Shell.Controls
 {
@@ -162,7 +162,7 @@ namespace Sledge.Shell.Controls
             if (_resizing)
             {
                 SetDockSize(e);
-            } 
+            }
             else
             {
                 var ba = IsInButtonArea(e);

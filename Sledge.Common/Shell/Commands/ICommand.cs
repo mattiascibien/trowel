@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Sledge.Common.Shell.Context;
+﻿using Sledge.Common.Shell.Context;
+using System.Threading.Tasks;
 
 namespace Sledge.Common.Shell.Commands
 {
@@ -22,7 +22,7 @@ namespace Sledge.Common.Shell.Commands
         /// Details of what the command does
         /// </summary>
         string Details { get; }
-        
+
         /// <summary>
         /// Perform the command
         /// </summary>

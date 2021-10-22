@@ -1,5 +1,5 @@
-﻿using System.Runtime.Serialization;
-using Sledge.Common.Transport;
+﻿using Sledge.Common.Transport;
+using System.Runtime.Serialization;
 
 namespace Sledge.Common.Shell.Documents
 {

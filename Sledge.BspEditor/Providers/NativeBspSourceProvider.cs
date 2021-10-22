@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Environment;
+﻿using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Shell.Documents;
 using Sledge.Common.Transport;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Providers
 {
@@ -39,7 +39,7 @@ namespace Sledge.BspEditor.Providers
 
         public IEnumerable<FileExtensionInfo> SupportedFileExtensions { get; } = new[]
         {
-            new FileExtensionInfo("Sledge map format", ".smf"), 
+            new FileExtensionInfo("Sledge map format", ".smf"),
         };
 
         public async Task<BspFileLoadResult> Load(Stream stream, IEnvironment environment)
@@ -54,11 +54,11 @@ namespace Sledge.BspEditor.Providers
                 {
                     if (o.Name == nameof(Root))
                     {
-                        map.Root.Unclone((Root) _factory.Deserialise(o));
+                        map.Root.Unclone((Root)_factory.Deserialise(o));
                     }
                     else
                     {
-                        map.Data.Add((IMapData) _factory.Deserialise(o));
+                        map.Data.Add((IMapData)_factory.Deserialise(o));
                     }
                 }
                 map.Root.DescendantsChanged();
@@ -67,7 +67,7 @@ namespace Sledge.BspEditor.Providers
                 return result;
             });
         }
-        
+
         public Task Save(Stream stream, Map map)
         {
             return Task.Factory.StartNew(() =>

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Common.Translations;
+using Sledge.Shell;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.Common.Translations;
-using Sledge.Shell;
 
 namespace Sledge.BspEditor.Controls.Layout
 {
@@ -108,15 +108,15 @@ namespace Sledge.BspEditor.Controls.Layout
                         new Rectangle(0, 1, 1, 1),
                         new Rectangle(0, 2, 1, 1),
                         new Rectangle(0, 3, 1, 1),
-                        
+
                         new Rectangle(1, 0, 1, 1),
                         new Rectangle(2, 0, 1, 1),
 
                         new Rectangle(1, 1, 2, 2),
-                        
+
                         new Rectangle(1, 3, 1, 1),
                         new Rectangle(2, 3, 1, 1),
-                        
+
                         new Rectangle(3, 0, 1, 1),
                         new Rectangle(3, 1, 1, 1),
                         new Rectangle(3, 2, 1, 1),
@@ -280,7 +280,7 @@ namespace Sledge.BspEditor.Controls.Layout
 
         private void PanelDragDrop(object sender, DragEventArgs e)
         {
-            var startPoint = (Point) e.Data.GetData(typeof (Point));
+            var startPoint = (Point)e.Data.GetData(typeof(Point));
             var pos = TableLayout.GetPositionFromControl((Control)sender);
             var endPoint = new Point(pos.Column, pos.Row);
 
@@ -371,7 +371,7 @@ namespace Sledge.BspEditor.Controls.Layout
             {
                 for (var j = 0; j < cells.GetLength(1); j++)
                 {
-                    if (!cells[i,j]) configuration.Rectangles.Add(new Rectangle(j, i, 1, 1));
+                    if (!cells[i, j]) configuration.Rectangles.Add(new Rectangle(j, i, 1, 1));
                 }
             }
         }
@@ -389,13 +389,13 @@ namespace Sledge.BspEditor.Controls.Layout
 
         private void RowsValueChanged(object sender, EventArgs e)
         {
-            SelectedConfiguration.Configuration.Rows = (int) Rows.Value;
+            SelectedConfiguration.Configuration.Rows = (int)Rows.Value;
             UpdateTableLayout();
         }
 
         private void ColumnsValueChanged(object sender, EventArgs e)
         {
-            SelectedConfiguration.Configuration.Columns = (int) Columns.Value;
+            SelectedConfiguration.Configuration.Columns = (int)Columns.Value;
             UpdateTableLayout();
         }
     }

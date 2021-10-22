@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Tree;
@@ -16,14 +9,21 @@ using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Properties;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hotkeys;
-using Sledge.Rendering.Cameras;
 using Sledge.DataStructures.Geometric;
+using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Windows.Forms;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Clip
@@ -89,12 +89,12 @@ namespace Sledge.BspEditor.Tools.Clip
                 _side = s;
             }
         }
-        
+
         private void CycleClipSide()
         {
-            var side = (int) _side;
-            side = (side + 1) % Enum.GetValues(typeof (ClipSide)).Length;
-            _side = (ClipSide) side;
+            var side = (int)_side;
+            side = (side + 1) % Enum.GetValues(typeof(ClipSide)).Length;
+            _side = (ClipSide)side;
         }
 
         private ClipState GetStateAtPoint(int x, int y, OrthographicCamera camera)
@@ -239,16 +239,16 @@ namespace Sledge.BspEditor.Tools.Clip
             {
                 solid.Split(document.Map.NumberGenerator, plane, out var backSolid, out var frontSolid);
                 found = true;
-                
+
                 // Remove the clipped solid
                 clip.Add(new Detatch(solid.Hierarchy.Parent.ID, solid));
-                
+
                 if (_side != ClipSide.Back && frontSolid != null)
                 {
                     // Add front solid
                     clip.Add(new Attach(solid.Hierarchy.Parent.ID, frontSolid));
                 }
-                
+
                 if (_side != ClipSide.Front && backSolid != null)
                 {
                     // Add back solid
@@ -273,14 +273,14 @@ namespace Sledge.BspEditor.Tools.Clip
                 var p3 = _clipPlanePoint3.Value;
 
                 builder.Append(
-                    new []
+                    new[]
                     {
                         new VertexStandard { Position = p1, Colour = Vector4.One, Tint = Vector4.One },
                         new VertexStandard { Position = p2, Colour = Vector4.One, Tint = Vector4.One },
                         new VertexStandard { Position = p3, Colour = Vector4.One, Tint = Vector4.One },
                     },
-                    new uint [] { 0, 1, 1, 2, 2, 0 },
-                    new []
+                    new uint[] { 0, 1, 1, 2, 2, 0 },
+                    new[]
                     {
                         new BufferGroup(PipelineType.Wireframe, CameraType.Both, 0, 6)
                     }
@@ -320,12 +320,12 @@ namespace Sledge.BspEditor.Tools.Clip
                     }
 
                     builder.Append(
-                        verts, indices.Select(x => (uint) x),
-                        new[] { new BufferGroup(PipelineType.Wireframe, CameraType.Both, 0, (uint) indices.Count) }
+                        verts, indices.Select(x => (uint)x),
+                        new[] { new BufferGroup(PipelineType.Wireframe, CameraType.Both, 0, (uint)indices.Count) }
                     );
 
                     // Draw the clipping plane
-                    
+
                     var poly = new DataStructures.Geometric.Precision.Polygon(pp);
                     var bbox = document.Selection.GetSelectionBoundingBox();
                     var point = bbox.Center;
@@ -381,13 +381,13 @@ namespace Sledge.BspEditor.Tools.Clip
                 var p1 = _clipPlanePoint1.Value;
                 var p2 = _clipPlanePoint2.Value;
                 var p3 = _clipPlanePoint3.Value;
-                var points = new[] {p1, p2, p3};
+                var points = new[] { p1, p2, p3 };
 
                 foreach (var p in points)
                 {
                     const int size = 4;
                     var spos = camera.WorldToScreen(p);
-                    
+
                     im.AddRectOutlineOpaque(new Vector2(spos.X - size, spos.Y - size), new Vector2(spos.X + size, spos.Y + size), Color.Black, Color.White);
                 }
             }

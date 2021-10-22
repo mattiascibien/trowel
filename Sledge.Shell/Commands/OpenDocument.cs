@@ -1,9 +1,9 @@
-using System;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Shell.Registers;
+using System;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.Shell.Commands
 {

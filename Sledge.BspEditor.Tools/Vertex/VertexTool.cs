@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Selection;
@@ -29,6 +22,13 @@ using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Vertex
 {
@@ -134,7 +134,7 @@ namespace Sledge.BspEditor.Tools.Vertex
         }
 
         #region Tool switching
-        
+
         internal VertexSubtool CurrentSubTool
         {
             get { return Children.OfType<VertexSubtool>().FirstOrDefault(x => x.Active); }
@@ -184,7 +184,7 @@ namespace Sledge.BspEditor.Tools.Vertex
                 MapDocumentOperation.Perform(document, operation);
             }
         }
-        
+
         #region 3D interaction
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace Sledge.BspEditor.Tools.Vertex
             // Grab all the elements that intersect with the ray
             var closestObject = document.Map.Root.GetIntersectionsForVisibleObjects(ray)
                 .Where(x => x.Object is Solid)
-                .Select(x => (Solid) x.Object)
+                .Select(x => (Solid)x.Object)
                 .FirstOrDefault();
 
             SelectObject(document, closestObject);
@@ -277,7 +277,7 @@ namespace Sledge.BspEditor.Tools.Vertex
 
             var points = new VertexStandard[numVertices];
             var indices = new uint[numSolidIndices + numWireframeIndices];
-            
+
             var tint = Color.FromArgb(128, 255, 128).ToVector4();
 
             var tc = await document.Environment.GetTextureCollection();

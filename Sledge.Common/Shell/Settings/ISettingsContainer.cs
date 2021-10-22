@@ -11,7 +11,7 @@ namespace Sledge.Common.Shell.Settings
         /// The unique name of the settings container
         /// </summary>
         string Name { get; }
-        
+
         /// <summary>
         /// Get a list of editable keys exposed by this container.
         /// The container does not have to expose all keys via this method,

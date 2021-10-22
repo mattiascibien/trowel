@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Sledge.Common.Extensions;
+using Sledge.FileSystem;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sledge.Common.Extensions;
-using Sledge.FileSystem;
 
 namespace Sledge.Providers.Texture.Spr
 {
@@ -21,7 +21,7 @@ namespace Sledge.Providers.Texture.Spr
 
             var dir = _file.GetChild("sprites");
             if (dir == null) return;
-            
+
             Textures.UnionWith(dir.GetFiles(".*\\.spr", true).Select(x => x.GetRelativePath(dir)));
         }
 
@@ -67,7 +67,7 @@ namespace Sledge.Providers.Texture.Spr
 
         public override async Task<TextureItem> GetTexture(string name)
         {
-            var textures = await GetTextures(new[] {name});
+            var textures = await GetTextures(new[] { name });
             return textures.FirstOrDefault();
         }
 

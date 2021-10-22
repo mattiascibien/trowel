@@ -40,7 +40,7 @@ namespace Sledge.Shell.Controls
 
         protected override void OnControlAdded(ControlEventArgs e)
         {
-            ((TabPage) e.Control).ImageIndex = 0;
+            ((TabPage)e.Control).ImageIndex = 0;
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -160,7 +160,7 @@ namespace Sledge.Shell.Controls
 
             // Text
             var sf = new StringFormat(StringFormatFlags.NoWrap);
-            var textWidth = (int) g.MeasureString(tab.Text, Font, SizeF.Empty, sf).Width;
+            var textWidth = (int)g.MeasureString(tab.Text, Font, SizeF.Empty, sf).Width;
             var textLeft = rect.X + 14;
             var textRight = rect.Right - 26;
             var textRect = new Rectangle(textLeft + (textRight - textLeft - textWidth) / 2, rect.Y + 4, rect.Width - 26, rect.Height - 5);

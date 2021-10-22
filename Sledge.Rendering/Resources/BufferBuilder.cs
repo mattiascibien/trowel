@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Sledge.Rendering.Cameras;
+using Sledge.Rendering.Pipelines;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -6,8 +8,6 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
-using Sledge.Rendering.Cameras;
-using Sledge.Rendering.Pipelines;
 using Veldrid;
 
 namespace Sledge.Rendering.Resources
@@ -136,7 +136,7 @@ namespace Sledge.Rendering.Resources
                 else
                 {
                     var indir = g.Select(x => x.Arguments).ToArray();
-                    var indirCount = (uint) indir.Length;
+                    var indirCount = (uint)indir.Length;
 
                     indirectBuffer.Update(indirOffset * indSize, indir);
 
@@ -146,7 +146,7 @@ namespace Sledge.Rendering.Resources
                     indirOffset += indirCount;
                 }
             }
-            
+
             VertexBuffers.Add(_currentVertexBuffer);
             IndexBuffers.Add(_currentIndexBuffer);
             IndirectBuffers.Add(indirectBuffer);
@@ -187,7 +187,7 @@ namespace Sledge.Rendering.Resources
                         IndexCount = bg.Count,
                         InstanceCount = 1,
                         FirstIndex = (_currentIndexOffset / 4) + bg.Offset,
-                        VertexOffset = (int) (_currentVertexOffset / structSize),
+                        VertexOffset = (int)(_currentVertexOffset / structSize),
                         FirstInstance = 0
                     }
                 ));
@@ -203,7 +203,7 @@ namespace Sledge.Rendering.Resources
         }
 
         [SuppressMessage("Microsoft.Security", "CA2118:ReviewSuppressUnmanagedCodeSecurityUsage")]
-        [DllImport("kernel32.dll", SetLastError=true, ExactSpelling=true, EntryPoint="RtlMoveMemory", CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, EntryPoint = "RtlMoveMemory", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         [ResourceExposure(ResourceScope.None)]
         public static extern void CopyMemory(IntPtr destData, IntPtr srcData, uint size);
 
@@ -213,7 +213,7 @@ namespace Sledge.Rendering.Resources
             try
             {
                 var source = handle.AddrOfPinnedObject();
-                var destination = IntPtr.Add(map.Data, (int) offset);
+                var destination = IntPtr.Add(map.Data, (int)offset);
                 CopyMemory(destination, source, size);
             }
             finally

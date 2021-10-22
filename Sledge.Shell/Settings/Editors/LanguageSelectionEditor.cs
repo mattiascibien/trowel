@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Forms;
-using Sledge.Common.Shell.Settings;
+﻿using Sledge.Common.Shell.Settings;
 using Sledge.Common.Translations;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Settings.Editors
 {

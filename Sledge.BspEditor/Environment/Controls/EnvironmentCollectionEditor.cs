@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.Common.Shell.Settings;
+using Sledge.Common.Translations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.Common.Shell.Settings;
-using Sledge.Common.Translations;
 
 namespace Sledge.BspEditor.Environment.Controls
 {
@@ -38,8 +38,8 @@ namespace Sledge.BspEditor.Environment.Controls
             InitializeComponent();
             Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
 
-            _nameLabel = new Label {Text = "Name", Padding = new Padding(0, 6, 0, 0), AutoSize = true};
-            _nameBox = new TextBox{Width = 250};
+            _nameLabel = new Label { Text = "Name", Padding = new Padding(0, 6, 0, 0), AutoSize = true };
+            _nameBox = new TextBox { Width = 250 };
             _nameBox.TextChanged += UpdateEnvironment;
 
             if (_factories.Any())
@@ -52,7 +52,7 @@ namespace Sledge.BspEditor.Environment.Controls
                     ctxEnvironmentMenu.Items.Add(mi);
                 }
             }
-            
+
             var translate = Common.Container.Get<ITranslationStringProvider>();
             translate.Translate(this);
         }

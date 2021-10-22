@@ -16,7 +16,7 @@ namespace Sledge.Packages.Zip
             PackageFile = packageFile;
             Entries = new List<ZipEntry>();
 
-			// Read the data from the .zip
+            // Read the data from the .zip
             var zip = new ZipArchive(OpenFile(packageFile));
             Entries.AddRange(zip.GetFiles().Select(x => new ZipEntry(this, x)));
             BuildDirectories();

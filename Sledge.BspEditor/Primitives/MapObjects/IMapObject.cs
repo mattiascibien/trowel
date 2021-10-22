@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Primitives.MapObjects
 {

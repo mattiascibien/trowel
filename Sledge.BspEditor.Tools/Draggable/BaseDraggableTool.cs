@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Windows.Forms;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.BspEditor.Rendering.Viewport;
@@ -10,6 +5,11 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Draggable
 {
@@ -171,7 +171,7 @@ namespace Sledge.BspEditor.Tools.Draggable
 
         protected override void Render(MapDocument document, BufferBuilder builder, ResourceCollector resourceCollector)
         {
-            foreach (var obj in CollectObjects(x => new[] {x}))
+            foreach (var obj in CollectObjects(x => new[] { x }))
             {
                 obj.Render(document, builder);
             }

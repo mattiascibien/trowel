@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Modification;
+﻿using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Tools.Draggable;
@@ -10,6 +6,10 @@ using Sledge.BspEditor.Tools.Properties;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Cordon
 {

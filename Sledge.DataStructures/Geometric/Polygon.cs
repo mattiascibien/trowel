@@ -61,7 +61,7 @@ namespace Sledge.DataStructures.Geometric
 
         protected Polygon(SerializationInfo info, StreamingContext context)
         {
-            Vertices = ((Vector3[]) info.GetValue("Vertices", typeof (Vector3[]))).ToList();
+            Vertices = ((Vector3[])info.GetValue("Vertices", typeof(Vector3[]))).ToList();
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -180,7 +180,7 @@ namespace Sledge.DataStructures.Geometric
             }
 
             var delta = Math.Abs(sum - Math.PI * 2);
-            return (delta < 0.001d) ? intersect : (Vector3?) null;
+            return (delta < 0.001d) ? intersect : (Vector3?)null;
         }
 
         public Precision.Polygon ToPrecisionPolygon()

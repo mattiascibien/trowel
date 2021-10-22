@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.Composition;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Transport;
+using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Transport;
 
 namespace Sledge.BspEditor.Primitives.MapObjectData
 {

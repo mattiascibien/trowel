@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿using Sledge.BspEditor.Documents;
+using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
 
 namespace Sledge.BspEditor.Providers.Processors
 {

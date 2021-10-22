@@ -1,12 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Compile;
 using Sledge.BspEditor.Documents;
@@ -22,6 +13,14 @@ using Sledge.DataStructures.Geometric;
 using Sledge.FileSystem;
 using Sledge.Providers.GameData;
 using Sledge.Providers.Texture;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Path = System.IO.Path;
 
 namespace Sledge.BspEditor.Environment.Goldsource
@@ -115,7 +114,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
                     yield return Path.Combine(BaseDirectory, GameDirectory + "_hd");
                     yield return Path.Combine(BaseDirectory, GameDirectory);
                 }
-                
+
                 if (IncludeToolsDirectoryInEnvironment && !String.IsNullOrWhiteSpace(ToolsDirectory) && Directory.Exists(ToolsDirectory))
                 {
                     yield return ToolsDirectory;
@@ -293,7 +292,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
 
                 await Oy.Publish("Compile:Debug", $"Map file is: {path}\r\n");
             }));
-            
+
             // Run the compile tools
             if (args.ContainsKey("CSG")) batch.Steps.Add(new BatchProcess(BatchStepType.RunBuildExecutable, Path.Combine(ToolsDirectory, CsgExe), args["CSG"] + " \"{MapFile}\""));
             if (args.ContainsKey("BSP")) batch.Steps.Add(new BatchProcess(BatchStepType.RunBuildExecutable, Path.Combine(ToolsDirectory, BspExe), args["BSP"] + " \"{MapFile}\""));
@@ -365,7 +364,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
                 batch.Steps.Add(new BatchCallback(BatchStepType.RunGame, (b, d) =>
                 {
                     if (!b.Successful) return Task.CompletedTask;
-                    
+
                     var silent = options.AllowUserInterruption.GetValueOrDefault(false);
 
                     if (options.AskRunGame ?? GameAsk)
@@ -460,7 +459,7 @@ namespace Sledge.BspEditor.Environment.Goldsource
                 Path = $"{AutoVisgroupPrefix}.Entities",
                 Key = $"{AutoVisgroupPrefix}.Nodes"
             };
-            
+
             // Tool brushes
             yield return new AutomaticVisgroup(x => x is Solid s && s.Faces.Any(f => string.Equals(f.Texture.Name, "bevel", StringComparison.InvariantCultureIgnoreCase)))
             {

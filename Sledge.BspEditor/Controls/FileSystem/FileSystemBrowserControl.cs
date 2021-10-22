@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Properties;
+using Sledge.FileSystem;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Sledge.BspEditor.Properties;
-using Sledge.FileSystem;
 
 namespace Sledge.BspEditor.Controls.FileSystem
 {
@@ -36,7 +36,7 @@ namespace Sledge.BspEditor.Controls.FileSystem
 
         private IFile _file;
         private string _filter;
-        private readonly List<Regex> _regexes; 
+        private readonly List<Regex> _regexes;
 
         public FileSystemBrowserControl()
         {
@@ -53,7 +53,8 @@ namespace Sledge.BspEditor.Controls.FileSystem
         public IFile File
         {
             get => _file;
-            set { 
+            set
+            {
                 _file = value;
                 UpdateFile();
             }
@@ -68,7 +69,8 @@ namespace Sledge.BspEditor.Controls.FileSystem
         public string Filter
         {
             get => _filter;
-            set {
+            set
+            {
                 _filter = value;
                 _regexes.Clear();
                 _regexes.AddRange((_filter ?? "").Split(',').Select(f => new Regex("^" + Regex.Escape(f).Replace("\\*", ".*") + "$", RegexOptions.IgnoreCase | RegexOptions.Compiled)));
@@ -89,11 +91,11 @@ namespace Sledge.BspEditor.Controls.FileSystem
             LocationTextbox.Text = File.FullPathName;
             foreach (var child in File.GetChildren().OrderBy(x => x.Name.ToLower()))
             {
-                FileList.Items.Add(new ListViewItem(child.Name, IconDirectory) {Tag = child});
+                FileList.Items.Add(new ListViewItem(child.Name, IconDirectory) { Tag = child });
             }
             foreach (var file in File.GetFiles().Where(x => Matches(x.Name)).OrderBy(x => x.Name.ToLower()))
             {
-                FileList.Items.Add(new ListViewItem(file.Name, GetIcon(file.FullPathName)) {Tag = file});
+                FileList.Items.Add(new ListViewItem(file.Name, GetIcon(file.FullPathName)) { Tag = file });
             }
         }
 

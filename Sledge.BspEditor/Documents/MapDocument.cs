@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Components;
 using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.Common.Shell.Documents;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Documents
 {
@@ -19,7 +19,7 @@ namespace Sledge.BspEditor.Documents
     {
         /// <inheritdoc />
         public string Name { get; set; }
-        
+
         private string _fileName;
 
         /// <inheritdoc />

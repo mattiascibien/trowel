@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.FileSystem;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sledge.FileSystem;
 
 namespace Sledge.Providers.Texture
 {

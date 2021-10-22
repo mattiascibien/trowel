@@ -1,11 +1,11 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.Common;
 using Sledge.Common.Translations;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Compile
 {
@@ -26,7 +26,7 @@ namespace Sledge.BspEditor.Compile
             Arguments = arguments;
             StepType = stepType;
         }
-        
+
         public override async Task Run(Batch batch, MapDocument document)
         {
             var pcs = Process;

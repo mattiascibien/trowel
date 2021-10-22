@@ -6,7 +6,7 @@
 
         TexturedOpaque,
         BillboardOpaque,
-        
+
         TexturedAlpha,
         TexturedAdditive,
         BillboardAlpha,

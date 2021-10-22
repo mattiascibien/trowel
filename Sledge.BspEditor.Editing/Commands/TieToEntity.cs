@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Properties;
@@ -21,7 +15,12 @@ using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.GameData;
 using Sledge.QuickForms;
-using Sledge.QuickForms.Items;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands
 {
@@ -35,7 +34,7 @@ namespace Sledge.BspEditor.Editing.Commands
     {
         public override string Name { get; set; } = "Tie to entity";
         public override string Details { get; set; } = "Create an entity out of the selection.";
-        
+
         public string EntitySelectedTitle { get; set; }
         public string OneEntitySelectedMessage { get; set; }
         public string MultipleEntitiesSelectedMessage { get; set; }
@@ -64,7 +63,7 @@ namespace Sledge.BspEditor.Editing.Commands
             {
                 // One entity selected, user chooses to merge or create a new entity
                 using (
-                    var qf = new QuickForm(EntitySelectedTitle) {Width = 400}
+                    var qf = new QuickForm(EntitySelectedTitle) { Width = 400 }
                         .Label(String.Format(OneEntitySelectedMessage, existingEntities[0].EntityData?.Name))
                         .DialogButtons(
                             (KeepExisting, DialogResult.Yes),

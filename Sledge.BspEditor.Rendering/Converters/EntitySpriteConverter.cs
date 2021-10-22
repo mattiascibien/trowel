@@ -1,6 +1,3 @@
-using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Rendering.ChangeHandlers;
@@ -11,6 +8,9 @@ using Sledge.Rendering.Engine;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System.ComponentModel.Composition;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Converters
 {
@@ -39,7 +39,7 @@ namespace Sledge.BspEditor.Rendering.Converters
 
         public async Task Convert(BufferBuilder builder, MapDocument document, IMapObject obj, ResourceCollector resourceCollector)
         {
-            var entity = (Entity) obj;
+            var entity = (Entity)obj;
             var tc = await document.Environment.GetTextureCollection();
 
             var sd = GetSpriteData(entity);
@@ -62,9 +62,9 @@ namespace Sledge.BspEditor.Rendering.Converters
             if (entity.IsSelected) flags |= VertexFlags.SelectiveTransformed;
 
             builder.Append(
-                new [] { new VertexStandard { Position = entity.Origin, Normal = new Vector3(width, height, 0), Colour = Vector4.One, Tint = tint, Flags = flags } },
-                new [] { 0u },
-                new [] { new BufferGroup(PipelineType.BillboardAlpha, CameraType.Perspective, entity.BoundingBox.Center, texture, 0, 1) }
+                new[] { new VertexStandard { Position = entity.Origin, Normal = new Vector3(width, height, 0), Colour = Vector4.One, Tint = tint, Flags = flags } },
+                new[] { 0u },
+                new[] { new BufferGroup(PipelineType.BillboardAlpha, CameraType.Perspective, entity.BoundingBox.Center, texture, 0, 1) }
             );
 
         }

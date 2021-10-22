@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using Sledge.Common;
 
 namespace Sledge.Providers.Texture
 {
@@ -14,7 +13,7 @@ namespace Sledge.Providers.Texture
 
         public TextureSubItem PrimarySubItem => SubItems.ContainsKey(TextureSubItemType.Base) ? SubItems[TextureSubItemType.Base] : null;
         public IEnumerable<TextureSubItem> AllSubItems => SubItems.Values;
-        
+
         public int Width => PrimarySubItem.Width;
         public int Height => PrimarySubItem.Height;
         public Size Size => new Size(Width, Height);
@@ -24,7 +23,7 @@ namespace Sledge.Providers.Texture
             Name = name;
             Flags = flags;
             var baseItem = new TextureSubItem(TextureSubItemType.Base, this, name, width, height);
-            SubItems = new Dictionary<TextureSubItemType, TextureSubItem> {{TextureSubItemType.Base, baseItem}};
+            SubItems = new Dictionary<TextureSubItemType, TextureSubItem> { { TextureSubItemType.Base, baseItem } };
         }
 
         public TextureItem(string name, TextureFlags flags, string primarySubItemName, int width, int height)
@@ -32,7 +31,7 @@ namespace Sledge.Providers.Texture
             Name = name;
             Flags = flags;
             var baseItem = new TextureSubItem(TextureSubItemType.Base, this, primarySubItemName, width, height);
-            SubItems = new Dictionary<TextureSubItemType, TextureSubItem> {{TextureSubItemType.Base, baseItem}};
+            SubItems = new Dictionary<TextureSubItemType, TextureSubItem> { { TextureSubItemType.Base, baseItem } };
         }
 
         public TextureItem(string name, TextureFlags flags)

@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.Composition;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Properties;
 using Sledge.BspEditor.Modification;
@@ -13,6 +9,10 @@ using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Commands.Modification
 {
@@ -35,7 +35,7 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
         {
             var grid = document.Map.Data.GetOne<GridData>();
             if (grid == null) return;
-            
+
             var tl = document.Map.Data.GetOne<TransformationFlags>() ?? new TransformationFlags();
 
             var transaction = new Transaction();
@@ -57,7 +57,7 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
                 // Check for texture transform
                 if (tl.TextureLock) transaction.Add(new TransformTexturesUniform(tform, mo.FindAll()));
             }
-            
+
             if (!transaction.IsEmpty)
             {
                 await MapDocumentOperation.Perform(document, transaction);

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Primitives.MapObjectData;
@@ -14,6 +7,13 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components
 {
@@ -38,7 +38,7 @@ namespace Sledge.BspEditor.Editing.Components
         }
 
         protected override void OnMouseEnter(EventArgs e)
-		{
+        {
             Focus();
             base.OnMouseEnter(e);
         }
@@ -247,7 +247,7 @@ namespace Sledge.BspEditor.Editing.Components
                 var list = await GetTagProperties(MapTree.SelectedNode.Tag);
                 foreach (var kv in list)
                 {
-                    Properties.Items.Add(new ListViewItem(new[] {kv.Item1, kv.Item2}));
+                    Properties.Items.Add(new ListViewItem(new[] { kv.Item1, kv.Item2 }));
                 }
                 Properties.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }

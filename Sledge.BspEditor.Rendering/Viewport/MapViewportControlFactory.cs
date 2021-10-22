@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.BspEditor.Components;
+using Sledge.Common.Translations;
+using Sledge.Rendering.Engine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Sledge.BspEditor.Components;
-using Sledge.Common.Translations;
-using Sledge.Rendering.Engine;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {

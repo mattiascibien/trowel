@@ -1,6 +1,6 @@
+using Sledge.Common.Translations;
 using System;
 using System.Windows.Forms;
-using Sledge.Common.Translations;
 
 namespace Sledge.BspEditor.Environment
 {

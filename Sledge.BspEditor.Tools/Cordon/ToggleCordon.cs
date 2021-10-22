@@ -1,5 +1,3 @@
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
@@ -10,6 +8,8 @@ using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Cordon
 {
@@ -32,7 +32,7 @@ namespace Sledge.BspEditor.Tools.Cordon
         {
             if (context.TryGet("ActiveDocument", out MapDocument doc))
             {
-                var cordon = doc.Map.Data.GetOne<CordonBounds>() ?? new CordonBounds {Enabled = false};
+                var cordon = doc.Map.Data.GetOne<CordonBounds>() ?? new CordonBounds { Enabled = false };
                 cordon.Enabled = !cordon.Enabled;
                 await MapDocumentOperation.Perform(doc, new TrivialOperation(x => x.Map.Data.Replace(cordon), x => x.Update(cordon).UpdateRange(doc.Map.Root.FindAll())));
             }

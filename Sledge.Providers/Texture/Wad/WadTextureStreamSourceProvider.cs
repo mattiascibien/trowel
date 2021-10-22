@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.FileSystem;
+using Sledge.Providers.Texture.Wad.Format;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
-using Sledge.FileSystem;
-using Sledge.Providers.Texture.Wad.Format;
 
 namespace Sledge.Providers.Texture.Wad
 {

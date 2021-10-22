@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Environment;
@@ -16,6 +11,11 @@ using Sledge.Rendering.Engine;
 using Sledge.Rendering.Interfaces;
 using Sledge.Rendering.Resources;
 using Sledge.Shell.Registers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Scene
 {

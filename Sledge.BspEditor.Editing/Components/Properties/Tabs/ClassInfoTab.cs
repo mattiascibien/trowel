@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives.MapObjectData;
@@ -15,6 +7,14 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.GameData;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
 {
@@ -129,7 +129,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
         public string MultipleValuesText { get; set; }
 
         #endregion
-        
+
         /// <inheritdoc />
         public bool HasChanges => _tableValues.ClassChanged || _tableValues.Any(x => x.IsAdded || x.IsModified || x.IsRemoved);
 
@@ -432,7 +432,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
 
                 var origKey = _tableValues.FirstOrDefault(x => x.NewKey.ToLower() == key);
                 var newKey = newClass.Properties.FirstOrDefault(x => (x.Name ?? "").ToLower() == key);
-                
+
                 if (origKey != null && newKey != null)
                 {
                     // Key was present originally, so if it's marked as removed we should undo that.
@@ -447,7 +447,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.Tabs
                 else if (newKey != null)
                 {
                     // Brand new key, mark it as added and add it to the list.
-                    _tableValues.Add(new TableValue(newKey, key, new [] { newKey.DefaultValue }) { IsAdded = true });
+                    _tableValues.Add(new TableValue(newKey, key, new[] { newKey.DefaultValue }) { IsAdded = true });
                 }
             }
 

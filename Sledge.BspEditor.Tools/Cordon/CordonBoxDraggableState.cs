@@ -1,9 +1,9 @@
-﻿using System.Numerics;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Draggable;
 using Sledge.Rendering.Cameras;
+using System.Numerics;
 
 namespace Sledge.BspEditor.Tools.Cordon
 {
@@ -22,7 +22,7 @@ namespace Sledge.BspEditor.Tools.Cordon
             }
             else
             {
-                var cordon = document.Map.Data.GetOne<CordonBounds>() ?? new CordonBounds {Enabled = false};
+                var cordon = document.Map.Data.GetOne<CordonBounds>() ?? new CordonBounds { Enabled = false };
                 State.Start = cordon.Box.Start;
                 State.End = cordon.Box.End;
                 State.Action = BoxAction.Drawn;

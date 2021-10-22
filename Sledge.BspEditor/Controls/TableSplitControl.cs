@@ -90,7 +90,7 @@ namespace Sledge.BspEditor.Controls
                 var i = rec.X;
                 var j = rec.Y;
                 var c = GetControlFromPosition(i, j);
-                if (c == null) Controls.Add(c = new Panel {BackColor = SystemColors.ControlDark, Dock = DockStyle.Fill});
+                if (c == null) Controls.Add(c = new Panel { BackColor = SystemColors.ControlDark, Dock = DockStyle.Fill });
                 SetRow(c, rec.Y);
                 SetColumn(c, rec.X);
                 SetRowSpan(c, rec.Height);
@@ -138,7 +138,7 @@ namespace Sledge.BspEditor.Controls
 
         public void ResetViews()
         {
-            var c = (int) Math.Floor(100m / _configuration.Columns);
+            var c = (int)Math.Floor(100m / _configuration.Columns);
             var r = (int)Math.Floor(100m / _configuration.Rows);
             for (var i = 0; i < ColumnCount; i++) ColumnStyles[i].Width = i == 0 ? 100 - (c * (ColumnCount - 1)) : c;
             for (var i = 0; i < RowCount; i++) RowStyles[i].Height = i == 0 ? 100 - (r * (RowCount - 1)) : r;

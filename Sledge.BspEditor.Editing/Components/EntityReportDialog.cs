@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Selection;
@@ -18,6 +10,14 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components
 {
@@ -93,8 +93,8 @@ namespace Sledge.BspEditor.Editing.Components
             Oy.Publish("Context:Remove", new ContextInfo("BspEditor:EntityReport"));
         }
 
-	    protected override void OnMouseEnter(EventArgs e)
-		{
+        protected override void OnMouseEnter(EventArgs e)
+        {
             Focus();
             base.OnMouseEnter(e);
         }
@@ -168,7 +168,7 @@ namespace Sledge.BspEditor.Editing.Components
 
         private Entity GetSelected()
         {
-            return EntityList.SelectedItems.Count == 0 ? null : (Entity) EntityList.SelectedItems[0].Tag;
+            return EntityList.SelectedItems.Count == 0 ? null : (Entity)EntityList.SelectedItems[0].Tag;
         }
 
         private void SetSelected(IMapObject selection)
@@ -221,7 +221,8 @@ namespace Sledge.BspEditor.Editing.Components
                                         {
                                             entity.EntityData.Name,
                                             targetname.Value ?? ""
-                                        }) {Tag = entity};
+                                        })
+            { Tag = entity };
         }
 
         private bool DoFilters(Entity ent)

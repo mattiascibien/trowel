@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using Sledge.Common.Shell.Settings;
+﻿using Sledge.Common.Shell.Settings;
 using Sledge.Shell.Registers;
+using System;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Settings.Editors
 {
@@ -10,7 +10,7 @@ namespace Sledge.Shell.Settings.Editors
         public event EventHandler<SettingKey> OnValueChanged;
 
         public string Label { get; set; }
-        
+
         private DocumentRegister.FileAssociations _bindings;
 
         public object Value
@@ -18,11 +18,11 @@ namespace Sledge.Shell.Settings.Editors
             get => _bindings;
             set
             {
-                _bindings = ((DocumentRegister.FileAssociations) value).Clone();
+                _bindings = ((DocumentRegister.FileAssociations)value).Clone();
                 UpdateAssociationsList();
             }
         }
-        
+
         public object Control => this;
         public SettingKey Key { get; set; }
 
@@ -35,7 +35,7 @@ namespace Sledge.Shell.Settings.Editors
         private void UpdateAssociationsList()
         {
             CheckboxPanel.Controls.Clear();
-            
+
             if (_bindings == null) return;
 
             foreach (var b in _bindings)

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.FileSystem;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Sledge.FileSystem;
 
 namespace Sledge.Providers.Texture.Spr
 {

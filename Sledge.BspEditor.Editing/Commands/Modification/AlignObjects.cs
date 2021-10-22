@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.Composition;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Mutation;
@@ -13,6 +9,10 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Commands.Modification
 {
@@ -20,7 +20,7 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
     {
         public override string Name { get; set; } = "Align";
         public override string Details { get; set; } = "Align";
-        
+
         protected override bool IsInContext(IContext context, MapDocument document)
         {
             return base.IsInContext(context, document) && !document.Selection.IsEmpty;

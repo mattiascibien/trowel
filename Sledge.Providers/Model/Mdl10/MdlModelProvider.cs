@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using Sledge.FileSystem;
+﻿using Sledge.FileSystem;
 using Sledge.Providers.Model.Mdl10.Format;
 using Sledge.Rendering.Interfaces;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.Providers.Model.Mdl10
 {
@@ -31,7 +31,7 @@ namespace Sledge.Providers.Model.Mdl10
 
         public IModelRenderable CreateRenderable(IModel model)
         {
-            return new MdlModelRenderable((MdlModel) model);
+            return new MdlModelRenderable((MdlModel)model);
         }
     }
 }

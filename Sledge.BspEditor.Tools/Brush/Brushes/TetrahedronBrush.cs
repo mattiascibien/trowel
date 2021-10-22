@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
@@ -11,6 +7,10 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Brush.Brushes
@@ -22,7 +22,7 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
     public class TetrahedronBrush : IBrush, IInitialiseHook
     {
         private BooleanControl _useCentroid;
-        
+
         public string TopVertexAtCentroid { get; set; }
 
         public Task OnInitialise()

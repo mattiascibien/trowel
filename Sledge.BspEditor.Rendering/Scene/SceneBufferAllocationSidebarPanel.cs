@@ -1,14 +1,13 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Rendering.Resources;
-using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Rendering.Scene
 {
@@ -32,8 +31,8 @@ namespace Sledge.BspEditor.Rendering.Scene
             InitializeComponent();
             DoubleBuffered = true;
 
-            _timer = new Timer {Interval = 1000};
-            _timer.Tick += (s,e) => UpdateList();
+            _timer = new Timer { Interval = 1000 };
+            _timer.Tick += (s, e) => UpdateList();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -89,7 +88,7 @@ namespace Sledge.BspEditor.Rendering.Scene
         {
             if (e.Index < 0 || e.Index >= BufferList.Items.Count) return;
 
-            var ba = (BufferAllocation) BufferList.Items[e.Index];
+            var ba = (BufferAllocation)BufferList.Items[e.Index];
 
             // Blank out the back
             e.Graphics.FillRectangle(Brushes.White, e.Bounds);
@@ -114,7 +113,7 @@ namespace Sledge.BspEditor.Rendering.Scene
             e.Graphics.DrawRectangle(Pens.DarkOrange, xStart, l2Start, xWidth, lineHeight);
 
             // Draw the vertex buffer bar
-            var vbPercent = (float) (ba.Allocation.VertexBufferAllocatedSize / (double) ba.Allocation.VertexBufferTotalSize);
+            var vbPercent = (float)(ba.Allocation.VertexBufferAllocatedSize / (double)ba.Allocation.VertexBufferTotalSize);
             e.Graphics.FillRectangle(Brushes.DodgerBlue, xStart, l1Start, vbPercent * xWidth, lineHeight);
 
             // Vertex buffer text
@@ -130,9 +129,9 @@ namespace Sledge.BspEditor.Rendering.Scene
             }
 
             // Draw the index buffer bar
-            var ibPercent = (float) (ba.Allocation.IndexBufferAllocatedSize / (double) ba.Allocation.IndexBufferTotalSize);
+            var ibPercent = (float)(ba.Allocation.IndexBufferAllocatedSize / (double)ba.Allocation.IndexBufferTotalSize);
             e.Graphics.FillRectangle(Brushes.DarkOrange, xStart, l2Start, ibPercent * xWidth, lineHeight);
-            
+
             // Index buffer text
             var ipStr = ibPercent.ToString("P");
             if (ibPercent < 0.5)

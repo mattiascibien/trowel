@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.BspEditor.Editing.Components.Compile.Specification;
+using Sledge.Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.BspEditor.Editing.Components.Compile.Specification;
-using Sledge.Common.Extensions;
 
 namespace Sledge.BspEditor.Editing.Components.Compile
 {
@@ -34,9 +34,9 @@ namespace Sledge.BspEditor.Editing.Components.Compile
             _data.Columns.Add("Selected", typeof(bool));
             _data.Columns.Add("Name", typeof(string));
             _data.Columns.Add("Value", typeof(object));
-            
+
             _data.RowChanged += (s, e) => UpdatePreview();
-            
+
             var flagColumn = new DataGridViewTextBoxColumn
             {
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
@@ -44,7 +44,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                 ReadOnly = true
             };
             dataTable.Columns.Add(flagColumn);
-            
+
             var checkboxColumn = new DataGridViewCheckBoxColumn
             {
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
@@ -68,7 +68,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                 DataPropertyName = "Value"
             };
             dataTable.Columns.Add(valueColumn);
-            
+
             dataTable.DataSource = _data;
         }
 
@@ -90,7 +90,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
         {
             var list = new List<string>();
 
-            foreach (DataRow row in ((DataTable) dataTable.DataSource).Rows)
+            foreach (DataRow row in ((DataTable)dataTable.DataSource).Rows)
             {
                 if (Convert.ToBoolean(row[1]))
                 {
@@ -108,7 +108,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
         {
             var kvs = arguments.SplitWithQuotes().ToList();
 
-            foreach (DataRow row in ((DataTable) dataTable.DataSource).Rows)
+            foreach (DataRow row in ((DataTable)dataTable.DataSource).Rows)
             {
                 var key = Convert.ToString(row[0]);
                 var idx = kvs.IndexOf(key);

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Sledge.Common.Logging;
+using Sledge.Rendering.Resources;
+using Sledge.Rendering.Shaders;
+using System;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Forms;
-using Sledge.Common.Logging;
-using Sledge.Rendering.Interfaces;
-using Sledge.Rendering.Resources;
-using Sledge.Rendering.Shaders;
 using Veldrid;
 using Texture = Sledge.Rendering.Resources.Texture;
 
@@ -30,7 +28,7 @@ namespace Sledge.Rendering.Engine
         public ResourceLoader(RenderContext context)
         {
             _context = context;
-            
+
             ProjectionLayout = context.Device.ResourceFactory.CreateResourceLayout(
                 new ResourceLayoutDescription(
                     new ResourceLayoutElementDescription("Projection", ResourceKind.UniformBuffer, ShaderStages.Vertex | ShaderStages.Fragment | ShaderStages.Geometry)
@@ -106,11 +104,11 @@ namespace Sledge.Rendering.Engine
         private static readonly Assembly ResourceAssembly = Assembly.GetExecutingAssembly();
         internal static byte[] GetEmbeddedShader(string name)
         {
-            var names = new[] {name + ".bytes", name};
+            var names = new[] { name + ".bytes", name };
 #if DEBUG
             // Compiling shaders manually is a pain!
             if (!Features.DirectX11OrHigher) Log.Debug("ResourceLoader", "If you're debugging on DX10 you'll need to manually compile shaders.");
-            else names = new[] {name};
+            else names = new[] { name };
 #endif
             foreach (var n in names)
             {

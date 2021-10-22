@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Editing.Components.Compile.Specification;
+using Sledge.Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.BspEditor.Editing.Components.Compile.Specification;
-using Sledge.Common;
-using Sledge.Common.Extensions;
 
 namespace Sledge.BspEditor.Editing.Components.Compile
 {
@@ -144,7 +143,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                     Height = 17,
                     Margin = new Padding(3, 3, 0, 3)
                 };
-                CheckBox.CheckedChanged += (s,e) => OnValueChanged();
+                CheckBox.CheckedChanged += (s, e) => OnValueChanged();
                 Controls.Add(CheckBox);
                 AddControls();
             }
@@ -175,7 +174,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                             Value = Parameter.DecimalValue,
                             DecimalPlaces = Parameter.Precision,
                             Margin = new Padding(0),
-                            Increment = (decimal) Math.Pow(10, -Parameter.Precision)
+                            Increment = (decimal)Math.Pow(10, -Parameter.Precision)
                         };
                         nud.ValueChanged += (s, e) => OnValueChanged();
                         controls.Add(nud);
@@ -212,7 +211,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                         };
                         fileButton.Click += (s, e) =>
                         {
-                            using (var fo = new OpenFileDialog{Filter = Parameter.Filter})
+                            using (var fo = new OpenFileDialog { Filter = Parameter.Filter })
                             {
                                 if (fo.ShowDialog() == DialogResult.OK)
                                 {
@@ -264,7 +263,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                         };
                         cpanel.Click += (s, e) =>
                         {
-                            using (var cp = new ColorDialog{Color = cpanel.BackColor})
+                            using (var cp = new ColorDialog { Color = cpanel.BackColor })
                             {
                                 if (cp.ShowDialog() == DialogResult.OK)
                                 {
@@ -319,9 +318,9 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                         var colour = Controls.OfType<Panel>().FirstOrDefault();
                         if (colour != null) c = colour.BackColor;
                         return String.Join(" ",
-                            new[] {c.R, c.G, c.B}.Select(x => Parameter.Type == CompileParameterType.ColourFloat
-                                ? (x / 255f).ToString("0.##")
-                                : x.ToString(CultureInfo.InvariantCulture)));
+                            new[] { c.R, c.G, c.B }.Select(x => Parameter.Type == CompileParameterType.ColourFloat
+                                  ? (x / 255f).ToString("0.##")
+                                  : x.ToString(CultureInfo.InvariantCulture)));
                     default:
                         return "";
                 }
@@ -369,7 +368,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile
                                 g *= 255;
                                 b *= 255;
                             }
-                            c = Color.FromArgb((int) r, (int) g, (int) b);
+                            c = Color.FromArgb((int)r, (int)g, (int)b);
                         }
                         colour.BackColor = c;
                         break;

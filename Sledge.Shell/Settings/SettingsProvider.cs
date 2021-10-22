@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Logging;
 using Sledge.Common.Shell;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Shell.Settings;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Sledge.Shell.Settings
 {
@@ -52,7 +52,7 @@ namespace Sledge.Shell.Settings
             Oy.Subscribe<string>("Settings:Load", LoadSettings);
             Oy.Subscribe("Settings:Save", () => SaveSettings(null));
         }
-        
+
         public async Task OnShutdown()
         {
             // Save settings on close

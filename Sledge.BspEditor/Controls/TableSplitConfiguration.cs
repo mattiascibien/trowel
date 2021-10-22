@@ -14,7 +14,7 @@ namespace Sledge.BspEditor.Controls
         {
             Rectangles = new List<Rectangle>();
         }
-        
+
         public bool IsValid()
         {
             if (Rows <= 0 || Columns <= 0) return false;

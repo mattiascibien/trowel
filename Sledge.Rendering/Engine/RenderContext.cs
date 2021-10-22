@@ -1,5 +1,5 @@
-﻿using System.Numerics;
-using Sledge.Rendering.Interfaces;
+﻿using Sledge.Rendering.Interfaces;
+using System.Numerics;
 using Veldrid;
 
 namespace Sledge.Rendering.Engine

@@ -1,13 +1,13 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using Sledge.Common.Shell.Commands;
+﻿using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Documents;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.Shell.Properties;
 using Sledge.Shell.Registers;
+using System;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.Shell.Commands
 {

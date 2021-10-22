@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Sledge.Rendering.Engine;
+using System;
 using System.Runtime.CompilerServices;
-using Sledge.Rendering.Engine;
 using Veldrid;
 
 namespace Sledge.Rendering.Resources
@@ -28,7 +28,7 @@ namespace Sledge.Rendering.Resources
             }
             else
             {
-                _deviceBuffer = _device.ResourceFactory.CreateBuffer(new BufferDescription((uint) sizeInBytes, BufferUsage.IndirectBuffer));
+                _deviceBuffer = _device.ResourceFactory.CreateBuffer(new BufferDescription((uint)sizeInBytes, BufferUsage.IndirectBuffer));
             }
         }
 
@@ -40,7 +40,7 @@ namespace Sledge.Rendering.Resources
             }
             else
             {
-                _device.UpdateBuffer(_deviceBuffer, (uint) offset, arguments);
+                _device.UpdateBuffer(_deviceBuffer, (uint)offset, arguments);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Sledge.Rendering.Resources
             }
             else
             {
-                _device.UpdateBuffer(_deviceBuffer, (uint) offset, arguments);
+                _device.UpdateBuffer(_deviceBuffer, (uint)offset, arguments);
             }
         }
 

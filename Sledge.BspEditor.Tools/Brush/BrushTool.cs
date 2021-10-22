@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
@@ -31,6 +23,14 @@ using Sledge.Rendering.Engine;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Brush
 {
@@ -52,7 +52,7 @@ namespace Sledge.BspEditor.Tools.Brush
         public bool RoundVertices { get; set; } = true;
 
         public string CreateObject { get; set; } = "Create Object";
-        
+
         // Settings
 
         [Setting("SelectionBoxBackgroundOpacity")] private int _selectionBoxBackgroundOpacity = 64;
@@ -190,7 +190,7 @@ namespace Sledge.BspEditor.Tools.Brush
         {
             var brush = GetBrush(document, bounds, document.Map.NumberGenerator);
             if (brush == null) return;
-            
+
             var transaction = new Transaction();
 
             transaction.Add(new Attach(document.Map.Root.ID, brush));
@@ -219,7 +219,7 @@ namespace Sledge.BspEditor.Tools.Brush
             // Align all textures to the face and set the texture scale
             foreach (var f in created.SelectMany(x => x.Data.OfType<Face>()))
             {
-                f.Texture.XScale = f.Texture.YScale = (float) document.Environment.DefaultTextureScale;
+                f.Texture.XScale = f.Texture.YScale = (float)document.Environment.DefaultTextureScale;
                 f.Texture.AlignToNormal(f.Plane.Normal);
             }
 

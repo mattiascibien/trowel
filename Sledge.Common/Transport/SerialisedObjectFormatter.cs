@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Sledge.Common.Extensions;
 
 namespace Sledge.Common.Transport
 {
@@ -54,7 +54,7 @@ namespace Sledge.Common.Transport
         }
 
         #region Printer
-        
+
         /// <summary>
         /// Ensure a string doesn't exceed a length limit.
         /// </summary>

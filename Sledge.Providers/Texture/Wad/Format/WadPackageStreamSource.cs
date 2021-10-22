@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Sledge.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Sledge.Common;
 
 namespace Sledge.Providers.Texture.Wad.Format
 {

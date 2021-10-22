@@ -1,13 +1,13 @@
-using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.Common.Shell.Documents;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Rendering.Engine;
 using Sledge.Rendering.Overlay;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Overlay
 {

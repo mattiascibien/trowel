@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Properties;
 using Sledge.BspEditor.Modification;
@@ -14,6 +10,10 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Commands.Modification
 {
@@ -89,7 +89,7 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
                 {
                     var result = PerformCarve(document, carver, carvee, data);
                     if (result == null) continue;
-                    
+
                     added.AddRange(result);
                     removed.Add(carvee);
                 }

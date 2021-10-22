@@ -17,7 +17,7 @@ namespace Sledge.DataStructures.Geometric
         public float C { get; }
         public float D { get; }
         public Vector3 PointOnPlane { get; }
-        
+
         public Plane(Vector3 p1, Vector3 p2, Vector3 p3)
         {
             var ab = p2 - p1;
@@ -44,7 +44,7 @@ namespace Sledge.DataStructures.Geometric
             C = Normal.Z;
             D = -DistanceFromOrigin;
         }
-        
+
         public Plane(Vector3 norm, float distanceFromOrigin)
         {
             Normal = norm.Normalise();
@@ -142,7 +142,7 @@ namespace Sledge.DataStructures.Geometric
             if (norm.Y >= norm.Z) return Vector3.UnitY;
             return Vector3.UnitZ;
         }
-        
+
         public Plane Clone()
         {
             return new Plane(Normal, DistanceFromOrigin);

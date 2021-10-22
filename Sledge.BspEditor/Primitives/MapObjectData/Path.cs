@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Transport;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Transport;
 
 namespace Sledge.BspEditor.Primitives.MapObjectData
 {
@@ -39,8 +39,8 @@ namespace Sledge.BspEditor.Primitives.MapObjectData
         {
             Name = info.GetString("Name");
             Type = info.GetString("Type");
-            Direction = (PathDirection) info.GetValue("Direction", typeof(PathDirection));
-            Nodes = (List<PathNode>) info.GetValue("Nodes", typeof(List<PathNode>));
+            Direction = (PathDirection)info.GetValue("Direction", typeof(PathDirection));
+            Nodes = (List<PathNode>)info.GetValue("Nodes", typeof(List<PathNode>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -102,7 +102,7 @@ namespace Sledge.BspEditor.Primitives.MapObjectData
                 ID = obj.Get("ID", 0);
                 Name = obj.Get("Name", "");
                 Position = obj.Get<Vector3>("Position");
-                
+
                 Properties = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
                 foreach (var prop in obj.Properties)
                 {
@@ -115,8 +115,8 @@ namespace Sledge.BspEditor.Primitives.MapObjectData
             {
                 ID = info.GetInt32("ID");
                 Name = info.GetString("Name");
-                Position = (Vector3) info.GetValue("Position", typeof(Vector3));
-                Properties = (Dictionary<string, string>) info.GetValue("Properties", typeof(Dictionary<string, string>));
+                Position = (Vector3)info.GetValue("Position", typeof(Vector3));
+                Properties = (Dictionary<string, string>)info.GetValue("Properties", typeof(Dictionary<string, string>));
             }
 
             public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -132,7 +132,7 @@ namespace Sledge.BspEditor.Primitives.MapObjectData
                 var so = new SerialisedObject("PathNode");
 
                 foreach (var kv in Properties) so.Set(kv.Key, kv.Value);
-                
+
                 so.Set("ID", ID);
                 so.Set("Name", Name);
                 so.Set("Position", Position);

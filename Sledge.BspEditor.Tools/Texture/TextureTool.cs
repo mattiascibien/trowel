@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
@@ -25,6 +17,14 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Face = Sledge.BspEditor.Primitives.MapObjectData.Face;
 using KeyboardState = Sledge.Shell.Input.KeyboardState;
 
@@ -71,7 +71,7 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (tex == null) return;
 
-            var at = new ActiveTexture {Name = tex.Texture.Name};
+            var at = new ActiveTexture { Name = tex.Texture.Name };
             MapDocumentOperation.Perform(document, new TrivialOperation(x => x.Map.Data.Replace(at), x => x.Update(at)));
         }
 
@@ -125,7 +125,7 @@ namespace Sledge.BspEditor.Tools.Texture
 
             await base.ToolSelected();
         }
-        
+
         public override async Task ToolDeselected()
         {
             var document = GetDocument();
@@ -140,14 +140,14 @@ namespace Sledge.BspEditor.Tools.Texture
 
             var (start, end) = camera.CastRayFromScreen(new Vector3(e.X, e.Y, 0));
             var ray = new Line(start, end);
-            
+
             var clickedFace = document.Map.Root.GetBoudingBoxIntersectionsForVisibleObjects(ray)
                 // We only care about solids
                 .OfType<Solid>()
                 // Specifically, their faces
                 .SelectMany(a => a.Faces.Select(f => new { Face = f, Solid = a }))
                 // Get the face intersection points and sort by distance from line start
-                .Select(x => new {x.Face, x.Solid, Intersection = new Polygon(x.Face.Vertices).GetIntersectionPoint(ray) })
+                .Select(x => new { x.Face, x.Solid, Intersection = new Polygon(x.Face.Vertices).GetIntersectionPoint(ray) })
                 .Where(x => x.Intersection != null)
                 .OrderBy(x => (x.Intersection.Value - ray.Start).Length())
                 // Select the closest one.
@@ -184,7 +184,7 @@ namespace Sledge.BspEditor.Tools.Texture
 
             // Just sample texture without changing selection
             if (!action.HasFlag(ClickAction.Select)) return Task.CompletedTask;
-            
+
             // Clear selection if ctrl isn't down
             if (!KeyboardState.Ctrl) sel.Clear();
 
@@ -202,7 +202,7 @@ namespace Sledge.BspEditor.Tools.Texture
             }
 
             Oy.Publish("TextureTool:SelectionChanged", GetSelection(document));
-            
+
             return Task.CompletedTask;
         }
 
@@ -222,7 +222,7 @@ namespace Sledge.BspEditor.Tools.Texture
             var activeTexture = document.Map.Data.GetOne<ActiveTexture>()?.Name ?? sampleFace?.Texture.Name ?? "";
             if (String.IsNullOrWhiteSpace(activeTexture)) return Task.CompletedTask;
 
-            var clone = (Face) face.Clone();
+            var clone = (Face)face.Clone();
 
             bool changed = false;
 
@@ -300,8 +300,8 @@ namespace Sledge.BspEditor.Tools.Texture
 
                     verts.AddRange(face.Vertices.Select(x => new VertexStandard
                     {
-                        Position = x, 
-                        Colour = Vector4.One, 
+                        Position = x,
+                        Colour = Vector4.One,
                         Tint = selectionColour,
                         Flags = VertexFlags.FlatColour
                     }));
@@ -313,10 +313,10 @@ namespace Sledge.BspEditor.Tools.Texture
                         indices.Add(offs + i);
                     }
 
-                    groups.Add(new BufferGroup(PipelineType.TexturedAlpha, CameraType.Perspective, face.Origin, (uint) indOffs, (uint) (indices.Count - indOffs)));
+                    groups.Add(new BufferGroup(PipelineType.TexturedAlpha, CameraType.Perspective, face.Origin, (uint)indOffs, (uint)(indices.Count - indOffs)));
                 }
 
-                builder.Append(verts, indices.Select(x => (uint) x), groups);
+                builder.Append(verts, indices.Select(x => (uint)x), groups);
             }
 
             // Add wireframes - selection outlines and texture axes

@@ -1,12 +1,12 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Tools.Vertex.Tools;
 using Sledge.Common.Easings;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Controls
 {
@@ -148,9 +148,9 @@ namespace Sledge.BspEditor.Tools.Vertex.Controls
         {
             var val = _easing.Evaluate((_remaining * 1d) / FadeTime);
             val = Math.Min(1, Math.Max(0, val));
-            var a = (int) (val * 255);
+            var a = (int)(val * 255);
             var c = Color.FromArgb(a, ForeColor);
-            
+
             using (var brush = new SolidBrush(c))
             {
                 e.Graphics.DrawString(Text, Font, brush, ClientRectangle);

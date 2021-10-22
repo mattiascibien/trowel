@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.Rendering.Resources;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Converters
 {

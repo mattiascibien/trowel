@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Sledge.BspEditor.Primitives.MapObjects;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Threading;
 using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sledge.BspEditor.Tools.Vertex.Selection
 {

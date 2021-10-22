@@ -35,8 +35,8 @@ namespace Sledge.Common.Transport
         protected SerialisedObject(SerializationInfo info, StreamingContext context)
         {
             Name = info.GetString("Name");
-            Properties = (List<KeyValuePair<string, string>>) info.GetValue("Properties", typeof(List<KeyValuePair<string, string>>));
-            Children = (List<SerialisedObject>) info.GetValue("Children", typeof(List<SerialisedObject>));
+            Properties = (List<KeyValuePair<string, string>>)info.GetValue("Properties", typeof(List<KeyValuePair<string, string>>));
+            Children = (List<SerialisedObject>)info.GetValue("Children", typeof(List<SerialisedObject>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

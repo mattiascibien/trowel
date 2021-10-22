@@ -1,5 +1,5 @@
-using System;
 using Sledge.Rendering.Interfaces;
+using System;
 
 namespace Sledge.Rendering.Renderables
 {
@@ -16,7 +16,7 @@ namespace Sledge.Rendering.Renderables
             var diff = frame - _lastSecond;
             if (_lastSecond < 0 || diff > 1000)
             {
-                _averageFps = (_averageFps * 0.5f + _framesSinceLastSecond / (float) diff * 1000 * 1.5f) / 2;
+                _averageFps = (_averageFps * 0.5f + _framesSinceLastSecond / (float)diff * 1000 * 1.5f) / 2;
                 _lastSecond = frame;
                 _framesSinceLastSecond = 0;
                 if (--_nextReport == 0)

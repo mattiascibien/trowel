@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Compile;
+﻿using Sledge.BspEditor.Compile;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.DataStructures.GameData;
 using Sledge.FileSystem;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Environment
 {
@@ -84,7 +84,7 @@ namespace Sledge.BspEditor.Environment
         /// </summary>
         /// <returns>A list of automatic visgroups</returns>
         IEnumerable<AutomaticVisgroup> GetAutomaticVisgroups();
-        
+
         /// <summary>
         /// The name of the default brush entity for this environment
         /// </summary>

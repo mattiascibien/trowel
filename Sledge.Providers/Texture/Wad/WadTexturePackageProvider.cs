@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Sledge.Common.Logging;
+using Sledge.FileSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Sledge.Common.Logging;
-using Sledge.FileSystem;
 
 namespace Sledge.Providers.Texture.Wad
 {
@@ -14,7 +14,7 @@ namespace Sledge.Providers.Texture.Wad
         public IEnumerable<TexturePackageReference> GetPackagesInFile(IFile file)
         {
             if (!file.Exists) return new TexturePackageReference[0];
-            if (!file.IsContainer) return file.Extension == "wad" ? new[] {new TexturePackageReference(file.Name, file)} : new TexturePackageReference[0];
+            if (!file.IsContainer) return file.Extension == "wad" ? new[] { new TexturePackageReference(file.Name, file) } : new TexturePackageReference[0];
             return file.GetFilesWithExtension("wad").Select(x => new TexturePackageReference(x.Name, x));
         }
 

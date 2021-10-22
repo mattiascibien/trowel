@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Sledge.Common;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Sledge.Common;
 
 namespace Sledge.Shell.Controls
 {
@@ -42,10 +42,10 @@ namespace Sledge.Shell.Controls
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
             _hidden = false;
-            _header = new SidebarHeader {Text = "This is a test", Expanded = !_hidden, Dock = DockStyle.Top};
+            _header = new SidebarHeader { Text = "This is a test", Expanded = !_hidden, Dock = DockStyle.Top };
             _header.Click += HeaderClicked;
 
-            _panel = new Panel {Dock = DockStyle.Top, AutoSize = true};
+            _panel = new Panel { Dock = DockStyle.Top, AutoSize = true };
             Controls.Add(_panel);
             Controls.Add(_header);
 

@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
+﻿using Sledge.BspEditor.Documents;
+using System.Diagnostics;
 using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
 
 namespace Sledge.BspEditor.Editing.Components
 {
@@ -10,7 +10,7 @@ namespace Sledge.BspEditor.Editing.Components
         {
             InitializeComponent();
 
-            VersionLabel.Text = FileVersionInfo.GetVersionInfo(typeof (MapDocument).Assembly.Location).FileVersion;
+            VersionLabel.Text = FileVersionInfo.GetVersionInfo(typeof(MapDocument).Assembly.Location).FileVersion;
 
             LTLink.Click += (s, e) => OpenSite("https://logic-and-trick.com");
             GithubLink.Click += (s, e) => OpenSite("https://github.com/mattiascibien/sledge");
@@ -22,9 +22,9 @@ namespace Sledge.BspEditor.Editing.Components
         private void OpenSite(string url)
         {
             var ps = new ProcessStartInfo(url)
-            { 
-                UseShellExecute = true, 
-                Verb = "open" 
+            {
+                UseShellExecute = true,
+                Verb = "open"
             };
             Process.Start(ps);
         }

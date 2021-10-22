@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
@@ -15,6 +8,13 @@ using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.Shell;
 using Sledge.Shell.Forms;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components.Properties
 {
@@ -49,7 +49,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties
             {
                 foreach (var tab in _tabs.Select(x => x.Value).OrderBy(x => x.OrderHint))
                 {
-                    var page = new TabPage(tab.Name) {Tag = tab};
+                    var page = new TabPage(tab.Name) { Tag = tab };
                     tab.Control.Dock = DockStyle.Fill;
                     page.Controls.Add(tab.Control);
                     _pages[tab] = page;
@@ -157,8 +157,8 @@ namespace Sledge.BspEditor.Editing.Components.Properties
             Save().ContinueWith(Close);
         }
 
-		protected override void OnMouseEnter(EventArgs e)
-		{
+        protected override void OnMouseEnter(EventArgs e)
+        {
             Focus();
             base.OnMouseEnter(e);
         }
@@ -186,9 +186,9 @@ namespace Sledge.BspEditor.Editing.Components.Properties
                 {
                     var doc = context.Get<MapDocument>("ActiveDocument");
 
-                    #pragma warning disable 4014 // Intentionally unawaited
+#pragma warning disable 4014 // Intentionally unawaited
                     DocumentActivated(doc);
-                    #pragma warning restore 4014
+#pragma warning restore 4014
 
                     if (!Visible) Show(_parent.Value);
                     Subscribe();
@@ -295,7 +295,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties
             _selectedObjects = _selectionForced
                 ? _selectedObjects
                 : _currentDocument?.Selection.GetSelectedParents().ToList();
-            
+
             foreach (var tab in _tabs)
             {
                 await tab.Value.SetObjects(_currentDocument, _selectedObjects);

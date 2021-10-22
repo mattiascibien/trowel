@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.Common.Transport;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using Sledge.Common.Transport;
 
 namespace Sledge.BspEditor.Editing.Components.Compile.Specification
 {
@@ -55,7 +55,7 @@ namespace Sledge.BspEditor.Editing.Components.Compile.Specification
                         g *= 255;
                         b *= 255;
                     }
-                    return Color.FromArgb((int) r, (int) g, (int) b);
+                    return Color.FromArgb((int)r, (int)g, (int)b);
                 }
                 return Color.Black;
             }

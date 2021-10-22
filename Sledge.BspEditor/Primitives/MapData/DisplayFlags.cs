@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Transport;
+using System;
 using System.ComponentModel.Composition;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Transport;
 
 namespace Sledge.BspEditor.Primitives.MapData
 {
@@ -26,7 +26,7 @@ namespace Sledge.BspEditor.Primitives.MapData
 
         [Export(typeof(IMapElementFormatter))]
         public class DisplayFlagsFormatter : StandardMapElementFormatter<DisplayFlags> { }
-        
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("HideNullTextures", HideNullTextures);

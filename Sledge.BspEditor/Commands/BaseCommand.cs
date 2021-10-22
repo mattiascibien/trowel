@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Commands
 {

@@ -1,8 +1,8 @@
+using Sledge.BspEditor.Documents;
+using Sledge.DataStructures.GameData;
 using System;
 using System.ComponentModel.Composition;
 using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
-using Sledge.DataStructures.GameData;
 
 namespace Sledge.BspEditor.Editing.Components.Properties.SmartEdit
 {
@@ -12,7 +12,7 @@ namespace Sledge.BspEditor.Editing.Components.Properties.SmartEdit
         private readonly CheckBox _checkBox;
         public SmartEditBoolean()
         {
-            _checkBox = new CheckBox {AutoSize = true, Checked = false, Text = "Enabled / Active"};
+            _checkBox = new CheckBox { AutoSize = true, Checked = false, Text = "Enabled / Active" };
             _checkBox.CheckedChanged += (sender, e) => OnValueChanged();
             Controls.Add(_checkBox);
         }

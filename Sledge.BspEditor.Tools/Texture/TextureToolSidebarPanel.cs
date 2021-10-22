@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Modification;
+﻿using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapData;
@@ -12,6 +8,10 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -21,7 +21,7 @@ namespace Sledge.BspEditor.Tools.Texture
     public partial class TextureToolSidebarPanel : UserControl, ISidebarComponent
     {
         [Import] private TextureTool _tool;
-        
+
         public string Title { get; set; } = "Texture Power Tools";
         public object Control => this;
 
@@ -86,15 +86,15 @@ namespace Sledge.BspEditor.Tools.Texture
             var fs = document?.Map.Data.GetOne<FaceSelection>();
             if (fs == null || fs.IsEmpty) return;
 
-            var min = (int) RandomShiftMin.Value;
-            var max = (int) RandomShiftMax.Value;
-            
+            var min = (int)RandomShiftMin.Value;
+            var max = (int)RandomShiftMax.Value;
+
             var rand = new Random();
 
             var edit = new Transaction();
             foreach (var it in fs.GetSelectedFaces())
             {
-                var clone = (Face) it.Value.Clone();
+                var clone = (Face)it.Value.Clone();
                 clone.Texture.XShift = rand.Next(min, max + 1); // Upper bound is exclusive
 
                 edit.Add(new RemoveMapObjectData(it.Key.ID, it.Value));
@@ -110,15 +110,15 @@ namespace Sledge.BspEditor.Tools.Texture
             var fs = document?.Map.Data.GetOne<FaceSelection>();
             if (fs == null || fs.IsEmpty) return;
 
-            var min = (int) RandomShiftMin.Value;
-            var max = (int) RandomShiftMax.Value;
-            
+            var min = (int)RandomShiftMin.Value;
+            var max = (int)RandomShiftMax.Value;
+
             var rand = new Random();
 
             var edit = new Transaction();
             foreach (var it in fs.GetSelectedFaces())
             {
-                var clone = (Face) it.Value.Clone();
+                var clone = (Face)it.Value.Clone();
                 clone.Texture.YShift = rand.Next(min, max + 1); // Upper bound is exclusive
 
                 edit.Add(new RemoveMapObjectData(it.Key.ID, it.Value));
@@ -138,23 +138,23 @@ namespace Sledge.BspEditor.Tools.Texture
             var document = _tool.GetDocument();
             var fs = document?.Map.Data.GetOne<FaceSelection>();
             if (fs == null || fs.IsEmpty) return;
-            
+
             var tc = await document.Environment.GetTextureCollection();
             if (tc == null) return;
-            
-            var tileX = (int) TileFitX.Value;
-            var tileY = (int) TileFitY.Value;
+
+            var tileX = (int)TileFitX.Value;
+            var tileY = (int)TileFitY.Value;
 
             var edit = new Transaction();
             foreach (var it in fs.GetSelectedFaces())
             {
-                var clone = (Face) it.Value.Clone();
-                
+                var clone = (Face)it.Value.Clone();
+
                 var tex = await tc.GetTextureItem(clone.Texture.Name);
                 if (tex == null) continue;
 
                 clone.Texture.FitToPointCloud(tex.Width, tex.Height, new Cloud(clone.Vertices), tileX, tileY);
-                
+
                 edit.Add(new RemoveMapObjectData(it.Key.ID, it.Value));
                 edit.Add(new AddMapObjectData(it.Key.ID, clone));
             }

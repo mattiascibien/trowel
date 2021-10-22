@@ -1,4 +1,11 @@
-﻿using System;
+﻿using Sledge.BspEditor.Environment;
+using Sledge.BspEditor.Primitives;
+using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common;
+using Sledge.Common.Shell.Documents;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
@@ -7,13 +14,6 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Environment;
-using Sledge.BspEditor.Primitives;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common;
-using Sledge.Common.Shell.Documents;
-using Sledge.DataStructures.Geometric;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Providers
@@ -36,7 +36,7 @@ namespace Sledge.BspEditor.Providers
 
         public IEnumerable<FileExtensionInfo> SupportedFileExtensions { get; } = new[]
         {
-            new FileExtensionInfo("Quake map formats", ".map", ".max"), 
+            new FileExtensionInfo("Quake map formats", ".map", ".max"),
         };
 
         public async Task<BspFileLoadResult> Load(Stream stream, IEnvironment environment)
@@ -79,7 +79,7 @@ namespace Sledge.BspEditor.Providers
         }
 
         #region Reading
-        
+
         private static string CleanLine(string line)
         {
             if (line == null) return null;
@@ -124,7 +124,7 @@ namespace Sledge.BspEditor.Providers
             const NumberStyles ns = NumberStyles.Float;
 
             var parts = line.Split(' ').Where(x => !String.IsNullOrWhiteSpace(x)).ToList();
-            
+
             Assert(parts[0] == "(");
             Assert(parts[4] == ")");
             Assert(parts[5] == "(");
@@ -139,7 +139,7 @@ namespace Sledge.BspEditor.Providers
                     NumericsExtensions.Parse(parts[6], parts[7], parts[8], ns, CultureInfo.InvariantCulture),
                     NumericsExtensions.Parse(parts[11], parts[12], parts[13], ns, CultureInfo.InvariantCulture)
                 ),
-                Texture = {Name = parts[15]}
+                Texture = { Name = parts[15] }
             };
 
             // Cater for older-style map formats

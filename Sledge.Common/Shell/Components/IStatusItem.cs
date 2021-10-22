@@ -1,5 +1,5 @@
-﻿using System;
-using Sledge.Common.Shell.Context;
+﻿using Sledge.Common.Shell.Context;
+using System;
 
 namespace Sledge.Common.Shell.Components
 {

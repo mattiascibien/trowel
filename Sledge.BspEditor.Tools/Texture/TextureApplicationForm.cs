@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
@@ -23,6 +15,14 @@ using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
 using Sledge.Shell;
 using Sledge.Shell.Forms;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -85,7 +85,7 @@ namespace Sledge.BspEditor.Tools.Texture
             Oy.Subscribe<IDocument>("Document:Activated", SetDocument);
             Oy.Subscribe<Change>("MapDocument:Changed", DocumentChanged);
             Oy.Subscribe<object>("TextureTool:SelectionChanged", async x => await FaceSelectionChanged());
-            
+
             // Throttle property changes so they only apply after 500 ms, this should keep the undo stack clear
             _saveChanges = Observable.FromEventPattern(x => DebouncedPropertiesChanged += x, x => DebouncedPropertiesChanged -= x)
                 .Throttle(TimeSpan.FromMilliseconds(500))
@@ -120,7 +120,7 @@ namespace Sledge.BspEditor.Tools.Texture
                 BrowseButton.Text = strings.GetString(prefix, "Browse");
                 ReplaceButton.Text = strings.GetString(prefix, "Replace");
                 ApplyButton.Text = strings.GetString(prefix, "Apply");
-                
+
                 RotationLabel.Text = strings.GetString(prefix, "Rotation");
                 LightmapLabel.Text = strings.GetString(prefix, "Lightmap");
                 SmoothingGroupsButton.Text = strings.GetString(prefix, "SmoothingGroups");
@@ -164,7 +164,7 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (!(e.ClickedItem.Tag is ClickAction)) return;
 
-            var action = (ClickAction) e.ClickedItem.Tag;
+            var action = (ClickAction)e.ClickedItem.Tag;
             LeftClickActionButton.Text = $@"{LeftClick}: {e.ClickedItem.Text}";
             Oy.Publish("BspEditor:TextureTool:SetLeftClickAction", action);
         }
@@ -173,7 +173,7 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (!(e.ClickedItem.Tag is ClickAction)) return;
 
-            var action = (ClickAction) e.ClickedItem.Tag;
+            var action = (ClickAction)e.ClickedItem.Tag;
             RightClickActionButton.Text = $@"{RightClick}: {e.ClickedItem.Text}";
             Oy.Publish("BspEditor:TextureTool:SetRightClickAction", action);
         }
@@ -322,7 +322,7 @@ namespace Sledge.BspEditor.Tools.Texture
                     label = $"{ti.Name} ({ti.Width} x {ti.Height})";
                 }
 
-                var at = new ActiveTexture {Name = item};
+                var at = new ActiveTexture { Name = item };
                 await MapDocumentOperation.Perform(Document, new TrivialOperation(x => x.Map.Data.Replace(at), x => x.Update(at)));
             }
 
@@ -364,7 +364,7 @@ namespace Sledge.BspEditor.Tools.Texture
             else if (RecentTexturesList.GetTextureList().Contains(item))
             {
                 // Otherwise, select the texture in the recent list
-                RecentTexturesList.SetHighlightedTextures(new[] {item});
+                RecentTexturesList.SetHighlightedTextures(new[] { item });
                 RecentTexturesList.ScrollToTexture(item);
             }
         }
@@ -391,7 +391,7 @@ namespace Sledge.BspEditor.Tools.Texture
 
                 var name = tex.Name;
                 if (textures.Any(x => String.Equals(x, name, StringComparison.InvariantCultureIgnoreCase))) continue;
-                
+
                 textures.Add(name);
             }
 
@@ -404,14 +404,15 @@ namespace Sledge.BspEditor.Tools.Texture
                 var ti = await tc.GetTextureItem(t);
                 labelText = ti == null ? $"{t}" : $"{ti.Name} ({ti.Width} x {ti.Height})";
             }
-            
-            this.InvokeLater(() => {
 
-                ScaleXValue.Value = (decimal) _currentTextureProperties.XScale;
-                ScaleYValue.Value = (decimal) _currentTextureProperties.YScale;
-                ShiftXValue.Value = (decimal) _currentTextureProperties.XShift;
-                ShiftYValue.Value = (decimal) _currentTextureProperties.YShift;
-                RotationValue.Value = (decimal) _currentTextureProperties.Rotation;
+            this.InvokeLater(() =>
+            {
+
+                ScaleXValue.Value = (decimal)_currentTextureProperties.XScale;
+                ScaleYValue.Value = (decimal)_currentTextureProperties.YScale;
+                ShiftXValue.Value = (decimal)_currentTextureProperties.XShift;
+                ShiftYValue.Value = (decimal)_currentTextureProperties.YShift;
+                RotationValue.Value = (decimal)_currentTextureProperties.Rotation;
 
                 if (_currentTextureProperties.DifferentXScaleValues) ScaleXValue.Text = "";
                 if (_currentTextureProperties.DifferentYScaleValues) ScaleYValue.Text = "";
@@ -442,11 +443,11 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (_freeze) return;
 
-            if (!_currentTextureProperties.DifferentXScaleValues) _currentTextureProperties.XScale = (float) ScaleXValue.Value;
-            if (!_currentTextureProperties.DifferentYScaleValues) _currentTextureProperties.YScale = (float) ScaleYValue.Value;
-            if (!_currentTextureProperties.DifferentXShiftValues) _currentTextureProperties.XShift = (float) ShiftXValue.Value;
-            if (!_currentTextureProperties.DifferentYShiftValues) _currentTextureProperties.YShift = (float) ShiftYValue.Value;
-            if (!_currentTextureProperties.DifferentRotationValues) _currentTextureProperties.Rotation = (float) RotationValue.Value;
+            if (!_currentTextureProperties.DifferentXScaleValues) _currentTextureProperties.XScale = (float)ScaleXValue.Value;
+            if (!_currentTextureProperties.DifferentYScaleValues) _currentTextureProperties.YScale = (float)ScaleYValue.Value;
+            if (!_currentTextureProperties.DifferentXShiftValues) _currentTextureProperties.XShift = (float)ShiftXValue.Value;
+            if (!_currentTextureProperties.DifferentYShiftValues) _currentTextureProperties.YShift = (float)ShiftYValue.Value;
+            if (!_currentTextureProperties.DifferentRotationValues) _currentTextureProperties.Rotation = (float)RotationValue.Value;
 
             ApplyPropertyChanges(true);
             DebouncedPropertiesChanged?.Invoke(this, EventArgs.Empty);
@@ -504,7 +505,7 @@ namespace Sledge.BspEditor.Tools.Texture
                         it.Value.Texture.Unclone(k);
                     }
 
-                    var clone = (Face) it.Value.Clone();
+                    var clone = (Face)it.Value.Clone();
                     ApplyFaceValues(clone);
 
                     edit.Add(new RemoveMapObjectData(it.Key.ID, it.Value));
@@ -612,13 +613,13 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             var sel = GetFaceSelection();
             if (sel.IsEmpty) return;
-            
+
             Cloud cloud = null;
             if (ShouldTreatAsOne()) cloud = new Cloud(sel.GetSelectedFaces().SelectMany(x => x.Value.Vertices));
 
             var tc = await Document.Environment.GetTextureCollection();
             if (tc == null) return;
-            
+
             await ApplyChanges(async (mo, f) =>
             {
                 var tex = await tc.GetTextureItem(f.Texture.Name);
@@ -660,7 +661,7 @@ namespace Sledge.BspEditor.Tools.Texture
         {
             if (_freeze) return;
             var data = Document.Map.Data.GetOne<HideFaceMask>() ?? new HideFaceMask();
-            data = new HideFaceMask {Hidden = !data.Hidden};
+            data = new HideFaceMask { Hidden = !data.Hidden };
             MapDocumentOperation.Perform(Document, new TrivialOperation(x => x.Map.Data.Replace(data), x => x.Update(data)));
         }
 

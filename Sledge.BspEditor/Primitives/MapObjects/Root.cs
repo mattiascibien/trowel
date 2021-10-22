@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Sledge.Common.Transport;
+using Sledge.DataStructures.Geometric;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Sledge.Common.Transport;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Primitives.MapObjects
 {
@@ -15,7 +15,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
         public override bool IsSelected
         {
             get => false;
-            set {}
+            set { }
         }
 
         public Root(long id) : base(id)
@@ -33,7 +33,7 @@ namespace Sledge.BspEditor.Primitives.MapObjects
         {
             return Hierarchy.NumChildren > 0 ? new Box(Hierarchy.Select(x => x.BoundingBox)) : Box.Empty;
         }
-        
+
         public override IEnumerable<Polygon> GetPolygons()
         {
             // The root never contains geometry

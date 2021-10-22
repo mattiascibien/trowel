@@ -1,14 +1,14 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Sledge.Common.Logging;
+using Sledge.Common.Shell.Components;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Shell.Hooks;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.Common.Logging;
-using Sledge.Common.Shell.Components;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Shell.Hooks;
 
 namespace Sledge.Shell.Registers
 {
@@ -76,7 +76,7 @@ namespace Sledge.Shell.Registers
                 foreach (var btc in _components)
                 {
                     var page = new TabPage(btc.Title) { Tag = btc, Visible = false };
-                    page.Controls.Add((Control) btc.Control);
+                    page.Controls.Add((Control)btc.Control);
                     _shell.Value.BottomTabs.TabPages.Add(page);
                 }
             });
@@ -84,22 +84,22 @@ namespace Sledge.Shell.Registers
 
         private Task ContextChanged(IContext context)
         {
-            _shell.Value.Invoke((MethodInvoker) delegate
-            {
-                _shell.Value.BottomTabs.SuspendLayout();
-                foreach (var tab in _shell.Value.BottomTabs.TabPages.OfType<TabPage>())
-                {
-                    var btc = tab.Tag as IBottomTabComponent;
-                    if (btc == null) continue;
+            _shell.Value.Invoke((MethodInvoker)delegate
+           {
+               _shell.Value.BottomTabs.SuspendLayout();
+               foreach (var tab in _shell.Value.BottomTabs.TabPages.OfType<TabPage>())
+               {
+                   var btc = tab.Tag as IBottomTabComponent;
+                   if (btc == null) continue;
 
-                    var iic = btc.IsInContext(context);
-                    var vis = tab.Visible;
-                    tab.Text = btc.Title;
+                   var iic = btc.IsInContext(context);
+                   var vis = tab.Visible;
+                   tab.Text = btc.Title;
 
-                    if (iic != vis) tab.Visible = iic;
-                }
-                _shell.Value.BottomTabs.ResumeLayout();
-            });
+                   if (iic != vis) tab.Visible = iic;
+               }
+               _shell.Value.BottomTabs.ResumeLayout();
+           });
             return Task.CompletedTask;
         }
     }

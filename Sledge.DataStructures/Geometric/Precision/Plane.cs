@@ -14,7 +14,7 @@ namespace Sledge.DataStructures.Geometric.Precision
         public double C { get; }
         public double D { get; }
         public Vector3 PointOnPlane { get; }
-        
+
         public Plane(Vector3 p1, Vector3 p2, Vector3 p3)
         {
             var ab = p2 - p1;
@@ -41,7 +41,7 @@ namespace Sledge.DataStructures.Geometric.Precision
             C = Normal.Z;
             D = -DistanceFromOrigin;
         }
-        
+
         public Plane(Vector3 norm, double distanceFromOrigin)
         {
             Normal = norm.Normalise();
@@ -129,7 +129,7 @@ namespace Sledge.DataStructures.Geometric.Precision
             if (norm.Y >= norm.Z) return Vector3.UnitY;
             return Vector3.UnitZ;
         }
-        
+
         public Plane Clone()
         {
             return new Plane(Normal, DistanceFromOrigin);
@@ -162,7 +162,7 @@ namespace Sledge.DataStructures.Geometric.Precision
 
         public Geometric.Plane ToStandardPlane()
         {
-            return new Geometric.Plane(Normal.ToStandardVector3(), (float) Math.Round(DistanceFromOrigin, 2));
+            return new Geometric.Plane(Normal.ToStandardVector3(), (float)Math.Round(DistanceFromOrigin, 2));
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.Shell.Properties;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 
 namespace Sledge.Shell.Commands
 {

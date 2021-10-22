@@ -25,7 +25,7 @@ namespace Sledge.Providers.GameData
             gd.RemoveDuplicates();
             return gd;
         }
-        
+
         public bool IsValidForFile(string filename)
         {
             return File.Exists(filename) && filename.EndsWith(".fgd");

@@ -33,7 +33,7 @@ namespace Sledge.Common.Threading
         public ThreadSafeList()
         {
             _list = new List<T>();
-            _lock = ((ICollection) _list).SyncRoot;
+            _lock = ((ICollection)_list).SyncRoot;
         }
 
         public ThreadSafeList(IEnumerable<T> items) : this()

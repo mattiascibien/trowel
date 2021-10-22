@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Environment;
+﻿using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Environment.Controls;
 using Sledge.BspEditor.Environment.Empty;
 using Sledge.BspEditor.Primitives;
@@ -15,6 +8,13 @@ using Sledge.Common.Shell.Documents;
 using Sledge.Common.Translations;
 using Sledge.Common.Transport;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Documents
 {
@@ -115,7 +115,7 @@ namespace Sledge.BspEditor.Documents
             var env = await GetEnvironment();
             if (env == null) return null;
 
-            var md =  new MapDocument(new Map(), env)
+            var md = new MapDocument(new Map(), env)
             {
                 Name = string.Format(UntitledDocumentName, _untitled++),
                 HasUnsavedChanges = true
@@ -201,7 +201,7 @@ namespace Sledge.BspEditor.Documents
         /// <inheritdoc />
         public async Task Save(IDocument document, string location)
         {
-            var map = (MapDocument) document;
+            var map = (MapDocument)document;
 
             await map.Environment.UpdateDocumentData(map);
 
@@ -262,7 +262,7 @@ namespace Sledge.BspEditor.Documents
             var fileName = documentPointer.FileName;
             var envId = documentPointer.Get<string>("Environment");
             if (String.IsNullOrWhiteSpace(fileName) || String.IsNullOrWhiteSpace(envId)) return null;
-            
+
             var env = _environments.Value.GetEnvironment(envId);
             if (env?.ID == null) return null;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Rendering.Dynamic;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.Common.Shell.Components;
@@ -11,6 +7,10 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
+using System;
+using System.ComponentModel.Composition;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools
 {

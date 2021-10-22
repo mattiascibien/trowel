@@ -1,6 +1,3 @@
-using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Rendering.Resources;
@@ -8,6 +5,9 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
+using System.ComponentModel.Composition;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Converters
 {
@@ -25,7 +25,7 @@ namespace Sledge.BspEditor.Rendering.Converters
         {
             return obj is Root;
         }
-        
+
         public Task Convert(BufferBuilder builder, MapDocument document, IMapObject obj, ResourceCollector resourceCollector)
         {
             var points = new[]
@@ -45,7 +45,7 @@ namespace Sledge.BspEditor.Rendering.Converters
 
             var indices = new uint[] { 0, 1, 2, 3, 4, 5 };
 
-            builder.Append(points, indices, new []
+            builder.Append(points, indices, new[]
             {
                 new BufferGroup(PipelineType.Wireframe, CameraType.Perspective, 0, (uint) indices.Length)
             });

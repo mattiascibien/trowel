@@ -1,12 +1,12 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Selection
 {

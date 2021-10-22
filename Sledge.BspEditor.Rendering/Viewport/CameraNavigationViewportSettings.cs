@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Settings;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {

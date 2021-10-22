@@ -1,3 +1,9 @@
+using LogicAndTrick.Oy;
+using Sledge.Common.Shell.Commands;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Shell.Documents;
+using Sledge.Common.Shell.Menu;
+using Sledge.Common.Shell.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -7,12 +13,6 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
-using LogicAndTrick.Oy;
-using Sledge.Common.Shell.Commands;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Shell.Documents;
-using Sledge.Common.Shell.Menu;
-using Sledge.Common.Shell.Settings;
 
 namespace Sledge.Shell.Components
 {
@@ -33,7 +33,7 @@ namespace Sledge.Shell.Components
             if (doc?.FileName != null && File.Exists(doc.FileName))
             {
                 _recentFiles.RemoveAll(x => String.Equals(doc.FileName, x.Location, StringComparison.InvariantCultureIgnoreCase));
-                _recentFiles.Add(new RecentFile {Location = doc.FileName});
+                _recentFiles.Add(new RecentFile { Location = doc.FileName });
                 while (_recentFiles.Count > 10) _recentFiles.RemoveAt(0);
             }
         }
@@ -108,7 +108,7 @@ namespace Sledge.Shell.Components
             public string Section => "File";
             public string Path => "";
             public string Group => "Recent";
-            public string OrderHint => Convert.ToString((char) (_index + 'a'));
+            public string OrderHint => Convert.ToString((char)(_index + 'a'));
             public string ShortcutText => "";
             public bool IsToggle => false;
 

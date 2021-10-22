@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using Sledge.Common.Threading;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using Sledge.Common.Threading;
 
 namespace Sledge.BspEditor.Primitives.MapData
 {
@@ -59,7 +59,7 @@ namespace Sledge.BspEditor.Primitives.MapData
             var copy = new MapDataCollection();
             foreach (var d in Data)
             {
-                copy.Add((IMapData) d.Clone());
+                copy.Add((IMapData)d.Clone());
             }
             return copy;
         }
@@ -69,7 +69,7 @@ namespace Sledge.BspEditor.Primitives.MapData
             var copy = new MapDataCollection();
             foreach (var d in Data)
             {
-                copy.Add((IMapData) d.Copy(numberGenerator));
+                copy.Add((IMapData)d.Copy(numberGenerator));
             }
             return copy;
         }

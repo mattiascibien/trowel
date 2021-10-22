@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Components;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
@@ -19,6 +11,14 @@ using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Camera = Sledge.BspEditor.Primitives.MapData.Camera;
 
 namespace Sledge.BspEditor.Tools
@@ -47,7 +47,7 @@ namespace Sledge.BspEditor.Tools
         {
             _controlHost = controlHost;
         }
-        
+
         protected override IEnumerable<Subscription> Subscribe()
         {
             yield return Oy.Subscribe<object>("BspEditor:CameraNext", CameraNext);
@@ -129,7 +129,7 @@ namespace Sledge.BspEditor.Tools
             var pos = cam.Position;
             var look = pos + cam.Direction;
 
-            var dir = (look - pos).Normalise()*20;
+            var dir = (look - pos).Normalise() * 20;
             return Tuple.Create(pos, pos + dir);
         }
 
@@ -171,7 +171,7 @@ namespace Sledge.BspEditor.Tools
             var c = GetViewportCamera();
             if (!document.Map.Data.Get<Camera>().Any())
             {
-                document.Map.Data.Add(new Camera {EyePosition = c.Item1, LookPosition = c.Item2});
+                document.Map.Data.Add(new Camera { EyePosition = c.Item1, LookPosition = c.Item2 });
             }
             var active = document.Map.Data.Get<Camera>().FirstOrDefault(x => x.IsActive);
             if (active == null)
@@ -262,14 +262,14 @@ namespace Sledge.BspEditor.Tools
             {
                 var p1 = camera.WorldToScreen(cam.EyePosition);
                 var p2 = camera.WorldToScreen(cam.LookPosition);
-                
+
                 var lineColor = cam.IsActive ? Color.Red : Color.Cyan;
                 var handleColor = cam.IsActive ? Color.DarkOrange : Color.LawnGreen;
 
                 im.AddLine(p1.ToVector2(), p2.ToVector2(), lineColor);
                 im.AddCircleFilled(p1.ToVector2(), 4, handleColor);
                 im.AddCircle(p1.ToVector2(), 4, Color.Black);
-                
+
                 // todo post-beta: triangle arrow for cameras in 2D?
             }
         }

@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Translations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Problems
 {
@@ -42,7 +42,7 @@ namespace Sledge.BspEditor.Editing.Problems
             {
                 foreach (var face in obj.Data.Intersect(problem.ObjectData).OfType<Face>())
                 {
-                    var copy = (Face) face.Copy(document.Map.NumberGenerator);
+                    var copy = (Face)face.Copy(document.Map.NumberGenerator);
 
                     edit.Add(new RemoveMapObjectData(obj.ID, face));
                     edit.Add(new AddMapObjectData(obj.ID, copy));

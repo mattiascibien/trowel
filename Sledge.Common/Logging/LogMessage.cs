@@ -17,7 +17,7 @@ namespace Sledge.Common.Logging
         public string Source { get; }
         public string Message { get; }
         public Exception Exception { get; }
-        
+
         public LogMessage(string type, string source, string message, Exception exception)
         {
             Type = type;

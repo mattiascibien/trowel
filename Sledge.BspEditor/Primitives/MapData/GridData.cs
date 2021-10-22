@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.Composition;
-using System.Runtime.Serialization;
-using Sledge.BspEditor.Grid;
+﻿using Sledge.BspEditor.Grid;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Transport;
+using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
 
 namespace Sledge.BspEditor.Primitives.MapData
 {
@@ -35,7 +35,7 @@ namespace Sledge.BspEditor.Primitives.MapData
 
         public IMapElement Clone()
         {
-            return new GridData(Grid) {SnapToGrid = SnapToGrid};
+            return new GridData(Grid) { SnapToGrid = SnapToGrid };
         }
 
         public IMapElement Copy(UniqueNumberGenerator numberGenerator)

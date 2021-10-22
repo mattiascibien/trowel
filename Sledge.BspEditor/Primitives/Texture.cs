@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Sledge.DataStructures.Geometric;
+using System;
 using System.Numerics;
 using System.Runtime.Serialization;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Primitives
 {
@@ -97,7 +97,7 @@ namespace Sledge.BspEditor.Primitives
                 YScale = YScale
             };
         }
-        
+
         /// <summary>
         /// Transform this texture in a non-destructive way.
         /// All vertices in the texture must remain unchanged relative to each
@@ -106,7 +106,7 @@ namespace Sledge.BspEditor.Primitives
         /// <param name="matrix">The matrix to transform the texture by</param>
         public void TransformUniform(Matrix4x4 matrix)
         {
-            #if DEBUG
+#if DEBUG
 
             // Validate that the transformation is indeed uniform.
             // If it's not, bail out.
@@ -116,7 +116,7 @@ namespace Sledge.BspEditor.Primitives
             if (Math.Abs((two - one).Length() - Vector3.One.Length()) > 0.01f)
                 throw new InvalidOperationException("Transform isn't uniform!");
 
-            #endif
+#endif
 
             // If the determinant isn't 1, then we can't transform safely. (-1 is okay too)
             if (Math.Abs(matrix.GetDeterminant()) - 1 > 0.0001f) return;

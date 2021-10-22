@@ -1,11 +1,11 @@
+using LogicAndTrick.Oy;
+using Sledge.Common.Logging;
+using Sledge.Common.Shell.Hooks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using LogicAndTrick.Oy;
-using Sledge.Common.Logging;
-using Sledge.Common.Shell.Hooks;
 
 namespace Sledge.Shell
 {

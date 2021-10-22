@@ -1,14 +1,14 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -37,7 +37,7 @@ namespace Sledge.BspEditor.Tools.Texture
                 if (tb.ShowDialog() == DialogResult.OK && !String.IsNullOrWhiteSpace(tb.SelectedTexture))
                 {
                     var tex = tb.SelectedTexture;
-                    var at = new ActiveTexture {Name = tex};
+                    var at = new ActiveTexture { Name = tex };
                     MapDocumentOperation.Perform(md, new TrivialOperation(x => x.Map.Data.Replace(at), x => x.Update(at)));
                 }
             }

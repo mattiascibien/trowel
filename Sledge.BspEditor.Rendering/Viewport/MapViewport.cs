@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.Rendering.Cameras;
+using Sledge.Rendering.Viewports;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Sledge.Rendering.Cameras;
-using Sledge.Rendering.Viewports;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {
@@ -43,7 +43,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
         }
 
         #endregion
-        
+
         public MapViewport(IViewport viewport)
         {
             Viewport = viewport;

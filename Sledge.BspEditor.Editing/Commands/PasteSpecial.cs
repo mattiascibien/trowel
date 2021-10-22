@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Components;
 using Sledge.BspEditor.Documents;
@@ -20,6 +13,13 @@ using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Commands
 {
@@ -145,8 +145,8 @@ namespace Sledge.BspEditor.Editing.Commands
         private IEnumerable<IMapObject> CreateCopy(UniqueNumberGenerator gen, Vector3 origin, Vector3 rotation, List<string> names, List<IMapObject> objectsToPaste, bool makeEntitesUnique, bool prefixEntityNames, string entityNamePrefix)
         {
             var box = new Box(objectsToPaste.Select(x => x.BoundingBox));
-            
-            var rads = rotation * (float) Math.PI / 180;
+
+            var rads = rotation * (float)Math.PI / 180;
             var mov = Matrix4x4.CreateTranslation(-box.Center); // Move to zero
             var rot = Matrix4x4.CreateFromQuaternion(Quaternion.CreateFromYawPitchRoll(rads.Y, rads.X, rads.Z)); // Do rotation
             var fin = Matrix4x4.CreateTranslation(origin); // Move to final origin
@@ -155,7 +155,7 @@ namespace Sledge.BspEditor.Editing.Commands
             foreach (var mo in objectsToPaste)
             {
                 // Copy, transform and fix entity names
-                var copy = (IMapObject) mo.Copy(gen);
+                var copy = (IMapObject)mo.Copy(gen);
 
                 // Transform the object
                 copy.Transform(transform);

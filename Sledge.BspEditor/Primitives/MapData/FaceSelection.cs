@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Sledge.BspEditor.Primitives.MapObjectData;
+using Sledge.BspEditor.Primitives.MapObjects;
+using Sledge.Common.Transport;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjectData;
-using Sledge.BspEditor.Primitives.MapObjects;
-using Sledge.Common.Transport;
 
 namespace Sledge.BspEditor.Primitives.MapData
 {
@@ -32,7 +32,7 @@ namespace Sledge.BspEditor.Primitives.MapData
 
         public bool IsEmpty => !_selectedFaces.Any(x => x.Value.Count > 0);
         public int Count => _selectedFaces.Aggregate(0, (a, b) => a + b.Value.Count);
-        
+
         public void Add(IMapObject parent, params Face[] faces)
         {
             if (faces.Length == 0) return;
@@ -95,10 +95,10 @@ namespace Sledge.BspEditor.Primitives.MapData
         public IEnumerable<KeyValuePair<IMapObject, Face>> GetSelectedFaces()
         {
             return from kv in _selectedFaces
-                from f in kv.Value
-                let face = kv.Key.Data.OfType<Face>().FirstOrDefault(x => x.ID == f)
-                where face != null
-                select new KeyValuePair<IMapObject, Face>(kv.Key, face);
+                   from f in kv.Value
+                   let face = kv.Key.Data.OfType<Face>().FirstOrDefault(x => x.ID == f)
+                   where face != null
+                   select new KeyValuePair<IMapObject, Face>(kv.Key, face);
         }
 
         public IEnumerable<IMapObject> GetSelectedParents()

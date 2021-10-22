@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Sledge.QuickForms.Items;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sledge.QuickForms.Items;
 
 namespace Sledge.QuickForms
 {
-	/// <summary>
-	/// QuickForms is input dialogs for the lazy.
-	/// It allows quick composition of disposable forms.
-	/// </summary>
-	public sealed class QuickForm : Form
+    /// <summary>
+    /// QuickForms is input dialogs for the lazy.
+    /// It allows quick composition of disposable forms.
+    /// </summary>
+    public sealed class QuickForm : Form
     {
         private readonly FlowLayoutPanel _flpLayout;
         private readonly Panel _layoutSizerPanel;
@@ -28,36 +28,36 @@ namespace Sledge.QuickForms
         /// </summary>
         /// <param name="title">The title of the form</param>
 	    public QuickForm(string title)
-	    {
-			_items = new List<QuickFormItem>();
-			Text = title;
-			FormBorderStyle = FormBorderStyle.FixedDialog;
-			ShowInTaskbar = false;
-			MinimizeBox = false;
-			MaximizeBox = false;
+        {
+            _items = new List<QuickFormItem>();
+            Text = title;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            ShowInTaskbar = false;
+            MinimizeBox = false;
+            MaximizeBox = false;
             UseShortcutKeys = false;
             KeyPreview = true;
 
-	        _flpLayout = new FlowLayoutPanel
-	        {
-	            Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
-	            AutoSize = true,
+            _flpLayout = new FlowLayoutPanel
+            {
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowOnly,
-	            FlowDirection = FlowDirection.TopDown,
-	            Location = new Point(5, 5),
-	            Size = new Size(ClientSize.Width - 10, 10)
-	        };
-	        _layoutSizerPanel = new Panel
-	        {
+                FlowDirection = FlowDirection.TopDown,
+                Location = new Point(5, 5),
+                Size = new Size(ClientSize.Width - 10, 10)
+            };
+            _layoutSizerPanel = new Panel
+            {
                 AutoSize = false,
                 Height = 1,
                 Width = ClientSize.Width - 12,
                 Margin = Padding.Empty,
                 Padding = Padding.Empty
-	        };
+            };
             _flpLayout.Controls.Add(_layoutSizerPanel);
 
-	        Controls.Add(_flpLayout);
+            Controls.Add(_flpLayout);
         }
 
         protected override void OnResize(EventArgs e)
@@ -83,20 +83,20 @@ namespace Sledge.QuickForms
             }
             base.OnKeyDown(e);
         }
-		
-		protected override void OnLoad(EventArgs e)
-		{
-		    var ps = _flpLayout.GetPreferredSize(new Size(ClientSize.Width, 100000));
-            ClientSize = new Size(ClientSize.Width, ps.Height + 10);
-		    var nonlabel = Controls.OfType<Control>().FirstOrDefault(x => !(x is Label));
-		    nonlabel?.Focus();
-		    base.OnLoad(e);
-		}
 
-	    public async Task<DialogResult> ShowDialogAsync()
-	    {
-	        await Task.Yield();
-	        return ShowDialog();
+        protected override void OnLoad(EventArgs e)
+        {
+            var ps = _flpLayout.GetPreferredSize(new Size(ClientSize.Width, 100000));
+            ClientSize = new Size(ClientSize.Width, ps.Height + 10);
+            var nonlabel = Controls.OfType<Control>().FirstOrDefault(x => !(x is Label));
+            nonlabel?.Focus();
+            base.OnLoad(e);
+        }
+
+        public async Task<DialogResult> ShowDialogAsync()
+        {
+            await Task.Yield();
+            return ShowDialog();
         }
 
         /// <summary>
@@ -107,9 +107,9 @@ namespace Sledge.QuickForms
         private void AddItem(string name, QuickFormItem item)
         {
             item.Name = name;
-			_items.Add(item);
-		    _flpLayout.Controls.Add(item);
-		}
+            _items.Add(item);
+            _flpLayout.Controls.Add(item);
+        }
 
         /// <summary>
         /// Add an item to the form.
@@ -154,10 +154,10 @@ namespace Sledge.QuickForms
         /// <param name="text">The text of the label</param>
         /// <returns>This object, for method chaining</returns>
         public QuickForm Label(string text)
-		{
+        {
             AddItem(string.Empty, new QuickFormLabel(text));
             return this;
-		}
+        }
 
         /// <summary>
         /// Add a NumericUpDown to the form.
@@ -196,10 +196,10 @@ namespace Sledge.QuickForms
         /// <param name="value">The initial value of the checkbox</param>
         /// <returns>This object, for method chaining</returns>
         public QuickForm CheckBox(string name, string text, bool value = false)
-		{
+        {
             AddItem(name, new QuickFormCheckBox(text, value));
             return this;
-		}
+        }
 
         /// <summary>
         /// Add OK and Cancel buttons to the control
@@ -247,7 +247,7 @@ namespace Sledge.QuickForms
                 (text, DialogResult.None, new Action(() => action(this)))
             }));
             return this;
-		}
+        }
 
         /// <summary>
         /// Add a set of buttons to the control, each one closing the form
@@ -261,7 +261,7 @@ namespace Sledge.QuickForms
                 buttons.Select(x => (x.Item1, x.Item2, new Action(() => { })))
             ));
             return this;
-		}
+        }
 
         /// <summary>
         /// Add a set of buttons to the control, each one performing a custom action.
@@ -274,14 +274,14 @@ namespace Sledge.QuickForms
                 buttons.Select(x => (x.Item1, DialogResult.None, new Action(() => x.Item2(this))))
             ));
             return this;
-		}
-		
+        }
+
         /// <summary>
         /// Get a control by name
         /// </summary>
         /// <param name="name">The name of the control</param>
         /// <returns>The control, or null if it was not found</returns>
-		public QuickFormItem GetItem(string name)
+        public QuickFormItem GetItem(string name)
         {
             return _items.FirstOrDefault(x => x.Name == name);
         }
@@ -292,11 +292,11 @@ namespace Sledge.QuickForms
         /// <param name="name">The name of the control</param>
         /// <returns>The string value</returns>
 	    public string String(string name)
-		{
-			var c = GetItem(name);
-			if (c != null) return c.Text;
-			throw new Exception("Control " + name + " not found!");
-		}
+        {
+            var c = GetItem(name);
+            if (c != null) return c.Text;
+            throw new Exception("Control " + name + " not found!");
+        }
 
         /// <summary>
         /// Get a decimal value from a control
@@ -304,11 +304,11 @@ namespace Sledge.QuickForms
         /// <param name="name">The name of the control</param>
         /// <returns>The decimal value</returns>
 		public decimal Decimal(string name)
-		{
-			var c = GetItem(name);
-			if (c != null) return (decimal) c.Value;
-			throw new Exception("Control " + name + " not found!");
-		}
+        {
+            var c = GetItem(name);
+            if (c != null) return (decimal)c.Value;
+            throw new Exception("Control " + name + " not found!");
+        }
 
         /// <summary>
         /// Get a boolean value from a control
@@ -316,11 +316,11 @@ namespace Sledge.QuickForms
         /// <param name="name">The name of the control</param>
         /// <returns>The boolean value</returns>
 		public bool Bool(string name)
-		{
-			var c = GetItem(name);
-			if (c != null) return (bool) c.Value;
-			throw new Exception("Control " + name + " not found!");
-		}
+        {
+            var c = GetItem(name);
+            if (c != null) return (bool)c.Value;
+            throw new Exception("Control " + name + " not found!");
+        }
 
         /// <summary>
         /// Get an object from a control

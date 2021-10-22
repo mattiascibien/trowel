@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.BspEditor.Documents;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
 
 namespace Sledge.BspEditor.Modification
 {

@@ -1,8 +1,8 @@
-﻿using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Transport;
+using System.Runtime.Serialization;
 
 namespace Sledge.BspEditor.Tools.Vertex.Selection
 {

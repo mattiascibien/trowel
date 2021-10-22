@@ -1,7 +1,7 @@
+using Sledge.Common;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Sledge.Common;
 
 namespace Sledge.BspEditor.Editing.Controls
 {
@@ -180,7 +180,7 @@ namespace Sledge.BspEditor.Editing.Controls
             var ycoord = -(e.Y - 20);
             var ang = Math.Atan2(ycoord, xcoord);
             while (ang < 0) ang += 2 * Math.PI;
-            Angle = (int) MathHelper.RadiansToDegrees(ang);
+            Angle = (int)MathHelper.RadiansToDegrees(ang);
         }
 
         private void AngleControlMouseDown(object sender, MouseEventArgs e)

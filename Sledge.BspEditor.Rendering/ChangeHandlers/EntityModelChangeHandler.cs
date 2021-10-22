@@ -1,15 +1,15 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Modification;
+﻿using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.ChangeHandling;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Rendering.Resources;
 using Sledge.DataStructures.GameData;
 using Sledge.Rendering.Interfaces;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.ChangeHandlers
 {
@@ -96,7 +96,7 @@ namespace Sledge.BspEditor.Rendering.ChangeHandlers
             if (seq < 0) seq = sequences.IndexOf("idle");
             if (seq < 0) seq = sequences.FindIndex(x => x.StartsWith("idle", StringComparison.InvariantCultureIgnoreCase));
             if (seq < 0) seq = 0;
-            
+
             entityModel.Renderable.Sequence = seq;
 
             entityModel.Renderable.Origin = modelDetails.Origin;
@@ -149,7 +149,7 @@ namespace Sledge.BspEditor.Rendering.ChangeHandlers
                 details.Origin = entity.Data.GetOne<Origin>()?.Location ?? entity.BoundingBox.Center;
 
                 var ang = entity.EntityData.GetVector3("angles");
-                if (ang.HasValue) details.Angles = ang.Value * (float) Math.PI / 180f;
+                if (ang.HasValue) details.Angles = ang.Value * (float)Math.PI / 180f;
 
                 return details;
             }

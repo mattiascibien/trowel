@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hooks;
@@ -12,6 +6,12 @@ using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Settings;
 using Sledge.Shell.Forms;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Registers
 {
@@ -46,9 +46,9 @@ namespace Sledge.Shell.Registers
 
         [ImportingConstructor]
         public HotkeyRegister(
-            [Import] IContext context, 
-            [ImportMany] IEnumerable<Lazy<ICommand>> commands, 
-            [ImportMany] IEnumerable<Lazy<IHotkeyProvider>> hotkeyProviders, 
+            [Import] IContext context,
+            [ImportMany] IEnumerable<Lazy<ICommand>> commands,
+            [ImportMany] IEnumerable<Lazy<IHotkeyProvider>> hotkeyProviders,
             [ImportMany] IEnumerable<Lazy<IHotkeyFilter>> hotkeyFilters
         )
         {
@@ -132,7 +132,7 @@ namespace Sledge.Shell.Registers
         internal bool Fire(Keys keyData)
         {
             var cmd = KeyboardState.KeysToString(keyData);
-            var keys = (int) keyData;
+            var keys = (int)keyData;
             if (_registeredFilters.OrderBy(x => x.OrderHint).Any(f => f.Filter(cmd, keys))) return false;
 
             if (_registeredHotkeys.ContainsKey(cmd))

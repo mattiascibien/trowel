@@ -1,13 +1,13 @@
-﻿using System;
+﻿using LogicAndTrick.Oy;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Shell.Hooks;
+using Sledge.Common.Shell.Menu;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LogicAndTrick.Oy;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Shell.Hooks;
-using Sledge.Common.Shell.Menu;
 
 namespace Sledge.Shell.Registers
 {
@@ -38,7 +38,7 @@ namespace Sledge.Shell.Registers
                     Add(menuItem);
                 }
             }
-            
+
             return Task.FromResult(0);
         }
 
@@ -56,7 +56,7 @@ namespace Sledge.Shell.Registers
                 _tree = new VirtualMenuTree(_context, _shell.MenuStrip, _shell.ToolStrip, _declaredSections, _declaredGroups);
                 _tree.ResetItems(_menuItems.Values);
             });
-            
+
             Oy.Subscribe<IContext>("Context:Changed", ContextChanged);
             Oy.Subscribe<object>("Menu:Update", UpdateMenu);
         }
@@ -467,7 +467,7 @@ namespace Sledge.Shell.Registers
 
                 // Add the node to the list and sort
                 var group = Groups[groupIndex];
-                group.Nodes = group.Nodes.Union(new[] {menuTreeNode}).OrderBy(x => x.OrderHint ?? "").ToList();
+                group.Nodes = group.Nodes.Union(new[] { menuTreeNode }).OrderBy(x => x.OrderHint ?? "").ToList();
 
                 // Skip to the start of the node and insert
                 var idx = group.Nodes.IndexOf(menuTreeNode);

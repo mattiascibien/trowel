@@ -1,6 +1,3 @@
-using System.Drawing;
-using System.Numerics;
-using System.Windows.Forms;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.BspEditor.Tools.Draggable;
@@ -8,6 +5,9 @@ using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
+using System.Drawing;
+using System.Numerics;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Selection.TransformationHandles
 {

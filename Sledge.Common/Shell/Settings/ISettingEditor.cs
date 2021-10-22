@@ -11,7 +11,7 @@ namespace Sledge.Common.Shell.Settings
         /// Fires when the setting value has changed
         /// </summary>
         event EventHandler<SettingKey> OnValueChanged;
-        
+
         /// <summary>
         /// Gets or sets the label for the setting
         /// </summary>

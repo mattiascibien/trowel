@@ -1,11 +1,11 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Threading.Tasks;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
+using System;
+using System.ComponentModel.Composition;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Rendering.Components
 {
@@ -19,7 +19,7 @@ namespace Sledge.BspEditor.Rendering.Components
         public int Width => 100;
         public bool HasBorder => true;
         public string Text { get; set; } = "";
-        
+
         public ViewportMouseLocationStatusItem()
         {
             Oy.Subscribe<Vector3?>("MapDocument:ViewportMouseLocationStatus:UpdateValue", UpdateValue);

@@ -17,7 +17,7 @@ namespace Sledge.Shell
             if (control.InvokeRequired) control.Invoke(new MethodInvoker(() => action()));
             else action();
         }
-        
+
         /// <summary>
         /// Invoke a delegate asynchronously on the UI thread and return an awaitable task.
         /// Awaiting the task will block the UI until complete. Use with caution.
@@ -30,7 +30,7 @@ namespace Sledge.Shell
             var asr = control.BeginInvoke(action);
             await Task.Factory.FromAsync(asr, control.EndInvoke);
         }
-        
+
         /// <summary>
         /// Invoke a delegate asynchronously on the UI thread and return immediately.
         /// The delegate will run at some unknown time. Use carefully.
@@ -42,7 +42,7 @@ namespace Sledge.Shell
             if (!control.IsHandleCreated) return;
             control.BeginInvoke(action);
         }
-        
+
         public static Task InvokeLaterAsync(this Control control, Action action)
         {
             if (!control.IsHandleCreated) return Task.FromResult(0);

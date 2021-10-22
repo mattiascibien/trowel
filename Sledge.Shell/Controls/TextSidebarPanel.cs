@@ -1,8 +1,8 @@
-﻿using System.Text;
+﻿using Sledge.Common.Shell.Components;
+using Sledge.Common.Shell.Context;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Sledge.Common.Shell.Components;
-using Sledge.Common.Shell.Context;
 
 namespace Sledge.Shell.Controls
 {
@@ -53,7 +53,7 @@ namespace Sledge.Shell.Controls
             var sb = new StringBuilder();
             foreach (var c in escaped)
             {
-                if (c > 127) sb.AppendFormat(@"\u{0}?", (int) c);
+                if (c > 127) sb.AppendFormat(@"\u{0}?", (int)c);
                 else if (c == '\\') sb.Append("\\\\");
                 else if (c == '{') sb.Append("\\{");
                 else if (c == '}') sb.Append("\\}");

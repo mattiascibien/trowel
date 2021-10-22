@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjectData;
 using Sledge.BspEditor.Primitives.MapObjects;
@@ -14,6 +7,13 @@ using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Plane;
 
 namespace Sledge.BspEditor.Tools.Brush.Brushes
@@ -95,18 +95,18 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
         {
             var numSides = (int)_numSides.GetValue();
             if (numSides < 3) yield break;
-            var wallWidth = (float) _wallWidth.GetValue();
+            var wallWidth = (float)_wallWidth.GetValue();
             if (wallWidth < 1) yield break;
-            var arc = (float) _arc.GetValue();
+            var arc = (float)_arc.GetValue();
             if (arc < 1) yield break;
-            var startAngle = (float) _startAngle.GetValue();
+            var startAngle = (float)_startAngle.GetValue();
             if (startAngle < 0 || startAngle > 359) yield break;
-            var addHeight = (float) _addHeight.GetValue();
+            var addHeight = (float)_addHeight.GetValue();
             var curvedRamp = _curvedRamp.GetValue();
-            var tiltAngle = curvedRamp ? (float) _tiltAngle.GetValue() : 0;
+            var tiltAngle = curvedRamp ? (float)_tiltAngle.GetValue() : 0;
             if (Math.Abs(Math.Abs(tiltAngle % 180) - 90) < 0.001f) yield break;
             var tiltInterp = curvedRamp && _tiltInterp.GetValue();
-            
+
             // Very similar to the pipe brush, except with options for start angle, arc, height and tilt
             var width = box.Width;
             var length = box.Length;
@@ -117,9 +117,9 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
             var minorOut = length / 2;
             var minorIn = minorOut - wallWidth;
 
-            var start = (float) MathHelper.DegreesToRadians(startAngle);
-            var tilt = (float) MathHelper.DegreesToRadians(tiltAngle);
-            var angle = (float) MathHelper.DegreesToRadians(arc) / numSides;
+            var start = (float)MathHelper.DegreesToRadians(startAngle);
+            var tilt = (float)MathHelper.DegreesToRadians(tiltAngle);
+            var angle = (float)MathHelper.DegreesToRadians(arc) / numSides;
 
             // Calculate the coordinates of the inner and outer ellipses' points
             var outer = new Vector3[numSides + 1];
@@ -128,16 +128,16 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
             {
                 var a = start + i * angle;
                 var h = i * addHeight;
-                var interp = tiltInterp ? (float) Math.Cos(Math.PI / numSides * (i - numSides / 2f)) : 1;
-                var tiltHeight = wallWidth / 2 * interp * (float) Math.Tan(tilt);
-                
-                var xval = box.Center.X + majorOut * (float) Math.Cos(a);
-                var yval = box.Center.Y + minorOut * (float) Math.Sin(a);
+                var interp = tiltInterp ? (float)Math.Cos(Math.PI / numSides * (i - numSides / 2f)) : 1;
+                var tiltHeight = wallWidth / 2 * interp * (float)Math.Tan(tilt);
+
+                var xval = box.Center.X + majorOut * (float)Math.Cos(a);
+                var yval = box.Center.Y + minorOut * (float)Math.Sin(a);
                 var zval = box.Start.Z + (curvedRamp ? h + tiltHeight : 0);
                 outer[i] = new Vector3(xval, yval, zval).Round(roundDecimals);
 
-                xval = box.Center.X + majorIn * (float) Math.Cos(a);
-                yval = box.Center.Y + minorIn * (float) Math.Sin(a);
+                xval = box.Center.X + majorIn * (float)Math.Cos(a);
+                yval = box.Center.Y + minorIn * (float)Math.Sin(a);
                 zval = box.Start.Z + (curvedRamp ? h - tiltHeight : 0);
                 inner[i] = new Vector3(xval, yval, zval).Round(roundDecimals);
             }
@@ -155,19 +155,19 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
                     // The splitting orientation depends on the curving direction of the arch
                     if (addHeight >= 0)
                     {
-                        faces.Add(new[] { outer[i],       outer[i] + z,   outer[i+1] + z, outer[i+1] });
-                        faces.Add(new[] { outer[i+1],     outer[i+1] + z, inner[i] + z,   inner[i]   });
-                        faces.Add(new[] { inner[i],       inner[i] + z,   outer[i] + z,   outer[i]   });
-                        faces.Add(new[] { outer[i] + z,   inner[i] + z,   outer[i+1] + z  });
-                        faces.Add(new[] { outer[i+1],     inner[i],       outer[i]        });
+                        faces.Add(new[] { outer[i], outer[i] + z, outer[i + 1] + z, outer[i + 1] });
+                        faces.Add(new[] { outer[i + 1], outer[i + 1] + z, inner[i] + z, inner[i] });
+                        faces.Add(new[] { inner[i], inner[i] + z, outer[i] + z, outer[i] });
+                        faces.Add(new[] { outer[i] + z, inner[i] + z, outer[i + 1] + z });
+                        faces.Add(new[] { outer[i + 1], inner[i], outer[i] });
                     }
                     else
                     {
-                        faces.Add(new[] { inner[i+1],     inner[i+1] + z, inner[i] + z,   inner[i]   });
-                        faces.Add(new[] { outer[i],       outer[i] + z,   inner[i+1] + z, inner[i+1] });
-                        faces.Add(new[] { inner[i],       inner[i] + z,   outer[i] + z,   outer[i]   });
-                        faces.Add(new[] { inner[i+1] + z, outer[i] + z,   inner[i] + z    });
-                        faces.Add(new[] { inner[i],       outer[i],       inner[i+1]      });
+                        faces.Add(new[] { inner[i + 1], inner[i + 1] + z, inner[i] + z, inner[i] });
+                        faces.Add(new[] { outer[i], outer[i] + z, inner[i + 1] + z, inner[i + 1] });
+                        faces.Add(new[] { inner[i], inner[i] + z, outer[i] + z, outer[i] });
+                        faces.Add(new[] { inner[i + 1] + z, outer[i] + z, inner[i] + z });
+                        faces.Add(new[] { inner[i], outer[i], inner[i + 1] });
                     }
                     yield return MakeSolid(generator, faces, texture, colour);
 
@@ -175,31 +175,31 @@ namespace Sledge.BspEditor.Tools.Brush.Brushes
 
                     if (addHeight >= 0)
                     {
-                        faces.Add(new[] { inner[i+1],     inner[i+1] + z, inner[i] + z,   inner[i]   });
-                        faces.Add(new[] { inner[i],       inner[i] + z,   outer[i+1] + z, outer[i+1] });
-                        faces.Add(new[] { outer[i+1],     outer[i+1] + z, inner[i+1] + z, inner[i+1] });
-                        faces.Add(new[] { inner[i+1] + z, outer[i+1] + z, inner[i] + z    });
-                        faces.Add(new[] { inner[i],       outer[i+1],     inner[i+1]      });
+                        faces.Add(new[] { inner[i + 1], inner[i + 1] + z, inner[i] + z, inner[i] });
+                        faces.Add(new[] { inner[i], inner[i] + z, outer[i + 1] + z, outer[i + 1] });
+                        faces.Add(new[] { outer[i + 1], outer[i + 1] + z, inner[i + 1] + z, inner[i + 1] });
+                        faces.Add(new[] { inner[i + 1] + z, outer[i + 1] + z, inner[i] + z });
+                        faces.Add(new[] { inner[i], outer[i + 1], inner[i + 1] });
                     }
                     else
                     {
-                        faces.Add(new[] { outer[i],       outer[i] + z,   outer[i+1] + z, outer[i+1] });
-                        faces.Add(new[] { inner[i+1],     inner[i+1] + z, outer[i] + z,   outer[i]   });
-                        faces.Add(new[] { outer[i+1],     outer[i+1] + z, inner[i+1] + z, inner[i+1] });
-                        faces.Add(new[] { outer[i] + z,   inner[i+1] + z, outer[i+1] + z  });
-                        faces.Add(new[] { outer[i+1],     inner[i+1],     outer[i]        });
+                        faces.Add(new[] { outer[i], outer[i] + z, outer[i + 1] + z, outer[i + 1] });
+                        faces.Add(new[] { inner[i + 1], inner[i + 1] + z, outer[i] + z, outer[i] });
+                        faces.Add(new[] { outer[i + 1], outer[i + 1] + z, inner[i + 1] + z, inner[i + 1] });
+                        faces.Add(new[] { outer[i] + z, inner[i + 1] + z, outer[i + 1] + z });
+                        faces.Add(new[] { outer[i + 1], inner[i + 1], outer[i] });
                     }
                     yield return MakeSolid(generator, faces, texture, colour);
                 }
                 else
                 {
                     var h = i * addHeight * Vector3.UnitZ;
-                    faces.Add(new[] { outer[i],       outer[i] + z,   outer[i+1] + z, outer[i+1]   }.Select(x => x + h).ToArray());
-                    faces.Add(new[] { inner[i+1],     inner[i+1] + z, inner[i] + z,   inner[i]     }.Select(x => x + h).ToArray());
-                    faces.Add(new[] { outer[i+1],     outer[i+1] + z, inner[i+1] + z, inner[i+1]   }.Select(x => x + h).ToArray());
-                    faces.Add(new[] { inner[i],       inner[i] + z,   outer[i] + z,   outer[i]     }.Select(x => x + h).ToArray());
-                    faces.Add(new[] { inner[i+1] + z, outer[i+1] + z, outer[i] + z,   inner[i] + z }.Select(x => x + h).ToArray());
-                    faces.Add(new[] { inner[i],       outer[i],       outer[i+1],     inner[i+1]   }.Select(x => x + h).ToArray());
+                    faces.Add(new[] { outer[i], outer[i] + z, outer[i + 1] + z, outer[i + 1] }.Select(x => x + h).ToArray());
+                    faces.Add(new[] { inner[i + 1], inner[i + 1] + z, inner[i] + z, inner[i] }.Select(x => x + h).ToArray());
+                    faces.Add(new[] { outer[i + 1], outer[i + 1] + z, inner[i + 1] + z, inner[i + 1] }.Select(x => x + h).ToArray());
+                    faces.Add(new[] { inner[i], inner[i] + z, outer[i] + z, outer[i] }.Select(x => x + h).ToArray());
+                    faces.Add(new[] { inner[i + 1] + z, outer[i + 1] + z, outer[i] + z, inner[i] + z }.Select(x => x + h).ToArray());
+                    faces.Add(new[] { inner[i], outer[i], outer[i + 1], inner[i + 1] }.Select(x => x + h).ToArray());
                     yield return MakeSolid(generator, faces, texture, colour);
                 }
             }

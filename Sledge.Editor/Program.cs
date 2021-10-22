@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Sledge.Shell;
+using System;
 using System.Globalization;
 using System.Threading;
-using Sledge.Shell;
 
 namespace Sledge.Editor
 {
@@ -20,7 +20,7 @@ namespace Sledge.Editor
 
             forceDecimalCulture.NumberFormat.NumberDecimalSeparator = ".";
             forceDecimalCulture.NumberFormat.NumberGroupSeparator = ",";
-            forceDecimalCulture.NumberFormat.NumberGroupSizes = new [] { 3 };
+            forceDecimalCulture.NumberFormat.NumberGroupSizes = new[] { 3 };
             forceDecimalCulture.NumberFormat.NumberNegativePattern = 1;
 
             Thread.CurrentThread.CurrentCulture = forceDecimalCulture;

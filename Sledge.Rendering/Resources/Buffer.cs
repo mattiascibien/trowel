@@ -29,7 +29,7 @@ namespace Sledge.Rendering.Resources
             cl.SetVertexBuffer(slot, VertexBuffer);
             cl.SetIndexBuffer(IndexBuffer, IndexFormat.UInt32);
         }
-        
+
         public void Update<T>(IEnumerable<T> vertices, IEnumerable<uint> indices) where T : struct
         {
             var verts = vertices.ToArray();
@@ -37,8 +37,8 @@ namespace Sledge.Rendering.Resources
 
             if (verts.Length == 0 || index.Length == 0) return;
 
-            var vsize = (uint) (verts.Length * Unsafe.SizeOf<T>());
-            var isize = (uint) index.Length * sizeof(uint);
+            var vsize = (uint)(verts.Length * Unsafe.SizeOf<T>());
+            var isize = (uint)index.Length * sizeof(uint);
 
             if (VertexBuffer == null || VertexBuffer.SizeInBytes < vsize)
             {
@@ -52,7 +52,7 @@ namespace Sledge.Rendering.Resources
             }
 
             _created = true;
-            
+
             _device.UpdateBuffer(VertexBuffer, 0, verts);
             _device.UpdateBuffer(IndexBuffer, 0, index);
 

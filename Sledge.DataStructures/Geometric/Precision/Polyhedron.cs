@@ -26,7 +26,7 @@ namespace Sledge.DataStructures.Geometric.Precision
         public Polyhedron(IEnumerable<Plane> planes)
         {
             var polygons = new List<Polygon>();
-            
+
             var list = planes.ToList();
             for (var i = 0; i < list.Count; i++)
             {
@@ -85,7 +85,7 @@ namespace Sledge.DataStructures.Geometric.Precision
 
             back = new Polyhedron(backPlanes);
             front = new Polyhedron(frontPlanes);
-            
+
             return true;
         }
 

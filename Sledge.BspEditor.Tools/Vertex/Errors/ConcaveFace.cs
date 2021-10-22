@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Sledge.BspEditor.Tools.Vertex.Selection;
+using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Sledge.BspEditor.Tools.Vertex.Selection;
-using Sledge.DataStructures.Geometric;
 
 namespace Sledge.BspEditor.Tools.Vertex.Errors
 {

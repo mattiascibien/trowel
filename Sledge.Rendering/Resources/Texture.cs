@@ -1,5 +1,4 @@
 ﻿using Sledge.Rendering.Engine;
-using Sledge.Rendering.Interfaces;
 using Veldrid;
 
 namespace Sledge.Rendering.Resources
@@ -14,7 +13,7 @@ namespace Sledge.Rendering.Resources
 
         public Texture(RenderContext context, int width, int height, byte[] data, TextureSampleType sampleType)
         {
-            uint w = (uint) width, h = (uint) height;
+            uint w = (uint)width, h = (uint)height;
 
             uint numMips = 4;
             if (w < 16 || h < 16)
@@ -40,7 +39,7 @@ namespace Sledge.Rendering.Resources
 
             var sampler = context.ResourceLoader.TextureSampler;
             if (sampleType == TextureSampleType.Point) sampler = context.ResourceLoader.OverlaySampler;
-            
+
             _view = device.ResourceFactory.CreateTextureView(_texture);
             _set = device.ResourceFactory.CreateResourceSet(new ResourceSetDescription(
                 context.ResourceLoader.TextureLayout, _view, sampler

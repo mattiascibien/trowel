@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common;
 using Sledge.Common.Easings;
 using Sledge.Common.Shell.Components;
@@ -14,6 +8,12 @@ using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Viewports;
 using Sledge.Shell;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Rendering.Viewport
 {
@@ -91,7 +91,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
             if (CameraNavigationViewportSettings.TimeToTopSpeed > 0)
             {
                 var downFor = (frame - _downMillis) / (CameraNavigationViewportSettings.TimeToTopSpeed * 1000);
-                if (downFor >= 0 && downFor < 1) units *= (float) _easing.Evaluate((double) downFor);
+                if (downFor >= 0 && downFor < 1) units *= (float)_easing.Evaluate((double)downFor);
             }
 
             if (FreeLook)
@@ -174,7 +174,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
         {
             if (!Viewport.IsUnlocked(this)) return;
             FreeLook = false;
-            
+
             if (FreeLookToggle)
             {
                 FreeLook = true;
@@ -287,20 +287,20 @@ namespace Sledge.BspEditor.Rendering.Viewport
 
                 // Scale with FOV for consistency
                 float fovscale = CameraNavigationViewportSettings.FOV / 60f;
-                float scale = fovscale * ( (float)CameraNavigationViewportSettings.Sensitivity / adjust );
+                float scale = fovscale * ((float)CameraNavigationViewportSettings.Sensitivity / adjust);
                 Camera.Pan(dx * scale);
                 Camera.Tilt(dy * scale);
             }
 
-            LastKnownX = Viewport.Width/2;
-            LastKnownY = Viewport.Height/2;
+            LastKnownX = Viewport.Width / 2;
+            LastKnownY = Viewport.Height / 2;
             Cursor.Position = Viewport.Control.PointToScreen(new Point(LastKnownX, LastKnownY));
         }
 
         public void MouseWheel(ViewportEvent e)
         {
             if (!Viewport.IsUnlocked(this) || e.Delta == 0) return;
-            Camera.Advance((e.Delta / (float) Math.Abs(e.Delta)) * (float) CameraNavigationViewportSettings.MouseWheelMoveDistance);
+            Camera.Advance((e.Delta / (float)Math.Abs(e.Delta)) * (float)CameraNavigationViewportSettings.MouseWheelMoveDistance);
         }
 
         public void MouseUp(ViewportEvent e)
@@ -326,7 +326,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
 
         public void DragStart(ViewportEvent e)
         {
-            
+
         }
 
         public void DragMove(ViewportEvent e)
@@ -348,8 +348,8 @@ namespace Sledge.BspEditor.Rendering.Viewport
         {
             if (FreeLook)
             {
-                LastKnownX = Viewport.Width/2;
-                LastKnownY = Viewport.Height/2;
+                LastKnownX = Viewport.Width / 2;
+                LastKnownY = Viewport.Height / 2;
                 Cursor.Position = Viewport.Control.PointToScreen(new Point(LastKnownX, LastKnownY));
             }
             else
@@ -371,7 +371,7 @@ namespace Sledge.BspEditor.Rendering.Viewport
             // If we're freelooking, consume any hotkeys using WASD/QE and ctrl or shift
             if (FreeLook)
             {
-                var k = (Keys) keys;
+                var k = (Keys)keys;
                 if (
                     k.HasFlag(Keys.W) || k.HasFlag(Keys.A) ||
                     k.HasFlag(Keys.S) || k.HasFlag(Keys.D) ||

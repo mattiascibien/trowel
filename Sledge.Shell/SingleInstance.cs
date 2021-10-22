@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sledge.Shell
 {

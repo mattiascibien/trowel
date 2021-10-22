@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.Composition;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Mutation;
@@ -9,6 +6,9 @@ using Sledge.BspEditor.Primitives.MapData;
 using Sledge.Common;
 using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
+using System.ComponentModel.Composition;
+using System.Numerics;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Commands.Modification
 {
@@ -23,14 +23,14 @@ namespace Sledge.BspEditor.Editing.Commands.Modification
         {
             return base.IsInContext(context, document) && !document.Selection.IsEmpty;
         }
-        
+
         protected override async Task Invoke(MapDocument document, CommandParameters parameters)
         {
             var selBox = document.Selection.GetSelectionBoundingBox();
 
             var axis = parameters.Get<Vector3>("Axis");
             var amount = parameters.Get<float>("Angle");
-            var radians = (float) MathHelper.DegreesToRadians(amount);
+            var radians = (float)MathHelper.DegreesToRadians(amount);
 
             var tl = document.Map.Data.GetOne<TransformationFlags>() ?? new TransformationFlags();
 

@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using Sledge.BspEditor.Tools.Properties;
+using System.IO;
 using System.Windows.Forms;
-using Sledge.BspEditor.Tools.Properties;
 
 namespace Sledge.BspEditor.Tools
 {

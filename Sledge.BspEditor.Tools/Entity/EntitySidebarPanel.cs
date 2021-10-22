@@ -1,15 +1,15 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Translations;
 using Sledge.DataStructures.GameData;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Entity
 {
@@ -48,7 +48,7 @@ namespace Sledge.BspEditor.Tools.Entity
             var sel = GetSelectedEntity()?.Name;
             var gameData = await doc.Environment.GetGameData();
             var defaultName = doc.Environment.DefaultPointEntity ?? "";
-            
+
             EntityTypeLabel.InvokeLater(() =>
             {
                 EntityTypeList.BeginUpdate();

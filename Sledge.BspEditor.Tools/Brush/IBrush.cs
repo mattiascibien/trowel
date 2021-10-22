@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Sledge.BspEditor.Primitives;
+﻿using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.BspEditor.Tools.Brush.Brushes.Controls;
 using Sledge.DataStructures.Geometric;
+using System.Collections.Generic;
 
 namespace Sledge.BspEditor.Tools.Brush
 {

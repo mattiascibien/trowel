@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Documents;
+﻿using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations.Data;
 using Sledge.BspEditor.Primitives.MapData;
@@ -12,6 +8,10 @@ using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Texture
 {
@@ -43,7 +43,7 @@ namespace Sledge.BspEditor.Tools.Texture
             {
                 foreach (var face in solid.Faces)
                 {
-                    var clone = (Face) face.Clone();
+                    var clone = (Face)face.Clone();
                     clone.Texture.Name = at.Name;
 
                     edit.Add(new RemoveMapObjectData(solid.ID, face));

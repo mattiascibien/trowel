@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Commands;
+﻿using Sledge.BspEditor.Commands;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Editing.Properties;
 using Sledge.BspEditor.Modification;
@@ -14,6 +10,10 @@ using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Shell.Menu;
 using Sledge.Common.Translations;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Editing.Commands
 {
@@ -27,7 +27,7 @@ namespace Sledge.BspEditor.Editing.Commands
     {
         public override string Name { get; set; } = "Move to world";
         public override string Details { get; set; } = "Delete all selected solid entities and move their brushes back to the world.";
-        
+
         protected override bool IsInContext(IContext context, MapDocument document)
         {
             return base.IsInContext(context, document) && document.Selection.Any(x => x is Entity);

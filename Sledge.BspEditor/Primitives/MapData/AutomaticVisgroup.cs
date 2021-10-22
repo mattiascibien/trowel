@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Sledge.BspEditor.Primitives.MapObjects;
+﻿using Sledge.BspEditor.Primitives.MapObjects;
 using Sledge.Common.Threading;
 using Sledge.Common.Transport;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Sledge.BspEditor.Primitives.MapData
 {

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Tools.Brush.Brushes.Controls;
 using Sledge.Common.Shell.Components;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Brush
 {
@@ -28,7 +28,7 @@ namespace Sledge.BspEditor.Tools.Brush
 
         public string Title { get; set; } = "Brush";
         public object Control => this;
-        
+
         #region Translations
 
         public string BrushType { set => this.InvokeLater(() => BrushTypeLabel.Text = value); }

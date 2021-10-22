@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Compile;
+﻿using Sledge.BspEditor.Compile;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Primitives.MapData;
 using Sledge.DataStructures.GameData;
 using Sledge.FileSystem;
 using Sledge.Providers.Texture;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Environment.Empty
 {
@@ -19,7 +19,7 @@ namespace Sledge.BspEditor.Environment.Empty
 
         public async Task<TextureCollection> GetTextureCollection()
         {
-             return new EmptyTextureCollection(new TexturePackage[0]);
+            return new EmptyTextureCollection(new TexturePackage[0]);
         }
 
         public async Task<GameData> GetGameData()

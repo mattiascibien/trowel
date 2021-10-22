@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sledge.Common.Shell.Documents;
+﻿using Sledge.Common.Shell.Documents;
 using Sledge.Common.Translations;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Sledge.Shell.Forms
 {
@@ -23,7 +17,7 @@ namespace Sledge.Shell.Forms
             {
                 DocumentList.Items.Add(document.Name + " *");
             }
-            
+
             CreateHandle();
         }
 
@@ -47,12 +41,13 @@ namespace Sledge.Shell.Forms
 
         public void Translate(ITranslationStringProvider translation)
         {
-            this.InvokeLater(() => {
-               SaveAllButton.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".SaveAll");
-               DiscardButton.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".DiscardAll");
-               CancelButton.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".Cancel");
-               UnsavedChangesLabel.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".UnsavedChangesMessage");
-               Text = translation.GetString(typeof(SaveChangesForm).FullName + ".Title");
+            this.InvokeLater(() =>
+            {
+                SaveAllButton.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".SaveAll");
+                DiscardButton.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".DiscardAll");
+                CancelButton.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".Cancel");
+                UnsavedChangesLabel.Text = translation.GetString(typeof(SaveChangesForm).FullName + ".UnsavedChangesMessage");
+                Text = translation.GetString(typeof(SaveChangesForm).FullName + ".Title");
             });
         }
     }

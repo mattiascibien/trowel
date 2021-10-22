@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.Common.Extensions;
+using Sledge.FileSystem;
+using Sledge.Packages;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Sledge.Common.Extensions;
-using Sledge.FileSystem;
-using Sledge.Packages;
 
 namespace Sledge.Providers.Texture.Wad.Format
 {
@@ -31,7 +31,7 @@ namespace Sledge.Providers.Texture.Wad.Format
             {
                 var sig = br.ReadFixedLengthString(Encoding.ASCII, 4);
                 if (sig != Signature) throw new PackageException("Unknown package signature: Expected '" + Signature + "', got '" + sig + "'.");
-                
+
                 _numTextures = br.ReadUInt32();
                 _lumpOffset = br.ReadUInt32();
 
@@ -83,21 +83,21 @@ namespace Sledge.Providers.Texture.Wad.Format
                 }
             }
         }
-        
+
         #endregion
 
         #region Loading
 
         private void ReadTextureEntries(BinaryReader br)
         {
-            var validTypes = Enum.GetValues(typeof (WadEntryType)).OfType<WadEntryType>().Select(x => (byte) x).ToArray();
+            var validTypes = Enum.GetValues(typeof(WadEntryType)).OfType<WadEntryType>().Select(x => (byte)x).ToArray();
             br.BaseStream.Position = _lumpOffset;
             for (var i = 0; i < _numTextures; i++)
             {
                 var offset = br.ReadUInt32();
                 var compressedLength = br.ReadUInt32();
                 var fullLength = br.ReadUInt32();
-                var type =  br.ReadByte();
+                var type = br.ReadByte();
                 var compressionType = br.ReadByte();
                 br.ReadBytes(2); // struct padding
                 var name = br.ReadFixedLengthString(Encoding.ASCII, 16).ToLowerInvariant();
@@ -105,7 +105,7 @@ namespace Sledge.Providers.Texture.Wad.Format
                 if (!validTypes.Contains(type)) continue; // Skip unsupported types
                 if (_entries.ContainsKey(name)) continue; // Don't add duplicates
 
-                _entries[name] = new WadEntry(name, (WadEntryType) type, offset, compressionType, compressedLength, fullLength);
+                _entries[name] = new WadEntry(name, (WadEntryType)type, offset, compressionType, compressedLength, fullLength);
             }
         }
 

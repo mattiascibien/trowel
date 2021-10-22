@@ -1,11 +1,11 @@
-﻿using System.Collections.Concurrent;
+﻿using LogicAndTrick.Oy;
+using Sledge.Common.Shell.Context;
+using Sledge.Common.Shell.Hooks;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using LogicAndTrick.Oy;
-using Sledge.Common.Shell.Context;
-using Sledge.Common.Shell.Hooks;
 
 namespace Sledge.Shell.Registers
 {
@@ -66,7 +66,7 @@ namespace Sledge.Shell.Registers
             _context.TryRemove(context, out o);
             Oy.Publish("Context:Changed", this);
         }
-        
+
         // IContext implementation
 
         public bool HasAll(params string[] context)
@@ -91,7 +91,7 @@ namespace Sledge.Shell.Registers
         {
             ContextInfo info;
             return _context.TryGetValue(context, out info) && info.Value != null && info.Value.IsAlive && info.Value.Target is T
-                ? (T) info.Value.Target
+                ? (T)info.Value.Target
                 : defaultValue;
         }
 
@@ -101,7 +101,7 @@ namespace Sledge.Shell.Registers
 
             if (_context.TryGetValue(context, out info) && info.ValueIs<T>())
             {
-                value = (T) info.Value.Target;
+                value = (T)info.Value.Target;
                 return true;
             }
 

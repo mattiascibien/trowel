@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Sledge.Common.Extensions;
+using Sledge.DataStructures;
+using Sledge.FileSystem;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
-using Sledge.Common.Extensions;
-using Sledge.DataStructures;
-using Sledge.FileSystem;
 
 namespace Sledge.Providers.Model.Mdl10.Format
 {
@@ -110,8 +110,8 @@ namespace Sledge.Providers.Model.Mdl10.Format
                 {
                     using (var br = new BinaryReader(s))
                     {
-                        var id = (ID) br.ReadInt32();
-                        var version = (Version) br.ReadInt32();
+                        var id = (ID)br.ReadInt32();
+                        var version = (Version)br.ReadInt32();
                         return id == ID.Idst && KnownVersions.Contains(version);
                     }
                 }
@@ -161,7 +161,7 @@ namespace Sledge.Providers.Model.Mdl10.Format
         }
 
         #region Reading
-        
+
         private void Read(BinaryReader br, Dictionary<string, BinaryReader> sequenceGroups)
         {
             Header = new Header
@@ -180,9 +180,9 @@ namespace Sledge.Providers.Model.Mdl10.Format
 
             // Read all the nums/offsets from the header
             var sections = new int[(int)Section.NumSections][];
-            for (var i = 0; i < (int) Section.NumSections; i++)
+            for (var i = 0; i < (int)Section.NumSections; i++)
             {
-                var sec = (Section) i;
+                var sec = (Section)i;
 
                 int indexNum;
                 if (sec == Section.Texture || sec == Section.Skin) indexNum = 3;
@@ -319,7 +319,7 @@ namespace Sledge.Providers.Model.Mdl10.Format
                 var texture = new Texture
                 {
                     Name = br.ReadFixedLengthString(Encoding.ASCII, 64),
-                    Flags = (TextureFlags) br.ReadInt32(),
+                    Flags = (TextureFlags)br.ReadInt32(),
                     Width = br.ReadInt32(),
                     Height = br.ReadInt32(),
                     Index = br.ReadInt32()
@@ -350,7 +350,7 @@ namespace Sledge.Providers.Model.Mdl10.Format
                 };
                 Skins.Add(skin);
             }
-            
+
             // Body parts
             num = SeekToSection(br, Section.BodyPart, sections);
             for (var i = 0; i < num; i++)
@@ -428,7 +428,7 @@ namespace Sledge.Providers.Model.Mdl10.Format
                 frames[i].Positions = new Vector3[numBones];
                 frames[i].Rotations = new Vector3[numBones];
             }
-            
+
             for (var i = 0; i < numBones; i++)
             {
                 var boneValues = new short[6][];
@@ -454,7 +454,7 @@ namespace Sledge.Providers.Model.Mdl10.Format
 
             return frames;
         }
-        
+
         private static short[] ReadAnimationFrameValues(BinaryReader br, int count)
         {
             /*
@@ -585,14 +585,14 @@ namespace Sledge.Providers.Model.Mdl10.Format
                 for (var i = 0; i < length - 2; i++)
                 {
                     //                    | TRIANGLE FAN    |                       | TRIANGLE STRIP (ODD) |         | TRIANGLE STRIP (EVEN) |
-                    var add = fan ? new[] { 0, i + 1, i + 2 } : (i % 2 == 1 ? new[] { i + 1, i, i + 2      } : new[] { i, i + 1, i + 2       });
+                    var add = fan ? new[] { 0, i + 1, i + 2 } : (i % 2 == 1 ? new[] { i + 1, i, i + 2 } : new[] { i, i + 1, i + 2 });
                     foreach (var idx in add)
                     {
                         var vert = pointData[idx * 4 + 0];
                         var norm = pointData[idx * 4 + 1];
                         var s = pointData[idx * 4 + 2];
                         var t = pointData[idx * 4 + 3];
-                        
+
                         meshVerts[vi++] = new MeshVertex
                         {
                             VertexBone = vertexBones[vert],

@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.ComponentModel.Composition;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Vertex.Controls
 {
@@ -12,7 +12,7 @@ namespace Sledge.BspEditor.Tools.Vertex.Controls
     public partial class VertexScaleControl : UserControl
     {
         #region Translations
-        
+
         public string ScaleDistance { set => this.InvokeLater(() => ScaleDistanceLabel.Text = value); }
         public string Reset { set => this.InvokeLater(() => ResetDistanceButton.Text = value); }
         public string ResetOrigin { set => this.InvokeLater(() => ResetOriginButton.Text = value); }

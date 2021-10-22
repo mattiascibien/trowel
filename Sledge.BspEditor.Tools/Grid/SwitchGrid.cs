@@ -1,7 +1,3 @@
-using System;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Grid;
 using Sledge.BspEditor.Modification;
@@ -11,6 +7,10 @@ using Sledge.Common.Shell.Commands;
 using Sledge.Common.Shell.Context;
 using Sledge.Common.Shell.Hotkeys;
 using Sledge.Common.Translations;
+using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sledge.BspEditor.Tools.Grid
 {
@@ -39,7 +39,7 @@ namespace Sledge.BspEditor.Tools.Grid
                 var current = doc.Map.Data.GetOne<GridData>()?.Grid;
                 var idx = current == null ? -1 : Array.FindIndex(_grids, x => x.IsInstance(current));
                 idx = (idx + 1) % _grids.Length;
-                
+
                 var grid = await _grids[idx].Create(doc.Environment);
 
                 var gd = new GridData(grid);

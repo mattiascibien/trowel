@@ -1,9 +1,9 @@
+using Sledge.Common.Shell.Hooks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Sledge.Common.Shell.Hooks;
 
 namespace Sledge.BspEditor.Editing.Components.Compile.Specification
 {

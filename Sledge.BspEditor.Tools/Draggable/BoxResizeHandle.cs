@@ -1,13 +1,13 @@
-using System;
-using System.Drawing;
-using System.Numerics;
-using System.Windows.Forms;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Rendering.Viewport;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Overlay;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Drawing;
+using System.Numerics;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Draggable
 {
@@ -178,7 +178,7 @@ namespace Sledge.BspEditor.Tools.Draggable
             var spos = camera.WorldToScreen(wpos) + soff;
 
             const int size = 4;
-            
+
             im.AddRectOutlineOpaque(new Vector2(spos.X - size, spos.Y - size), new Vector2(spos.X + size, spos.Y + size), Color.Black, Color.White);
         }
 

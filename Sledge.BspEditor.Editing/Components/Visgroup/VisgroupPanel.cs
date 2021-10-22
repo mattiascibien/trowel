@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Sledge.Common;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using Sledge.Common;
 
 namespace Sledge.BspEditor.Editing.Components.Visgroup
 {
@@ -50,7 +50,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
             get => VisgroupTree.StateImageList != null;
             set => VisgroupTree.StateImageList = value ? CheckboxImages : null;
         }
-        
+
         /// <summary>
         /// Get the currently selected visgroup
         /// </summary>
@@ -69,7 +69,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
             CheckboxImages.Images.Add("Unchecked", GetCheckboxBitmap(CheckBoxState.UncheckedNormal));
             CheckboxImages.Images.Add("Checked", GetCheckboxBitmap(CheckBoxState.CheckedNormal));
             CheckboxImages.Images.Add("Mixed", GetCheckboxBitmap(CheckBoxState.MixedNormal));
-            
+
             CheckboxImages.Images.Add("UncheckedDisabled", GetCheckboxBitmap(CheckBoxState.UncheckedDisabled));
             CheckboxImages.Images.Add("CheckedDisabled", GetCheckboxBitmap(CheckBoxState.CheckedDisabled));
             CheckboxImages.Images.Add("MixedDisabled", GetCheckboxBitmap(CheckBoxState.MixedDisabled));
@@ -154,7 +154,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         {
             var dic = new Dictionary<TreeNode, string>(nodes);
 
-            var children = nodes.SelectMany(x => x.Key.Nodes.OfType<TreeNode>().Select(n => new {x, n}))
+            var children = nodes.SelectMany(x => x.Key.Nodes.OfType<TreeNode>().Select(n => new { x, n }))
                 .ToDictionary(x => x.n, x => x.x.Value + "/" + x.n.Text);
             if (children.Any())
             {
@@ -166,7 +166,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
 
             return dic;
         }
-        
+
         /// <summary>
         /// Convert a CheckState into a string representation of the checkbox icon.
         /// </summary>
@@ -219,7 +219,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         {
             return GetAllNodes().FirstOrDefault(x => (x.Tag as VisgroupItem)?.Tag == tag);
         }
-        
+
         /// <summary>
         /// Alter the properties of an item in the panel and redraw the interface.
         /// </summary>
@@ -233,7 +233,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
             node.BackColor = visgroup.Colour;
             node.ForeColor = visgroup.Colour.GetIdealForegroundColour();
             if (node.Tag is VisgroupItem i) i.Tag = visgroup.Tag;
-            
+
             VisgroupTree.Invalidate();
         }
 
@@ -263,7 +263,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         {
             return GetAllNodes()
                 .Where(x => x.Tag is VisgroupItem)
-                .ToDictionary(x => (VisgroupItem) x.Tag, GetCheckState);
+                .ToDictionary(x => (VisgroupItem)x.Tag, GetCheckState);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
             var disabled = e.Node.StateImageKey.EndsWith("Disabled");
             if (disabled) return;
 
-            var vis = (VisgroupItem) e.Node.Tag;
+            var vis = (VisgroupItem)e.Node.Tag;
 
             // unchecked -> checked, checked -> unchecked, mixed -> unchecked
             var visible = e.Node.StateImageKey.StartsWith("Unchecked");
@@ -329,10 +329,10 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
 
         // https://stackoverflow.com/a/359896
 
-        [DllImport("user32.dll",  CharSet = CharSet.Unicode)]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern int GetScrollPos(IntPtr hWnd, int nBar);
 
-        [DllImport("user32.dll",  CharSet = CharSet.Unicode)]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern int SetScrollPos(IntPtr hWnd, int nBar, int nPos, bool bRedraw);
 
         private const int SbHorz = 0x0;
@@ -341,13 +341,13 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         private Point GetTreeViewScrollPos(TreeView treeView)
         {
             return new Point(
-                GetScrollPos(treeView.Handle, SbHorz), 
+                GetScrollPos(treeView.Handle, SbHorz),
                 GetScrollPos(treeView.Handle, SbVert));
         }
         private void SetTreeViewScrollPos(TreeView treeView, Point scrollPosition)
         {
             SetScrollPos(treeView.Handle, SbHorz, scrollPosition.X, true);
-            SetScrollPos(treeView.Handle, SbVert, scrollPosition.Y, true); 
+            SetScrollPos(treeView.Handle, SbVert, scrollPosition.Y, true);
         }
     }
 }

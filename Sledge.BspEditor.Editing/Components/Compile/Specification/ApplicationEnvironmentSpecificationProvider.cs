@@ -1,10 +1,10 @@
+using Sledge.Common.Transport;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Sledge.Common.Transport;
 
 namespace Sledge.BspEditor.Editing.Components.Compile.Specification
 {

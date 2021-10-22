@@ -1,9 +1,8 @@
-using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition.Hosting;
-using System.Windows.Forms;
 using LogicAndTrick.Oy;
 using Sledge.Common;
+using System;
+using System.ComponentModel.Composition.Hosting;
+using System.Windows.Forms;
 
 namespace Sledge.Shell
 {
@@ -23,7 +22,7 @@ namespace Sledge.Shell
         public static void Run()
         {
             var catalog = new AggregateCatalog();
-            
+
             catalog.Catalogs.Add(new ValidAssembliesInDirectoryContainer(AppDomain.CurrentDomain.BaseDirectory));
             BuildCatalog?.Invoke(null, catalog);
 
@@ -42,22 +41,22 @@ namespace Sledge.Shell
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += (s, e) => UnhandledException(e.Exception);
             AppDomain.CurrentDomain.UnhandledException += (s, e) => UnhandledException(e.ExceptionObject as Exception);
 
             Oy.UnhandledException += (s, e) => UnhandledException(e.Exception);
-            
+
             var shell = container.GetExport<Forms.Shell>().Value;
             var si = new SingleInstance(shell);
-            
+
             si.UnhandledException += (s, e) =>
             {
                 e.ExitApplication = false;
                 UnhandledException(e.Exception);
             };
-            
+
             si.Run(Environment.GetCommandLineArgs());
         }
 

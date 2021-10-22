@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using LogicAndTrick.Oy;
+﻿using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
 using Sledge.BspEditor.Modification.Operations;
@@ -19,6 +13,12 @@ using Sledge.Common.Shell.Documents;
 using Sledge.Common.Shell.Hooks;
 using Sledge.Common.Translations;
 using Sledge.Shell;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Editing.Components.Visgroup
 {
@@ -45,7 +45,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         public string ShowAllButton { set { this.InvokeLater(() => { btnShowAll.Text = value; }); } }
         public string NewButton { set { this.InvokeLater(() => { btnNew.Text = value; }); } }
         public string AutoVisgroups { get; set; }
-        
+
         private WeakReference<MapDocument> _activeDocument = new WeakReference<MapDocument>(null);
 
         public VisgroupSidebarPanel()
@@ -58,7 +58,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
         {
             return context.TryGet("ActiveDocument", out MapDocument _);
         }
-        
+
         private async Task DocumentActivated(IDocument doc)
         {
             var md = doc as MapDocument;
@@ -123,7 +123,7 @@ namespace Sledge.BspEditor.Editing.Components.Visgroup
 
             // add auto visgroups
             var autoVisgroups = document.Map.Data.Get<AutomaticVisgroup>().ToList();
-            var parents = new Dictionary<string, VisgroupItem> {{"", auto}};
+            var parents = new Dictionary<string, VisgroupItem> { { "", auto } };
             foreach (var av in autoVisgroups.OrderBy(x => x.Path.Length))
             {
                 VisgroupItem parent = auto;

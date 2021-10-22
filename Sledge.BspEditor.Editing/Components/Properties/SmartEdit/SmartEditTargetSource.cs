@@ -1,8 +1,8 @@
+using Sledge.BspEditor.Documents;
+using Sledge.DataStructures.GameData;
 using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Windows.Forms;
-using Sledge.BspEditor.Documents;
-using Sledge.DataStructures.GameData;
 
 namespace Sledge.BspEditor.Editing.Components.Properties.SmartEdit
 {
@@ -19,14 +19,14 @@ namespace Sledge.BspEditor.Editing.Components.Properties.SmartEdit
             Controls.Add(_textBox);
 
             _validationLabel = new Label
-                                   {
-                                       Text = "",
-                                       AutoSize = false,
-                                       Height = 18,
-                                       Width = 250,
-                                       TextAlign = ContentAlignment.BottomLeft,
-                                       ForeColor = Color.Red
-                                   };
+            {
+                Text = "",
+                AutoSize = false,
+                Height = 18,
+                Width = 250,
+                TextAlign = ContentAlignment.BottomLeft,
+                ForeColor = Color.Red
+            };
             Controls.Add(_validationLabel);
         }
 

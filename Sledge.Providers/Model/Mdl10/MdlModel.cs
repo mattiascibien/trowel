@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.InteropServices;
-using Sledge.DataStructures.Geometric;
+﻿using Sledge.DataStructures.Geometric;
 using Sledge.Providers.Model.Mdl10.Format;
 using Sledge.Rendering.Engine;
 using Sledge.Rendering.Interfaces;
@@ -13,6 +6,13 @@ using Sledge.Rendering.Pipelines;
 using Sledge.Rendering.Primitives;
 using Sledge.Rendering.Resources;
 using Sledge.Rendering.Viewports;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Linq;
+using System.Numerics;
+using System.Runtime.InteropServices;
 using Veldrid;
 using Buffer = Sledge.Rendering.Resources.Buffer;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
@@ -150,10 +150,10 @@ namespace Sledge.Providers.Model.Mdl10
             {
                 var part = Model.BodyParts[bpi];
                 _bodyPartIndices[bpi] = new uint[part.Models.Length];
-                
+
                 // Only render the first submodel
                 var model = part.Models[0];
-                _bodyPartIndices[bpi][0] = (uint) model.Meshes.Sum(x => x.Vertices.Length);
+                _bodyPartIndices[bpi][0] = (uint)model.Meshes.Sum(x => x.Vertices.Length);
 
                 foreach (var mesh in model.Meshes)
                 {
@@ -167,7 +167,7 @@ namespace Sledge.Providers.Model.Mdl10
                             Position = x.Vertex,
                             Normal = x.Normal,
                             Texture = (x.Texture + new Vector2(rec.X, rec.Y)) / new Vector2(texWidth, texHeight),
-                            Bone = (uint) x.VertexBone
+                            Bone = (uint)x.VertexBone
                         });
                         indices[texId].Add(vi);
                         wireframeIndices.Add(vi);
@@ -190,8 +190,8 @@ namespace Sledge.Providers.Model.Mdl10
             _buffer = engine.CreateBuffer();
             _buffer.Update(vertices, flatIndices);
 
-            _numTexturedIndices = (uint) (flatIndices.Length - wireframeIndices.Count);
-            _numWireframeIndices = (uint) wireframeIndices.Count;
+            _numTexturedIndices = (uint)(flatIndices.Length - wireframeIndices.Count);
+            _numWireframeIndices = (uint)wireframeIndices.Count;
         }
 
         public void Render(RenderContext context, IPipeline pipeline, IViewport viewport, CommandList cl)

@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using LogicAndTrick.Oy;
 using Sledge.BspEditor.Documents;
 using Sledge.BspEditor.Modification;
@@ -31,6 +23,14 @@ using Sledge.DataStructures.Geometric;
 using Sledge.Rendering.Cameras;
 using Sledge.Rendering.Engine;
 using Sledge.Shell.Input;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sledge.BspEditor.Tools.Selection
 {
@@ -55,7 +55,7 @@ namespace Sledge.BspEditor.Tools.Selection
 
         // Settings
 
-        [Setting] public int SelectionBoxBackgroundOpacity { get;set; } = 64;
+        [Setting] public int SelectionBoxBackgroundOpacity { get; set; } = 64;
         [Setting] public bool AutoSelectBox { get; set; } = false;
         [Setting] public bool Show3DWidgets { get; set; } = false;
         [Setting] public bool SelectByCenterHandles { get; set; } = true;
@@ -216,8 +216,8 @@ namespace Sledge.BspEditor.Tools.Selection
                 {
                     var f = camera.Flatten(new Vector3(1, 2, 3));
                     var e = camera.Expand(f);
-                    var flat = new {X = (int) f.X, Y = (int) f.Y, Z = (int) f.Z};
-                    var expand = new {X = (int) e.X, Y = (int) e.Y, Z = (int) e.Z};
+                    var flat = new { X = (int)f.X, Y = (int)f.Y, Z = (int)f.Z };
+                    var expand = new { X = (int)e.X, Y = (int)e.Y, Z = (int)e.Z };
 
                     var left = flat.X == 1 ? "AlignXMin" : (flat.X == 2 ? "AlignYMin" : "AlignZMin");
                     var right = flat.X == 1 ? "AlignXMax" : (flat.X == 2 ? "AlignYMax" : "AlignZMax");
@@ -499,7 +499,7 @@ namespace Sledge.BspEditor.Tools.Selection
 
             SetSelected(document, desel, sel, false, IgnoreGrouping());
         }
-        
+
         // /// <summary>
         // /// The select tool captures the mouse wheel when the mouse is down in the 3D viewport
         // /// </summary>
@@ -530,9 +530,9 @@ namespace Sledge.BspEditor.Tools.Selection
                 }
                 SetSelected(document, desel, sel, !ctrl, IgnoreGrouping());
             }
-            else if (_selectionBox.State.Action == BoxAction.Drawn 
-                && draggable is ResizeTransformHandle res 
-                && res.Handle == ResizeHandle.Center 
+            else if (_selectionBox.State.Action == BoxAction.Drawn
+                && draggable is ResizeTransformHandle res
+                && res.Handle == ResizeHandle.Center
                 && SelectionClickCycles)
             {
                 _selectionBox.Cycle();
@@ -644,7 +644,7 @@ namespace Sledge.BspEditor.Tools.Selection
             var add = used + unused;
             var click = camera.ScreenToWorld(e.X, e.Y);
             var box = new Box(click - add, click + add);
-            
+
             // Get the first element that intersects with the box, selecting or deselecting as needed
             Func<IMapObject, Box, bool> filter;
 
@@ -705,13 +705,13 @@ namespace Sledge.BspEditor.Tools.Selection
                 // If the shift key is down, select all brushes that are fully contained by the box
                 // If select by handles only is on, select all brushes with centers inside the box
                 // Otherwise, select all brushes that intersect with the box
-				Predicate<IMapObject> filter;
-				if ( KeyboardState.Shift )
-					filter = x => x.BoundingBox.ContainedWithin(boundingbox);
-				else if ( SelectionBoxOnlySelectsByCenterHandles )
-					filter = x => boundingbox.Vector3IsInside(x.BoundingBox.Center);
-				else
-					filter = x => true;
+                Predicate<IMapObject> filter;
+                if (KeyboardState.Shift)
+                    filter = x => x.BoundingBox.ContainedWithin(boundingbox);
+                else if (SelectionBoxOnlySelectsByCenterHandles)
+                    filter = x => boundingbox.Vector3IsInside(x.BoundingBox.Center);
+                else
+                    filter = x => true;
 
                 var nodes = GetBoxIntersections(document, boundingbox, filter);
 

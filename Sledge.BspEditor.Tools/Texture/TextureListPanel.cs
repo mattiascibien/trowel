@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Sledge.BspEditor.Environment;
+using Sledge.BspEditor.Environment.Empty;
+using Sledge.Common.Threading;
+using Sledge.Providers.Texture;
+using Sledge.Shell;
+using Sledge.Shell.Input;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sledge.BspEditor.Environment;
-using Sledge.BspEditor.Environment.Empty;
-using Sledge.Common.Threading;
-using Sledge.Providers.Texture;
-using Sledge.Shell;
-using Sledge.Shell.Input;
 using Timer = System.Windows.Forms.Timer;
 
 namespace Sledge.BspEditor.Tools.Texture
@@ -29,7 +29,7 @@ namespace Sledge.BspEditor.Tools.Texture
         /// Occurs when the list of highlighted textures has been changed
         /// </summary>
         public event EventHandler<List<string>> HighlightedTexturesChanged;
-        
+
         private string _lastSelectedItem;
         private string _scrollToItem;
         private ITextureStreamSource _streamSource;
@@ -141,14 +141,14 @@ namespace Sledge.BspEditor.Tools.Texture
             _scrollBar.ValueChanged += (sender, e) => Invalidate();
             Controls.Add(_scrollBar);
 
-            _updateTimer = new Timer {Enabled = false, Interval = 100};
+            _updateTimer = new Timer { Enabled = false, Interval = 100 };
             _updateTimer.Tick += (s, e) =>
             {
                 _updateTimer.Stop();
                 UpdateTexturePanels();
                 if (IsHandleCreated) Invalidate();
             };
-        
+
             _textures = new ThreadSafeList<string>();
             _selection = new ThreadSafeSet<string>();
             _controls = new ConcurrentDictionary<string, TextureControl>();
@@ -327,7 +327,7 @@ namespace Sledge.BspEditor.Tools.Texture
             _textures.AddRange(textures);
 
             if (_streamSource == null) _streamSource = _collection.GetStreamSource();
-            
+
             UpdateTextureList();
             ControlInvalidated();
 
@@ -506,7 +506,7 @@ namespace Sledge.BspEditor.Tools.Texture
         private void RenderTextures(Graphics g)
         {
             if (_textures.Count == 0 || _streamSource == null) return;
-            
+
             var y = _scrollBar.Value;
             var height = ClientRectangle.Height;
 

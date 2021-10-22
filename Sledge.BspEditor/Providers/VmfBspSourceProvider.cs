@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using Sledge.BspEditor.Environment;
+﻿using Sledge.BspEditor.Environment;
 using Sledge.BspEditor.Grid;
 using Sledge.BspEditor.Primitives;
 using Sledge.BspEditor.Primitives.MapData;
@@ -17,8 +8,16 @@ using Sledge.Common;
 using Sledge.Common.Shell.Documents;
 using Sledge.Common.Transport;
 using Sledge.DataStructures.Geometric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
 using Plane = Sledge.DataStructures.Geometric.Precision.Plane;
-using Polygon = Sledge.DataStructures.Geometric.Precision.Polygon;
 using Polyhedron = Sledge.DataStructures.Geometric.Precision.Polyhedron;
 using PVector3 = Sledge.DataStructures.Geometric.Precision.Vector3;
 
@@ -51,7 +50,7 @@ namespace Sledge.BspEditor.Providers
 
         public IEnumerable<FileExtensionInfo> SupportedFileExtensions { get; } = new[]
         {
-            new FileExtensionInfo("Valve map format", ".vmf", ".vmx"), 
+            new FileExtensionInfo("Valve map format", ".vmf", ".vmx"),
         };
 
         public async Task<BspFileLoadResult> Load(Stream stream, IEnvironment environment)
@@ -73,11 +72,11 @@ namespace Sledge.BspEditor.Providers
                     {
                         if (o.Name == nameof(Root))
                         {
-                            map.Root.Unclone((Root) _factory.Deserialise(o));
+                            map.Root.Unclone((Root)_factory.Deserialise(o));
                         }
                         else
                         {
-                            map.Data.Add((IMapData) _factory.Deserialise(o));
+                            map.Data.Add((IMapData)_factory.Deserialise(o));
                         }
                     }
                 }
@@ -131,7 +130,7 @@ namespace Sledge.BspEditor.Providers
 
             // A map of ids from the map -> ids from the vmf
             var mapToSource = new Dictionary<long, long>();
-            
+
             world.Editor.Apply(map.Root);
             mapToSource.Add(map.Root.ID, world.ID);
 
@@ -160,9 +159,9 @@ namespace Sledge.BspEditor.Providers
 
             // All objects should have proper ids by now, get rid of anything with parentid 0 just in case
             var grouped = tree.GroupBy(x => x.Editor.ParentID).Where(x => x.Key > 0).ToDictionary(x => x.Key, x => x.ToList());
-            
+
             // Step through each level of the tree and add them to their parent branches
-            var leaves = new List<IMapObject> {map.Root};
+            var leaves = new List<IMapObject> { map.Root };
 
             // Use a iteration limit of 1000. If the tree's that deep, I don't want to load your map anyway...
             for (var i = 0; i < 1000 && leaves.Any(); i++) // i.e. while (leaves.Any())
@@ -328,7 +327,7 @@ namespace Sledge.BspEditor.Providers
         {
             var self = VmfObject.Serialise(obj);
             if (self == null) return null;
-            
+
             var so = self.ToSerialisedObject();
 
             foreach (var solid in obj.FindAll().OfType<Solid>())
@@ -415,9 +414,9 @@ namespace Sledge.BspEditor.Providers
 
             list.Add(so);
         }
-        
+
         #endregion
-        
+
         private static string FormatVector3(Vector3 c)
         {
             return $"{FormatDecimal(c.X)} {FormatDecimal(c.Y)} {FormatDecimal(c.Z)}";
@@ -433,7 +432,7 @@ namespace Sledge.BspEditor.Providers
             var spl = input.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
             if (spl.Length == expected)
             {
-                var parsed = spl.Select(x => float.TryParse(x, NumberStyles.Float, CultureInfo.InvariantCulture, out var o) ? (float?) o : null).ToList();
+                var parsed = spl.Select(x => float.TryParse(x, NumberStyles.Float, CultureInfo.InvariantCulture, out var o) ? (float?)o : null).ToList();
                 if (parsed.All(x => x.HasValue))
                 {
                     // ReSharper disable once PossibleInvalidOperationException
@@ -450,7 +449,7 @@ namespace Sledge.BspEditor.Providers
             var spl = input.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
             if (spl.Length == expected)
             {
-                var parsed = spl.Select(x => double.TryParse(x, NumberStyles.Float, CultureInfo.InvariantCulture, out var o) ? (double?) o : null).ToList();
+                var parsed = spl.Select(x => double.TryParse(x, NumberStyles.Float, CultureInfo.InvariantCulture, out var o) ? (double?)o : null).ToList();
                 if (parsed.All(x => x.HasValue))
                 {
                     // ReSharper disable once PossibleInvalidOperationException
@@ -544,9 +543,9 @@ namespace Sledge.BspEditor.Providers
                 }
             }
 
-            public VmfEntity(Entity ent) : this((IMapObject) ent)
+            public VmfEntity(Entity ent) : this((IMapObject)ent)
             {
-                
+
             }
 
             protected VmfEntity(IMapObject obj) : base(obj)
@@ -557,7 +556,7 @@ namespace Sledge.BspEditor.Providers
 
             public override IEnumerable<VmfObject> Flatten()
             {
-                return Objects.SelectMany(x => x.Flatten()).Union(new[] {this});
+                return Objects.SelectMany(x => x.Flatten()).Union(new[] { this });
             }
 
             public override IMapObject ToMapObject(UniqueNumberGenerator generator)
@@ -771,7 +770,7 @@ namespace Sledge.BspEditor.Providers
                 LightmapScale = obj.Get("lightmapscale", 0);
                 SmoothingGroups = obj.Get("smoothing_groups", "");
 
-                if (ParseDoubleArray(obj.Get("plane", ""), new[] {' ', '(', ')'}, 9, out double[] pl))
+                if (ParseDoubleArray(obj.Get("plane", ""), new[] { ' ', '(', ')' }, 9, out double[] pl))
                 {
                     Plane = new Plane(
                         new PVector3(pl[0], pl[1], pl[2]).Round(),
@@ -789,13 +788,13 @@ namespace Sledge.BspEditor.Providers
                     Name = obj.Get("material", ""),
                     Rotation = obj.Get("rotation", 0f)
                 };
-                if (ParseFloatArray(obj.Get("uaxis", ""), new[] {' ', '[', ']'}, 5, out float[] ua))
+                if (ParseFloatArray(obj.Get("uaxis", ""), new[] { ' ', '[', ']' }, 5, out float[] ua))
                 {
                     Texture.UAxis = new Vector3(ua[0], ua[1], ua[2]);
                     Texture.XShift = ua[3];
                     Texture.XScale = ua[4];
                 }
-                if (ParseFloatArray(obj.Get("vaxis", ""), new[] {' ', '[', ']'}, 5, out float[] va))
+                if (ParseFloatArray(obj.Get("vaxis", ""), new[] { ' ', '[', ']' }, 5, out float[] va))
                 {
                     Texture.VAxis = new Vector3(va[0], va[1], va[2]);
                     Texture.YShift = va[3];
