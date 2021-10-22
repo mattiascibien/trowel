@@ -8,6 +8,8 @@ namespace Sledge.Packages.Vpk
 {
     internal class VpkPackageStreamSource : IPackageStreamSource
     {
+        private readonly object _lock = new object();
+
         private readonly VpkDirectory _directory;
         private readonly Dictionary<string, VpkEntry> _entries;
         private readonly Dictionary<ushort, Stream> _streams;
@@ -145,7 +147,7 @@ namespace Sledge.Packages.Vpk
             var entry = GetEntry(path);
             if (entry == null) throw new FileNotFoundException();
 
-            lock (this)
+            lock (_lock)
             {
                 if (!_streams.ContainsKey(entry.ArchiveIndex))
                 {
