@@ -810,13 +810,13 @@ namespace Sledge.BspEditor.Providers
                 var count = obj.Get("count", 0);
                 for (var i = 0; i < count; i++)
                 {
-                    var pt = obj.Get<Vector3>("vertex" + i);
+                    var pt = obj.Get<Vector3?>("vertex" + i);
                     if (pt == null)
                     {
                         Vertices.Clear();
                         break;
                     }
-                    Vertices.Add(pt);
+                    Vertices.Add(pt.Value);
                 }
             }
 
