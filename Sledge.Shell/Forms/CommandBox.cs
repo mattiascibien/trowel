@@ -74,7 +74,7 @@ namespace Sledge.Shell.Forms
         private static readonly Color ButtonOverColour = Color.FromArgb(255, 253, 244, 191);
         private static readonly Color ButtonOverBorderColour = Color.FromArgb(255, 229, 195, 101);
 
-        private async void UpdateFilter()
+        private void UpdateFilter()
         {
             try
             {
