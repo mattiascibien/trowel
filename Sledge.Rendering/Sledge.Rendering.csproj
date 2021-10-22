@@ -106,9 +106,4 @@
     <EmbeddedResource Include="Shaders\imgui.frag.hlsl" />
     <EmbeddedResource Include="Shaders\imgui.vert.hlsl" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="cimgui.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 </Project>
