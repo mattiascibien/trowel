@@ -14,7 +14,7 @@ import org.apache.commons.io.IOUtils;
 /*
 using System.Collections.Generic;
 
-namespace Sledge.Editor.GameFiles
+namespace Trowel.Editor.GameFiles
 {
     public static class SteamGames
     {
@@ -64,7 +64,7 @@ public class ExtractBlobData
         fw.write("\r\n");
         fw.write("using System.Collections.Generic;\r\n");
         fw.write("\r\n");
-        fw.write("namespace Sledge.Editor.GameFiles\r\n");
+        fw.write("namespace Trowel.Editor.GameFiles\r\n");
         fw.write("{\r\n");
         fw.write("    public static class SteamGames\r\n");
         fw.write("    {\r\n");

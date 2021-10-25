@@ -1,0 +1,11 @@
+﻿{
+    "@Meta": {
+        "Base": "Trowel.Editor",
+        "Language": "fr",
+        "LanguageDescription": "Français / French",
+        "Inherit": "en"
+    },
+    "ShellSetup": {
+        "Title": "Editeur Trowel"
+    }
+}
