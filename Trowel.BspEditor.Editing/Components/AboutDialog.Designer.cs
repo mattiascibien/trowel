@@ -64,7 +64,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Trowel.BspEditor.Editing.Properties.Resources.Trowel_large;
             this.pictureBox1.Location = new System.Drawing.Point(14, 14);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";
