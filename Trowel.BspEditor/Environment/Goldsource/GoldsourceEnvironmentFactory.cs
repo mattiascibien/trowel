@@ -12,65 +12,49 @@ namespace Trowel.BspEditor.Environment.Goldsource
     public class GoldsourceEnvironmentFactory : IEnvironmentFactory
     {
         public Type Type => typeof(GoldsourceEnvironment);
-        public string TypeName => "GoldsourceEnvironment";
+        public string TypeName => Type.Name;
         public string Description { get; set; } = "Goldsource";
-
-        private T GetVal<T>(Dictionary<string, string> dictionary, string key, T def = default(T))
-        {
-            if (dictionary.TryGetValue(key, out var val))
-            {
-                try
-                {
-                    return (T)Convert.ChangeType(val, typeof(T), CultureInfo.InvariantCulture);
-                }
-                catch
-                {
-                    //
-                }
-            }
-            return def;
-        }
-
+               
         public IEnvironment Deserialise(SerialisedEnvironment environment)
         {
             var gse = new GoldsourceEnvironment()
             {
                 ID = environment.ID,
                 Name = environment.Name,
-                BaseDirectory = GetVal(environment.Properties, "BaseDirectory", ""),
-                GameDirectory = GetVal(environment.Properties, "GameDirectory", ""),
-                ModDirectory = GetVal(environment.Properties, "ModDirectory", ""),
-                GameExe = GetVal(environment.Properties, "GameExe", ""),
-                LoadHdModels = GetVal(environment.Properties, "LoadHdModels", true),
+                BaseDirectory = this.GetVal(environment.Properties, "BaseDirectory", ""),
+                GameDirectory = this.GetVal(environment.Properties, "GameDirectory", ""),
+                ModDirectory = this.GetVal(environment.Properties, "ModDirectory", ""),
+                GameExe = this.GetVal(environment.Properties, "GameExe", ""),
+                LoadHdModels = this.GetVal(environment.Properties, "LoadHdModels", true),
 
-                FgdFiles = GetVal(environment.Properties, "FgdFiles", "").Split(';').Where(x => !String.IsNullOrWhiteSpace(x)).ToList(),
-                DefaultPointEntity = GetVal(environment.Properties, "DefaultPointEntity", ""),
-                DefaultBrushEntity = GetVal(environment.Properties, "DefaultBrushEntity", ""),
-                OverrideMapSize = GetVal(environment.Properties, "OverrideMapSize", false),
-                MapSizeLow = GetVal(environment.Properties, "MapSizeLow", -4096m),
-                MapSizeHigh = GetVal(environment.Properties, "MapSizeHigh", 4096m),
-                IncludeFgdDirectoriesInEnvironment = GetVal(environment.Properties, "IncludeFgdDirectoriesInEnvironment", true),
+                FgdFiles = this.GetVal(environment.Properties, "FgdFiles", "").Split(';').Where(x => !String.IsNullOrWhiteSpace(x)).ToList(),
+                DefaultPointEntity = this.GetVal(environment.Properties, "DefaultPointEntity", ""),
+                DefaultBrushEntity = this.GetVal(environment.Properties, "DefaultBrushEntity", ""),
+                OverrideMapSize = this.GetVal(environment.Properties, "OverrideMapSize", false),
+                MapSizeLow = this.GetVal(environment.Properties, "MapSizeLow", -4096m),
+                MapSizeHigh = this.GetVal(environment.Properties, "MapSizeHigh", 4096m),
+                IncludeFgdDirectoriesInEnvironment = this.GetVal(environment.Properties, "IncludeFgdDirectoriesInEnvironment", true),
 
-                ToolsDirectory = GetVal(environment.Properties, "ToolsDirectory", ""),
-                IncludeToolsDirectoryInEnvironment = GetVal(environment.Properties, "IncludeToolsDirectoryInEnvironment", true),
-                BspExe = GetVal(environment.Properties, "BspExe", ""),
-                CsgExe = GetVal(environment.Properties, "CsgExe", ""),
-                VisExe = GetVal(environment.Properties, "VisExe", ""),
-                RadExe = GetVal(environment.Properties, "RadExe", ""),
+                ToolsDirectory = this.GetVal(environment.Properties, "ToolsDirectory", ""),
+                IncludeToolsDirectoryInEnvironment = this.GetVal(environment.Properties, "IncludeToolsDirectoryInEnvironment", true),
+                BspExe = this.GetVal(environment.Properties, "BspExe", ""),
+                CsgExe = this.GetVal(environment.Properties, "CsgExe", ""),
+                VisExe = this.GetVal(environment.Properties, "VisExe", ""),
+                RadExe = this.GetVal(environment.Properties, "RadExe", ""),
 
-                GameCopyBsp = GetVal(environment.Properties, "GameCopyBsp", true),
-                GameRun = GetVal(environment.Properties, "GameRun", true),
-                GameAsk = GetVal(environment.Properties, "GameAsk", true),
+                GameCopyBsp = this.GetVal(environment.Properties, "GameCopyBsp", true),
+                GameRun = this.GetVal(environment.Properties, "GameRun", true),
+                GameAsk = this.GetVal(environment.Properties, "GameAsk", true),
 
-                MapCopyBsp = GetVal(environment.Properties, "MapCopyBsp", false),
-                MapCopyMap = GetVal(environment.Properties, "MapCopyMap", false),
-                MapCopyLog = GetVal(environment.Properties, "MapCopyLog", false),
-                MapCopyErr = GetVal(environment.Properties, "MapCopyErr", false),
-                MapCopyRes = GetVal(environment.Properties, "MapCopyRes", false),
+                MapCopyBsp = this.GetVal(environment.Properties, "MapCopyBsp", false),
+                MapCopyMap = this.GetVal(environment.Properties, "MapCopyMap", false),
+                MapCopyLog = this.GetVal(environment.Properties, "MapCopyLog", false),
+                MapCopyErr = this.GetVal(environment.Properties, "MapCopyErr", false),
+                MapCopyRes = this.GetVal(environment.Properties, "MapCopyRes", false),
 
-                DefaultTextureScale = GetVal(environment.Properties, "DefaultTextureScale", 1m),
-                ExcludedWads = GetVal(environment.Properties, "ExcludedWads", "").Split(';').Where(x => !String.IsNullOrWhiteSpace(x)).ToList(),
-                AdditionalTextureFiles = GetVal(environment.Properties, "AdditionalTextureFiles", "").Split(';').Where(x => !String.IsNullOrWhiteSpace(x)).ToList(),
+                DefaultTextureScale = this.GetVal(environment.Properties, "DefaultTextureScale", 1m),
+                ExcludedWads = this.GetVal(environment.Properties, "ExcludedWads", "").Split(';').Where(x => !String.IsNullOrWhiteSpace(x)).ToList(),
+                AdditionalTextureFiles = this.GetVal(environment.Properties, "AdditionalTextureFiles", "").Split(';').Where(x => !String.IsNullOrWhiteSpace(x)).ToList(),
             };
             return gse;
         }
