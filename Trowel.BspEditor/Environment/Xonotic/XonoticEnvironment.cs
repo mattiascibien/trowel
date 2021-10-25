@@ -8,13 +8,21 @@ using System.Threading.Tasks;
 using Trowel.BspEditor.Compile;
 using Trowel.BspEditor.Documents;
 using Trowel.BspEditor.Primitives.MapData;
+using Trowel.Common;
 using Trowel.DataStructures.GameData;
 using Trowel.FileSystem;
+using Trowel.Providers.GameData;
+using Trowel.Providers.Texture;
 
 namespace Trowel.BspEditor.Environment.Xonotic
 {
     public class XonoticEnvironment : IEnvironment
     {
+        private readonly ITexturePackageProvider _pk3Provider;
+        private readonly IGameDataProvider _fgdProvider;
+        private readonly Lazy<Task<TextureCollection>> _textureCollection;
+        private readonly Lazy<Task<GameData>> _gameData;
+
         public string Engine => "Darkplaces";
 
         public string ID { get; set; }
@@ -24,6 +32,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
         public string FgdFile { get; set; }
 
         private IFile _root;
+
         public IFile Root
         {
             get
@@ -58,6 +67,15 @@ namespace Trowel.BspEditor.Environment.Xonotic
         public string BaseDirectory { get; set; }
         public string GameExe { get; internal set; }
 
+        public XonoticEnvironment()
+        {
+            _pk3Provider = Container.Get<ITexturePackageProvider>("Pk3");
+            _fgdProvider = Container.Get<IGameDataProvider>("Fgd");
+            _gameData = new Lazy<Task<GameData>>(MakeGameDataAsync);
+            _textureCollection = new Lazy<Task<TextureCollection>>(MakeTextureCollectionAsync);
+        }
+
+
         public void AddData(IEnvironmentData data)
         {
             throw new NotImplementedException();
@@ -78,19 +96,26 @@ namespace Trowel.BspEditor.Environment.Xonotic
             throw new NotImplementedException();
         }
 
-        public Task<GameData> GetGameData()
+        public Task<GameData> GetGameData() =>  _gameData.Value;
+
+        private async Task<TextureCollection> MakeTextureCollectionAsync()
         {
-            throw new NotImplementedException();
+            var pk3Refs = _pk3Provider.GetPackagesInFile(Root);
+            var packages = await _pk3Provider.GetTexturePackages(pk3Refs);
+
+            return new XonoticTextureCollection(packages);
         }
 
-        public Task<TextureCollection> GetTextureCollection()
+        private Task<GameData> MakeGameDataAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(_fgdProvider.GetGameDataFromFiles(new [] { FgdFile }));
         }
+
+        public Task<TextureCollection> GetTextureCollection() => _textureCollection.Value;
 
         public Task UpdateDocumentData(MapDocument document)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

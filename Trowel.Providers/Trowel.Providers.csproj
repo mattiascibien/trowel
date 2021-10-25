@@ -31,4 +31,7 @@
     <ProjectReference Include="..\Trowel.Packages\Trowel.Packages.csproj" />
     <ProjectReference Include="..\Trowel.Rendering\Trowel.Rendering.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Texture\Pk3\" />
+  </ItemGroup>
 </Project>

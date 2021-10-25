@@ -15,7 +15,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
         public override IEnumerable<string> GetBrowsableTextures()
         {
             var hs = new HashSet<string>();
-            foreach (var pack in Packages.Where(x => x.Type == "pk3")) hs.UnionWith(pack.Textures);
+            foreach (var pack in Packages.Where(x => x.Type == "Pk3")) hs.UnionWith(pack.Textures);
             return hs;
         }
 
