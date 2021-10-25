@@ -36,21 +36,19 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.btnGameDirBrowse = new System.Windows.Forms.Button();
             this.txtGameDir = new System.Windows.Forms.TextBox();
             this.grpFgds = new System.Windows.Forms.GroupBox();
-            this.lstFgds = new System.Windows.Forms.ListView();
-            this.colFgdName = new System.Windows.Forms.ColumnHeader();
-            this.colFgdPath = new System.Windows.Forms.ColumnHeader();
             this.cmbDefaultPointEntity = new System.Windows.Forms.ComboBox();
             this.cmbDefaultBrushEntity = new System.Windows.Forms.ComboBox();
             this.chkIncludeFgdDirectories = new System.Windows.Forms.CheckBox();
             this.cmbMapSizeOverrideHigh = new System.Windows.Forms.ComboBox();
             this.lblDefaultPointEntity = new System.Windows.Forms.Label();
             this.lblMapSizeOverrideHigh = new System.Windows.Forms.Label();
-            this.btnRemoveFgd = new System.Windows.Forms.Button();
             this.cmbMapSizeOverrideLow = new System.Windows.Forms.ComboBox();
             this.lblDefaultBrushEntity = new System.Windows.Forms.Label();
             this.chkOverrideMapSize = new System.Windows.Forms.CheckBox();
-            this.btnAddFgd = new System.Windows.Forms.Button();
             this.lblMapSizeOverrideLow = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtFdgFile = new System.Windows.Forms.TextBox();
+            this.buttonFdgFileBrowse = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpFgds.SuspendLayout();
             this.SuspendLayout();
@@ -126,52 +124,27 @@ namespace Trowel.BspEditor.Environment.Xonotic
             // 
             // grpFgds
             // 
-            this.grpFgds.Controls.Add(this.lstFgds);
+            this.grpFgds.Controls.Add(this.buttonFdgFileBrowse);
+            this.grpFgds.Controls.Add(this.label1);
+            this.grpFgds.Controls.Add(this.txtFdgFile);
             this.grpFgds.Controls.Add(this.cmbDefaultPointEntity);
             this.grpFgds.Controls.Add(this.cmbDefaultBrushEntity);
             this.grpFgds.Controls.Add(this.chkIncludeFgdDirectories);
             this.grpFgds.Controls.Add(this.cmbMapSizeOverrideHigh);
             this.grpFgds.Controls.Add(this.lblDefaultPointEntity);
             this.grpFgds.Controls.Add(this.lblMapSizeOverrideHigh);
-            this.grpFgds.Controls.Add(this.btnRemoveFgd);
             this.grpFgds.Controls.Add(this.cmbMapSizeOverrideLow);
             this.grpFgds.Controls.Add(this.lblDefaultBrushEntity);
             this.grpFgds.Controls.Add(this.chkOverrideMapSize);
-            this.grpFgds.Controls.Add(this.btnAddFgd);
             this.grpFgds.Controls.Add(this.lblMapSizeOverrideLow);
             this.grpFgds.Location = new System.Drawing.Point(4, 93);
             this.grpFgds.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.grpFgds.Name = "grpFgds";
             this.grpFgds.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.grpFgds.Size = new System.Drawing.Size(536, 351);
+            this.grpFgds.Size = new System.Drawing.Size(536, 234);
             this.grpFgds.TabIndex = 48;
             this.grpFgds.TabStop = false;
             this.grpFgds.Text = "Game Data Files";
-            // 
-            // lstFgds
-            // 
-            this.lstFgds.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colFgdName,
-            this.colFgdPath});
-            this.lstFgds.FullRowSelect = true;
-            this.lstFgds.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lstFgds.HideSelection = false;
-            this.lstFgds.Location = new System.Drawing.Point(7, 22);
-            this.lstFgds.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.lstFgds.Name = "lstFgds";
-            this.lstFgds.ShowItemToolTips = true;
-            this.lstFgds.Size = new System.Drawing.Size(416, 132);
-            this.lstFgds.TabIndex = 34;
-            this.lstFgds.UseCompatibleStateImageBehavior = false;
-            this.lstFgds.View = System.Windows.Forms.View.Details;
-            // 
-            // colFgdName
-            // 
-            this.colFgdName.Text = "Name";
-            // 
-            // colFgdPath
-            // 
-            this.colFgdPath.Text = "Path";
             // 
             // cmbDefaultPointEntity
             // 
@@ -181,7 +154,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.cmbDefaultPointEntity.IntegralHeight = false;
             this.cmbDefaultPointEntity.Items.AddRange(new object[] {
             "Valve"});
-            this.cmbDefaultPointEntity.Location = new System.Drawing.Point(191, 162);
+            this.cmbDefaultPointEntity.Location = new System.Drawing.Point(192, 51);
             this.cmbDefaultPointEntity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDefaultPointEntity.Name = "cmbDefaultPointEntity";
             this.cmbDefaultPointEntity.Size = new System.Drawing.Size(231, 23);
@@ -195,7 +168,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.cmbDefaultBrushEntity.IntegralHeight = false;
             this.cmbDefaultBrushEntity.Items.AddRange(new object[] {
             "Valve"});
-            this.cmbDefaultBrushEntity.Location = new System.Drawing.Point(191, 193);
+            this.cmbDefaultBrushEntity.Location = new System.Drawing.Point(192, 80);
             this.cmbDefaultBrushEntity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDefaultBrushEntity.Name = "cmbDefaultBrushEntity";
             this.cmbDefaultBrushEntity.Size = new System.Drawing.Size(231, 23);
@@ -205,7 +178,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             // 
             this.chkIncludeFgdDirectories.Checked = true;
             this.chkIncludeFgdDirectories.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIncludeFgdDirectories.Location = new System.Drawing.Point(7, 224);
+            this.chkIncludeFgdDirectories.Location = new System.Drawing.Point(8, 109);
             this.chkIncludeFgdDirectories.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chkIncludeFgdDirectories.Name = "chkIncludeFgdDirectories";
             this.chkIncludeFgdDirectories.Size = new System.Drawing.Size(416, 28);
@@ -224,7 +197,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             "32768",
             "65536",
             "131072"});
-            this.cmbMapSizeOverrideHigh.Location = new System.Drawing.Point(88, 317);
+            this.cmbMapSizeOverrideHigh.Location = new System.Drawing.Point(89, 202);
             this.cmbMapSizeOverrideHigh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbMapSizeOverrideHigh.Name = "cmbMapSizeOverrideHigh";
             this.cmbMapSizeOverrideHigh.Size = new System.Drawing.Size(66, 23);
@@ -232,7 +205,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             // 
             // lblDefaultPointEntity
             // 
-            this.lblDefaultPointEntity.Location = new System.Drawing.Point(8, 163);
+            this.lblDefaultPointEntity.Location = new System.Drawing.Point(8, 51);
             this.lblDefaultPointEntity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDefaultPointEntity.Name = "lblDefaultPointEntity";
             this.lblDefaultPointEntity.Size = new System.Drawing.Size(176, 23);
@@ -242,23 +215,13 @@ namespace Trowel.BspEditor.Environment.Xonotic
             // 
             // lblMapSizeOverrideHigh
             // 
-            this.lblMapSizeOverrideHigh.Location = new System.Drawing.Point(6, 316);
+            this.lblMapSizeOverrideHigh.Location = new System.Drawing.Point(7, 201);
             this.lblMapSizeOverrideHigh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapSizeOverrideHigh.Name = "lblMapSizeOverrideHigh";
             this.lblMapSizeOverrideHigh.Size = new System.Drawing.Size(75, 23);
             this.lblMapSizeOverrideHigh.TabIndex = 43;
             this.lblMapSizeOverrideHigh.Text = "High";
             this.lblMapSizeOverrideHigh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnRemoveFgd
-            // 
-            this.btnRemoveFgd.Location = new System.Drawing.Point(430, 55);
-            this.btnRemoveFgd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnRemoveFgd.Name = "btnRemoveFgd";
-            this.btnRemoveFgd.Size = new System.Drawing.Size(86, 27);
-            this.btnRemoveFgd.TabIndex = 28;
-            this.btnRemoveFgd.Text = "Remove";
-            this.btnRemoveFgd.UseVisualStyleBackColor = true;
             // 
             // cmbMapSizeOverrideLow
             // 
@@ -271,7 +234,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             "-32768",
             "-65536",
             "-131072"});
-            this.cmbMapSizeOverrideLow.Location = new System.Drawing.Point(88, 286);
+            this.cmbMapSizeOverrideLow.Location = new System.Drawing.Point(89, 171);
             this.cmbMapSizeOverrideLow.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbMapSizeOverrideLow.Name = "cmbMapSizeOverrideLow";
             this.cmbMapSizeOverrideLow.Size = new System.Drawing.Size(66, 23);
@@ -279,7 +242,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             // 
             // lblDefaultBrushEntity
             // 
-            this.lblDefaultBrushEntity.Location = new System.Drawing.Point(8, 194);
+            this.lblDefaultBrushEntity.Location = new System.Drawing.Point(8, 80);
             this.lblDefaultBrushEntity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDefaultBrushEntity.Name = "lblDefaultBrushEntity";
             this.lblDefaultBrushEntity.Size = new System.Drawing.Size(176, 23);
@@ -291,7 +254,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             // 
             this.chkOverrideMapSize.Checked = true;
             this.chkOverrideMapSize.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOverrideMapSize.Location = new System.Drawing.Point(7, 255);
+            this.chkOverrideMapSize.Location = new System.Drawing.Point(8, 140);
             this.chkOverrideMapSize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chkOverrideMapSize.Name = "chkOverrideMapSize";
             this.chkOverrideMapSize.Size = new System.Drawing.Size(229, 28);
@@ -299,25 +262,46 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.chkOverrideMapSize.Text = "Override FGD map size";
             this.chkOverrideMapSize.UseVisualStyleBackColor = true;
             // 
-            // btnAddFgd
-            // 
-            this.btnAddFgd.Location = new System.Drawing.Point(430, 22);
-            this.btnAddFgd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddFgd.Name = "btnAddFgd";
-            this.btnAddFgd.Size = new System.Drawing.Size(86, 27);
-            this.btnAddFgd.TabIndex = 27;
-            this.btnAddFgd.Text = "Add...";
-            this.btnAddFgd.UseVisualStyleBackColor = true;
-            // 
             // lblMapSizeOverrideLow
             // 
-            this.lblMapSizeOverrideLow.Location = new System.Drawing.Point(7, 287);
+            this.lblMapSizeOverrideLow.Location = new System.Drawing.Point(8, 172);
             this.lblMapSizeOverrideLow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMapSizeOverrideLow.Name = "lblMapSizeOverrideLow";
             this.lblMapSizeOverrideLow.Size = new System.Drawing.Size(74, 23);
             this.lblMapSizeOverrideLow.TabIndex = 40;
             this.lblMapSizeOverrideLow.Text = "Low";
             this.lblMapSizeOverrideLow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(7, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 23);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "FGD File";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtFdgFile
+            // 
+            this.txtFdgFile.Location = new System.Drawing.Point(125, 22);
+            this.txtFdgFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtFdgFile.Name = "txtFdgFile";
+            this.txtFdgFile.Size = new System.Drawing.Size(298, 23);
+            this.txtFdgFile.TabIndex = 45;
+            this.txtFdgFile.Text = "example: C:\\Xonotic\\xonotic.fgd";
+            this.txtFdgFile.TextChanged += new System.EventHandler(this.FdgFileChanged);
+            // 
+            // buttonFdgFileBrowse
+            // 
+            this.buttonFdgFileBrowse.Location = new System.Drawing.Point(429, 22);
+            this.buttonFdgFileBrowse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonFdgFileBrowse.Name = "buttonFdgFileBrowse";
+            this.buttonFdgFileBrowse.Size = new System.Drawing.Size(86, 23);
+            this.buttonFdgFileBrowse.TabIndex = 47;
+            this.buttonFdgFileBrowse.Text = "Browse...";
+            this.buttonFdgFileBrowse.UseVisualStyleBackColor = true;
+            this.buttonFdgFileBrowse.Click += new System.EventHandler(this.BrowseFdgFile);
             // 
             // XonoticEnvironmentEditor
             // 
@@ -326,10 +310,11 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.Controls.Add(this.grpFgds);
             this.Controls.Add(this.groupBox1);
             this.Name = "XonoticEnvironmentEditor";
-            this.Size = new System.Drawing.Size(551, 1387);
+            this.Size = new System.Drawing.Size(551, 332);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpFgds.ResumeLayout(false);
+            this.grpFgds.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -341,22 +326,20 @@ namespace Trowel.BspEditor.Environment.Xonotic
         private System.Windows.Forms.Button btnGameDirBrowse;
         private System.Windows.Forms.TextBox txtGameDir;
         private System.Windows.Forms.GroupBox grpFgds;
-        private System.Windows.Forms.ListView lstFgds;
-        private System.Windows.Forms.ColumnHeader colFgdName;
-        private System.Windows.Forms.ColumnHeader colFgdPath;
         private System.Windows.Forms.ComboBox cmbDefaultPointEntity;
         private System.Windows.Forms.ComboBox cmbDefaultBrushEntity;
         private System.Windows.Forms.CheckBox chkIncludeFgdDirectories;
         private System.Windows.Forms.ComboBox cmbMapSizeOverrideHigh;
         private System.Windows.Forms.Label lblDefaultPointEntity;
         private System.Windows.Forms.Label lblMapSizeOverrideHigh;
-        private System.Windows.Forms.Button btnRemoveFgd;
         private System.Windows.Forms.ComboBox cmbMapSizeOverrideLow;
         private System.Windows.Forms.Label lblDefaultBrushEntity;
         private System.Windows.Forms.CheckBox chkOverrideMapSize;
-        private System.Windows.Forms.Button btnAddFgd;
         private System.Windows.Forms.Label lblMapSizeOverrideLow;
         private System.Windows.Forms.ComboBox cmbGameExe;
         private System.Windows.Forms.Label lblGameExe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtFdgFile;
+        private System.Windows.Forms.Button buttonFdgFileBrowse;
     }
 }

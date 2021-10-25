@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Trowel.BspEditor.Compile;
@@ -19,9 +21,33 @@ namespace Trowel.BspEditor.Environment.Xonotic
 
         public string Name { get; set; }
 
-        public IFile Root => throw new NotImplementedException();
+        public string FgdFile { get; set; }
 
-        public IEnumerable<string> Directories => throw new NotImplementedException();
+        private IFile _root;
+        public IFile Root
+        {
+            get
+            {
+                if (_root == null)
+                {
+                    var dirs = Directories.Where(Directory.Exists).ToList();
+                    if (dirs.Any()) _root = new RootFile(Name, dirs.Select(x => new NativeFile(x)));
+                    else _root = new VirtualFile(null, "");
+                }
+                return _root;
+            }
+        }
+
+        public IEnumerable<string> Directories
+        {
+            get
+            {
+                yield return Path.Combine(BaseDirectory, "data");
+
+                // Editor location to the path, for sprites and the like
+                yield return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            }
+        }
 
         public string DefaultBrushEntity { get; set; }
 

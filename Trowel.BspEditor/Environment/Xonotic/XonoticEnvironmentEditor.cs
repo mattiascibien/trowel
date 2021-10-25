@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Trowel.Common.Translations;
+using Trowel.DataStructures.GameData;
 using Trowel.Providers.GameData;
 
 namespace Trowel.BspEditor.Environment.Xonotic
@@ -27,6 +28,9 @@ namespace Trowel.BspEditor.Environment.Xonotic
 
             txtGameDir.TextChanged += OnEnvironmentChanged;
             cmbGameExe.SelectedIndexChanged += OnEnvironmentChanged;
+
+            cmbDefaultPointEntity.SelectedIndexChanged += OnEnvironmentChanged;
+            cmbDefaultBrushEntity.SelectedIndexChanged += OnEnvironmentChanged;
         }
 
         private void GameDirectoryTextChanged(object sender, EventArgs e)
@@ -72,6 +76,9 @@ namespace Trowel.BspEditor.Environment.Xonotic
             {
                 BaseDirectory = txtGameDir.Text,
                 GameExe = Convert.ToString(cmbGameExe.SelectedItem, CultureInfo.InvariantCulture),
+                FgdFile = txtFdgFile.Text,
+                DefaultPointEntity = Convert.ToString(cmbDefaultPointEntity.SelectedItem, CultureInfo.InvariantCulture),
+                DefaultBrushEntity = Convert.ToString(cmbDefaultBrushEntity.SelectedItem, CultureInfo.InvariantCulture),
             };
         }
 
@@ -87,12 +94,69 @@ namespace Trowel.BspEditor.Environment.Xonotic
             }
         }
 
+        private void BrowseFdgFile(object sender, EventArgs e)
+        {
+            var directory = Path.GetDirectoryName(txtFdgFile.Text);
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Forge Data Files (*.fgd)|*.fgd";
+                if (Directory.Exists(directory)) ofd.InitialDirectory = directory;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    txtFdgFile.Text = ofd.FileName;
+                }
+            }
+        }
+
+        private void FdgFileChanged(object sender, EventArgs e)
+        {
+            var entities = new List<GameDataObject>();
+            if (_fgdProvider != null)
+            {
+                if(File.Exists(txtFdgFile.Text) && _fgdProvider.IsValidForFile(txtFdgFile.Text))
+                {
+                    var gd = _fgdProvider.GetGameDataFromFiles(new [] { txtFdgFile.Text });
+                    entities.AddRange(gd.Classes);
+                }
+            }
+
+            var selPoint = cmbDefaultPointEntity.SelectedItem as string;
+            var selBrush = cmbDefaultBrushEntity.SelectedItem as string;
+
+            cmbDefaultPointEntity.BeginUpdate();
+            cmbDefaultBrushEntity.BeginUpdate();
+
+            cmbDefaultPointEntity.Items.Clear();
+            cmbDefaultBrushEntity.Items.Clear();
+
+            cmbDefaultPointEntity.Items.Add("");
+            cmbDefaultBrushEntity.Items.Add("");
+
+            foreach (var gdo in entities.OrderBy(x => x.Name, StringComparer.InvariantCultureIgnoreCase))
+            {
+                if (gdo.ClassType == ClassType.Solid) cmbDefaultBrushEntity.Items.Add(gdo.Name);
+                else if (gdo.ClassType != ClassType.Base) cmbDefaultPointEntity.Items.Add(gdo.Name);
+            }
+
+            var idx = cmbDefaultBrushEntity.Items.IndexOf(selBrush ?? "");
+            if (idx >= 0) cmbDefaultBrushEntity.SelectedIndex = idx;
+            idx = cmbDefaultPointEntity.Items.IndexOf(selPoint ?? "");
+            if (idx >= 0) cmbDefaultPointEntity.SelectedIndex = idx;
+
+            cmbDefaultPointEntity.EndUpdate();
+            cmbDefaultBrushEntity.EndUpdate();
+        }
+
         public void SetEnvironment(XonoticEnvironment env)
         {
             if (env == null) env = new XonoticEnvironment();
 
             txtGameDir.Text = env.BaseDirectory;
             cmbGameExe.SelectedItem = env.GameExe;
+            txtFdgFile.Text = env.FgdFile;
+
+            cmbDefaultPointEntity.SelectedItem = env.DefaultPointEntity;
+            cmbDefaultBrushEntity.SelectedItem = env.DefaultBrushEntity;
         }
 
         public void Translate(ITranslationStringProvider strings)
