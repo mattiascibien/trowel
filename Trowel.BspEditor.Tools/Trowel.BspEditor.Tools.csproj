@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <NoWarn>CS4014</NoWarn>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Extra%29|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug %28Extra%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUG_EXTRA</DefineConstants>
+    <NoWarn>CS4014</NoWarn>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Brush\Brushes\Controls\BooleanControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Brush\Brushes\Controls\BrushControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Brush\Brushes\Controls\FontChooserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Brush\Brushes\Controls\NumericControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Brush\Brushes\Controls\TextControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Brush\BrushSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Entity\EntitySidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Selection\SelectToolSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Texture\SmartEditTextureBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Texture\TextureListPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Texture\TextureSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Texture\TextureToolSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Vertex\Controls\VertexEditFaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Vertex\Controls\VertexErrorsSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Vertex\Controls\VertexPointControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Vertex\Controls\VertexScaleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Vertex\Controls\VertexSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Menu_Cordon.png" />
+    <Content Include="Resources\Menu_IgnoreGrouping.png" />
+    <Content Include="Resources\Menu_ReplaceTextures.png" />
+    <Content Include="Resources\Tool_VM.png" />
+    <Content Include="Translations\Trowel.BspEditor.Tools.en.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Translations\Trowel.BspEditor.Tools.fr.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Translations\Trowel.BspEditor.Tools.it.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Menu_LargerGrid.png" />
+    <Content Include="Resources\Menu_SmallerGrid.png" />
+    <Content Include="Resources\Menu_SnapToGrid.png" />
+    <Content Include="Resources\Tool_Clip.png" />
+    <Content Include="Resources\Tool_Cordon.png" />
+    <Content Include="Resources\Tool_Decal.png" />
+    <Content Include="Resources\Tool_Entity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.246501">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Poly2Tri.NetStandard" Version="1.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Trowel.BspEditor\Trowel.BspEditor.csproj" />
+    <ProjectReference Include="..\Trowel.BspEditor.Editing\Trowel.BspEditor.Editing.csproj" />
+    <ProjectReference Include="..\Trowel.BspEditor.Rendering\Trowel.BspEditor.Rendering.csproj" />
+    <ProjectReference Include="..\Trowel.Common\Trowel.Common.csproj" />
+    <ProjectReference Include="..\Trowel.DataStructures\Trowel.DataStructures.csproj" />
+    <ProjectReference Include="..\Trowel.Providers\Trowel.Providers.csproj" />
+    <ProjectReference Include="..\Trowel.Rendering\Trowel.Rendering.csproj" />
+    <ProjectReference Include="..\Trowel.Shell\Trowel.Shell.csproj" />
+  </ItemGroup>
+</Project>

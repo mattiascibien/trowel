@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <NoWarn>CS4014</NoWarn>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Extra%29|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug %28Extra%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUG_EXTRA</DefineConstants>
+    <NoWarn>CS4014</NoWarn>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Scene\SceneBufferAllocationSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Translations\Trowel.BspEditor.Rendering.en.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Translations\Trowel.BspEditor.Rendering.fr.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\lightbulb.spr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\speaker.spr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Translations\Trowel.BspEditor.Rendering.it.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.246501">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Trowel.BspEditor\Trowel.BspEditor.csproj" />
+    <ProjectReference Include="..\Trowel.Common\Trowel.Common.csproj" />
+    <ProjectReference Include="..\Trowel.DataStructures\Trowel.DataStructures.csproj" />
+    <ProjectReference Include="..\Trowel.Filesystem\Trowel.Filesystem.csproj" />
+    <ProjectReference Include="..\Trowel.Providers\Trowel.Providers.csproj" />
+    <ProjectReference Include="..\Trowel.Rendering\Trowel.Rendering.csproj" />
+    <ProjectReference Include="..\Trowel.Shell\Trowel.Shell.csproj" />
+  </ItemGroup>
+</Project>
