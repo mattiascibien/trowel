@@ -34,8 +34,6 @@ namespace Trowel.Shell.Registers
         )
         {
             _loaders = documentLoaders.Select(x => x.Value).ToList();
-
-            var assembly = Assembly.GetEntryAssembly()?.GetName().Name ?? "Trowel.Shell";
             
             _openDocuments = new ThreadSafeList<IDocument>();
         }
