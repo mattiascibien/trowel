@@ -28,9 +28,6 @@ namespace Trowel.Shell.Registers
 
         private readonly List<IDocumentLoader> _loaders;
 
-        private readonly string _programId;
-        private readonly string _programIdVer = "1";
-
         [ImportingConstructor]
         public DocumentRegister(
             [ImportMany] IEnumerable<Lazy<IDocumentLoader>> documentLoaders
@@ -39,8 +36,7 @@ namespace Trowel.Shell.Registers
             _loaders = documentLoaders.Select(x => x.Value).ToList();
 
             var assembly = Assembly.GetEntryAssembly()?.GetName().Name ?? "Trowel.Shell";
-            _programId = assembly.Replace(".", "");
-
+            
             _openDocuments = new ThreadSafeList<IDocument>();
         }
 
@@ -212,11 +208,6 @@ namespace Trowel.Shell.Registers
             _openDocuments.Add(doc);
             await Oy.Publish("Document:Opened", doc);
             await ActivateDocument(doc);
-        }
-
-        private static string ExecutableLocation()
-        {
-            return Assembly.GetEntryAssembly().Location;
         }
     }
 }
