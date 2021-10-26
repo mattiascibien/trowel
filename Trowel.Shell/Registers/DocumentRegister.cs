@@ -20,17 +20,13 @@ namespace Trowel.Shell.Registers
     /// The document register handles document loaders
     /// </summary>
     [Export(typeof(IStartupHook))]
-    [Export(typeof(ISettingsContainer))]
     [Export]
-    public class DocumentRegister : IStartupHook, ISettingsContainer
+    public class DocumentRegister : IStartupHook
     {
         private readonly ThreadSafeList<IDocument> _openDocuments;
         public IReadOnlyCollection<IDocument> OpenDocuments => _openDocuments;
 
         private readonly List<IDocumentLoader> _loaders;
-
-        private readonly string _programId;
-        private readonly string _programIdVer = "1";
 
         [ImportingConstructor]
         public DocumentRegister(
@@ -38,16 +34,12 @@ namespace Trowel.Shell.Registers
         )
         {
             _loaders = documentLoaders.Select(x => x.Value).ToList();
-
-            var assembly = Assembly.GetEntryAssembly()?.GetName().Name ?? "Trowel.Shell";
-            _programId = assembly.Replace(".", "");
-
+            
             _openDocuments = new ThreadSafeList<IDocument>();
         }
 
         public Task OnStartup()
         {
-            RegisterExtensionHandlers();
             return Task.FromResult(0);
         }
 
@@ -214,156 +206,6 @@ namespace Trowel.Shell.Registers
             _openDocuments.Add(doc);
             await Oy.Publish("Document:Opened", doc);
             await ActivateDocument(doc);
-        }
-
-        // Settings provider
-
-        public string Name => "Trowel.Shell.Documents";
-
-        public IEnumerable<SettingKey> GetKeys()
-        {
-            yield return new SettingKey("FileAssociations", "Associations", typeof(FileAssociations));
-        }
-
-        public void LoadValues(ISettingsStore store)
-        {
-            if (!store.Contains("Associations")) return;
-
-            var associations = store.Get("Associations", new FileAssociations());
-            AssociateExtensionHandlers(associations.Where(x => x.Value).Select(x => x.Key));
-        }
-
-        public void StoreValues(ISettingsStore store)
-        {
-            var associations = new FileAssociations();
-            var reg = GetRegisteredExtensionAssociations().ToList();
-            foreach (var ext in _loaders.SelectMany(x => x.SupportedFileExtensions).SelectMany(x => x.Extensions))
-            {
-                associations[ext] = reg.Contains(ext, StringComparer.InvariantCultureIgnoreCase);
-            }
-            store.Set("Associations", associations);
-        }
-
-        public class FileAssociations : Dictionary<string, bool>
-        {
-            public FileAssociations Clone()
-            {
-                var b = new FileAssociations();
-                foreach (var kv in this) b.Add(kv.Key, kv.Value);
-                return b;
-            }
-        }
-
-        private static string ExecutableLocation()
-        {
-            return Assembly.GetEntryAssembly().Location;
-        }
-
-        private void RegisterExtensionHandlers()
-        {
-            try
-            {
-                using (var root = Registry.CurrentUser.OpenSubKey("Software\\Classes", true))
-                {
-                    if (root == null) return;
-
-                    foreach (var ext in _loaders.SelectMany(x => x.SupportedFileExtensions))
-                    {
-                        foreach (var extension in ext.Extensions)
-                        {
-                            using (var progId = root.CreateSubKey(_programId + extension + "." + _programIdVer))
-                            {
-                                if (progId == null) continue;
-
-                                progId.SetValue("", ext.Description);
-
-                                using (var di = progId.CreateSubKey("DefaultIcon"))
-                                {
-                                    di?.SetValue("", ExecutableLocation() + ",-40001");
-                                }
-
-                                using (var comm = progId.CreateSubKey("shell\\open\\command"))
-                                {
-                                    comm?.SetValue("", "\"" + ExecutableLocation() + "\" \"%1\"");
-                                }
-
-                                progId.SetValue("AppUserModelID", _programId);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                // security exception or some such
-            }
-        }
-
-        private void AssociateExtensionHandlers(IEnumerable<string> extensions)
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                try
-                {
-                    using (var root = Registry.CurrentUser.OpenSubKey("Software\\Classes", true))
-                    {
-                        if (root == null) return;
-
-                        foreach (var extension in extensions)
-                        {
-                            using (var ext = root.CreateSubKey(extension))
-                            {
-                                if (ext == null) return;
-                                ext.SetValue("", _programId + extension + "." + _programIdVer);
-                                ext.SetValue("PerceivedType", "Document");
-
-                                using (var openWith = ext.CreateSubKey("OpenWithProgIds"))
-                                {
-                                    openWith?.SetValue(_programId + extension + "." + _programIdVer, string.Empty);
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    // security exception or some such
-                }
-            }
-
-        }
-
-        private IEnumerable<string> GetRegisteredExtensionAssociations()
-        {
-            var associations = new List<string>();
-            try
-            {
-                using (var root = Registry.CurrentUser.OpenSubKey("Software\\Classes"))
-                {
-                    if (root == null) return Enumerable.Empty<string>();
-
-                    foreach (var ft in _loaders.SelectMany(x => x.SupportedFileExtensions))
-                    {
-                        foreach (var extension in ft.Extensions)
-                        {
-                            using (var ext = root.OpenSubKey(extension))
-                            {
-                                if (ext == null) continue;
-                                if (Convert.ToString(ext.GetValue("")) == _programId + extension + "." + _programIdVer)
-                                {
-                                    associations.Add(extension);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                // security exception or some such
-            }
-
-            return associations;
         }
     }
 }
