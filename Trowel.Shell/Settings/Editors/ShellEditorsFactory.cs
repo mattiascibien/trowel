@@ -48,10 +48,6 @@ namespace Trowel.Shell.Settings.Editors
             {
                 return true;
             }
-            else if (key.Type == typeof(DocumentRegister.FileAssociations))
-            {
-                return true;
-            }
             return false;
         }
 
@@ -90,10 +86,7 @@ namespace Trowel.Shell.Settings.Editors
             {
                 return new HotkeysEditor();
             }
-            else if (key.Type == typeof(DocumentRegister.FileAssociations))
-            {
-                return new FileAssociationsEditor();
-            }
+
             return null;
         }
     }

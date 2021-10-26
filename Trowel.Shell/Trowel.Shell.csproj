@@ -51,9 +51,6 @@
     <Compile Update="Settings\Editors\LanguageSelectionEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Settings\Editors\FileAssociationsEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Settings\Editors\SliderEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
