@@ -5,7 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace Trowel.Providers.GameData
+namespace Trowel.Providers.GameData.Fgd
 {
     public class FgdProvider
     {

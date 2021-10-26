@@ -26,7 +26,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
                 Name = environment.Name,
                 BaseDirectory = this.GetVal(environment.Properties, "BaseDirectory", ""),
                 GameExe = this.GetVal(environment.Properties, "GameExe", ""),
-                FgdFile = this.GetVal(environment.Properties, "FgdFile", ""),
+                EntFile = this.GetVal(environment.Properties, "EntFile", ""),
                 DefaultPointEntity = this.GetVal(environment.Properties, "DefaultPointEntity", ""),
                 DefaultBrushEntity = this.GetVal(environment.Properties, "DefaultBrushEntity", ""),
                 // TODO: add other properties
@@ -45,7 +45,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
                 {
                     { "BaseDirectory", env.BaseDirectory },
                     { "GameExe", env.GameExe },
-                    { "FgdFile", env.FgdFile },
+                    { "EntFile", env.EntFile },
                     { "DefaultPointEntity", env.DefaultPointEntity },
                     { "DefaultBrushEntity", env.DefaultBrushEntity },                    
                     // TODO: add other properties

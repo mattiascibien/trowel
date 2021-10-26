@@ -36,6 +36,9 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.btnGameDirBrowse = new System.Windows.Forms.Button();
             this.txtGameDir = new System.Windows.Forms.TextBox();
             this.grpFgds = new System.Windows.Forms.GroupBox();
+            this.buttonEntFileBrowse = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtEntFile = new System.Windows.Forms.TextBox();
             this.cmbDefaultPointEntity = new System.Windows.Forms.ComboBox();
             this.cmbDefaultBrushEntity = new System.Windows.Forms.ComboBox();
             this.chkIncludeFgdDirectories = new System.Windows.Forms.CheckBox();
@@ -46,9 +49,6 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.lblDefaultBrushEntity = new System.Windows.Forms.Label();
             this.chkOverrideMapSize = new System.Windows.Forms.CheckBox();
             this.lblMapSizeOverrideLow = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFdgFile = new System.Windows.Forms.TextBox();
-            this.buttonFdgFileBrowse = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpFgds.SuspendLayout();
             this.SuspendLayout();
@@ -124,9 +124,9 @@ namespace Trowel.BspEditor.Environment.Xonotic
             // 
             // grpFgds
             // 
-            this.grpFgds.Controls.Add(this.buttonFdgFileBrowse);
+            this.grpFgds.Controls.Add(this.buttonEntFileBrowse);
             this.grpFgds.Controls.Add(this.label1);
-            this.grpFgds.Controls.Add(this.txtFdgFile);
+            this.grpFgds.Controls.Add(this.txtEntFile);
             this.grpFgds.Controls.Add(this.cmbDefaultPointEntity);
             this.grpFgds.Controls.Add(this.cmbDefaultBrushEntity);
             this.grpFgds.Controls.Add(this.chkIncludeFgdDirectories);
@@ -145,6 +145,37 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.grpFgds.TabIndex = 48;
             this.grpFgds.TabStop = false;
             this.grpFgds.Text = "Game Data Files";
+            // 
+            // buttonEntFileBrowse
+            // 
+            this.buttonEntFileBrowse.Location = new System.Drawing.Point(429, 22);
+            this.buttonEntFileBrowse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonEntFileBrowse.Name = "buttonEntFileBrowse";
+            this.buttonEntFileBrowse.Size = new System.Drawing.Size(86, 23);
+            this.buttonEntFileBrowse.TabIndex = 47;
+            this.buttonEntFileBrowse.Text = "Browse...";
+            this.buttonEntFileBrowse.UseVisualStyleBackColor = true;
+            this.buttonEntFileBrowse.Click += new System.EventHandler(this.BrowseEntFile);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(7, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 23);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "Entities File";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtEntFile
+            // 
+            this.txtEntFile.Location = new System.Drawing.Point(125, 22);
+            this.txtEntFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtEntFile.Name = "txtEntFile";
+            this.txtEntFile.Size = new System.Drawing.Size(298, 23);
+            this.txtEntFile.TabIndex = 45;
+            this.txtEntFile.Text = "example: entities.ent";
+            this.txtEntFile.TextChanged += new System.EventHandler(this.FdgFileChanged);
             // 
             // cmbDefaultPointEntity
             // 
@@ -272,37 +303,6 @@ namespace Trowel.BspEditor.Environment.Xonotic
             this.lblMapSizeOverrideLow.Text = "Low";
             this.lblMapSizeOverrideLow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(7, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 23);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "FGD File";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtFdgFile
-            // 
-            this.txtFdgFile.Location = new System.Drawing.Point(125, 22);
-            this.txtFdgFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtFdgFile.Name = "txtFdgFile";
-            this.txtFdgFile.Size = new System.Drawing.Size(298, 23);
-            this.txtFdgFile.TabIndex = 45;
-            this.txtFdgFile.Text = "example: C:\\Xonotic\\xonotic.fgd";
-            this.txtFdgFile.TextChanged += new System.EventHandler(this.FdgFileChanged);
-            // 
-            // buttonFdgFileBrowse
-            // 
-            this.buttonFdgFileBrowse.Location = new System.Drawing.Point(429, 22);
-            this.buttonFdgFileBrowse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonFdgFileBrowse.Name = "buttonFdgFileBrowse";
-            this.buttonFdgFileBrowse.Size = new System.Drawing.Size(86, 23);
-            this.buttonFdgFileBrowse.TabIndex = 47;
-            this.buttonFdgFileBrowse.Text = "Browse...";
-            this.buttonFdgFileBrowse.UseVisualStyleBackColor = true;
-            this.buttonFdgFileBrowse.Click += new System.EventHandler(this.BrowseFdgFile);
-            // 
             // XonoticEnvironmentEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -339,7 +339,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
         private System.Windows.Forms.ComboBox cmbGameExe;
         private System.Windows.Forms.Label lblGameExe;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFdgFile;
-        private System.Windows.Forms.Button buttonFdgFileBrowse;
+        private System.Windows.Forms.TextBox txtEntFile;
+        private System.Windows.Forms.Button buttonEntFileBrowse;
     }
 }

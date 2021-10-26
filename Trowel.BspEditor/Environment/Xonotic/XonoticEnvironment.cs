@@ -19,7 +19,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
     public class XonoticEnvironment : IEnvironment
     {
         private readonly ITexturePackageProvider _pk3Provider;
-        private readonly IGameDataProvider _fgdProvider;
+        private readonly IGameDataProvider _entProvider;
         private readonly Lazy<Task<TextureCollection>> _textureCollection;
         private readonly Lazy<Task<GameData>> _gameData;
 
@@ -29,7 +29,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
 
         public string Name { get; set; }
 
-        public string FgdFile { get; set; }
+        public string EntFile { get; set; }
 
         private IFile _root;
 
@@ -70,7 +70,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
         public XonoticEnvironment()
         {
             _pk3Provider = Container.Get<ITexturePackageProvider>("Pk3");
-            _fgdProvider = Container.Get<IGameDataProvider>("Fgd");
+            _entProvider = Container.Get<IGameDataProvider>("Ent");
             _gameData = new Lazy<Task<GameData>>(MakeGameDataAsync);
             _textureCollection = new Lazy<Task<TextureCollection>>(MakeTextureCollectionAsync);
         }
@@ -108,7 +108,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
 
         private Task<GameData> MakeGameDataAsync()
         {
-            return Task.FromResult(_fgdProvider.GetGameDataFromFiles(new [] { FgdFile }));
+            return Task.FromResult(_entProvider.GetGameDataFromFiles(new [] { EntFile }));
         }
 
         public Task<TextureCollection> GetTextureCollection() => _textureCollection.Value;

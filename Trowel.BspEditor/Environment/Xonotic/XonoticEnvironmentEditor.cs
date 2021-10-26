@@ -20,7 +20,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
         public event EventHandler EnvironmentChanged;
         public Control Control => this;
 
-        private readonly IGameDataProvider _fgdProvider = Common.Container.Get<IGameDataProvider>("Fgd");
+        private readonly IGameDataProvider _entProvider = Common.Container.Get<IGameDataProvider>("Ent");
 
         public XonoticEnvironmentEditor()
         {
@@ -76,7 +76,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
             {
                 BaseDirectory = txtGameDir.Text,
                 GameExe = Convert.ToString(cmbGameExe.SelectedItem, CultureInfo.InvariantCulture),
-                FgdFile = txtFdgFile.Text,
+                EntFile = txtEntFile.Text,
                 DefaultPointEntity = Convert.ToString(cmbDefaultPointEntity.SelectedItem, CultureInfo.InvariantCulture),
                 DefaultBrushEntity = Convert.ToString(cmbDefaultBrushEntity.SelectedItem, CultureInfo.InvariantCulture),
             };
@@ -94,16 +94,16 @@ namespace Trowel.BspEditor.Environment.Xonotic
             }
         }
 
-        private void BrowseFdgFile(object sender, EventArgs e)
+        private void BrowseEntFile(object sender, EventArgs e)
         {
-            var directory = Path.GetDirectoryName(txtFdgFile.Text);
+            var directory = Path.GetDirectoryName(txtEntFile.Text);
             using (var ofd = new OpenFileDialog())
             {
-                ofd.Filter = "Forge Data Files (*.fgd)|*.fgd";
+                ofd.Filter = "Radiant Entities File (*.ent)|*.ent";
                 if (Directory.Exists(directory)) ofd.InitialDirectory = directory;
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    txtFdgFile.Text = ofd.FileName;
+                    txtEntFile.Text = ofd.FileName;
                 }
             }
         }
@@ -111,11 +111,11 @@ namespace Trowel.BspEditor.Environment.Xonotic
         private void FdgFileChanged(object sender, EventArgs e)
         {
             var entities = new List<GameDataObject>();
-            if (_fgdProvider != null)
+            if (_entProvider != null)
             {
-                if(File.Exists(txtFdgFile.Text) && _fgdProvider.IsValidForFile(txtFdgFile.Text))
+                if(File.Exists(txtEntFile.Text) && _entProvider.IsValidForFile(txtEntFile.Text))
                 {
-                    var gd = _fgdProvider.GetGameDataFromFiles(new [] { txtFdgFile.Text });
+                    var gd = _entProvider.GetGameDataFromFiles(new [] { txtEntFile.Text });
                     entities.AddRange(gd.Classes);
                 }
             }
@@ -153,7 +153,7 @@ namespace Trowel.BspEditor.Environment.Xonotic
 
             txtGameDir.Text = env.BaseDirectory;
             cmbGameExe.SelectedItem = env.GameExe;
-            txtFdgFile.Text = env.FgdFile;
+            txtEntFile.Text = env.EntFile;
 
             cmbDefaultPointEntity.SelectedItem = env.DefaultPointEntity;
             cmbDefaultBrushEntity.SelectedItem = env.DefaultBrushEntity;
