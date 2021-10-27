@@ -25,11 +25,6 @@
     <Compile Remove="Texture\Vtf\VtfProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.246501">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Trowel.Common\Trowel.Common.csproj" />
     <ProjectReference Include="..\Trowel.DataStructures\Trowel.DataStructures.csproj" />
     <ProjectReference Include="..\Trowel.Filesystem\Trowel.Filesystem.csproj" />
